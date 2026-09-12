@@ -9,3 +9,17 @@ export const identity = {
   whatsapp: 'https://wa.me/542645085087',
 };
 export const pick = <T,>(lang: Language, es: T, en: T): T => lang === 'es' ? es : en;
+
+const projectNames: Record<string,string> = {
+  'servifood-orders': 'ServiFood Order System',
+  'midnight-pass': 'MIDNIGHT PASS',
+  'servifood-tracking': 'ServiFood Tracking',
+  'servifood-analytics': 'ServiFood Analytics',
+  'ep-consultora-sgi': 'EP Consultora / SGI',
+};
+
+export const projectName = (slug: string, fallback = slug) => projectNames[slug] ?? fallback;
+
+// Repositorios internos de ServiFood no se enlazan desde el portfolio público.
+export const canPublishRepositoryLink = (slug: string) =>
+  !slug.startsWith('servifood-') && slug !== 'midnight-pass';
