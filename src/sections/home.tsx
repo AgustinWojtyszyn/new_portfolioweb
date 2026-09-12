@@ -40,6 +40,6 @@ export function About({lang}:{lang:Language}) {
 }
 export function Contact({lang}:{lang:Language}) {
  const t=getContent(lang);
- return <section id="contact" className="contact section"><div className="container"><p className="eyebrow">07 / {t.contactLabel}</p><h2>{t.contactTitle}<br/><a href={`mailto:${identity.email}`}>{t.contactCta}<span>↗</span></a></h2><div className="contact-bottom"><div><p>{t.contactText}</p><a className="contact-email text-link" href={`mailto:${identity.email}`}>{identity.email}</a></div></div></div></section>;
+ return <section id="contact" className="contact section"><div className="container"><p className="eyebrow">07 / {t.contactLabel}</p><h2>{t.contactTitle}<br/><a href={`mailto:${identity.email}`}>{t.contactCta}<span>↗</span></a></h2><div className="contact-bottom"><div><p>{t.contactText}</p><a className="contact-email text-link" href={`mailto:${identity.email}`}>{identity.email}</a></div><div className="contact-links"><a href={identity.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={identity.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div></div></section>;
 }
 export function Footer({lang}:{lang:Language}) { return <footer className="footer container mono"><span>© {new Date().getFullYear()} AGUSTÍN WOJTYSZYN</span><span>{getContent(lang).footer}</span><a href="#main" aria-label={lang==='es'?'Volver arriba':'Back to top'}>↑</a></footer>; }
