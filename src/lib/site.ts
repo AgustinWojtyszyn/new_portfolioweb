@@ -19,6 +19,4 @@ const projectNames: Record<string,string> = {
 
 export const projectName = (slug: string, fallback = slug) => projectNames[slug] ?? fallback;
 
-// Repositorios internos de ServiFood no se enlazan desde el portfolio público.
-export const canPublishRepositoryLink = (slug: string) =>
-  !slug.startsWith('servifood-') && slug !== 'midnight-pass';
+export const canPublishRepositoryLink = (_slug: string) => true;
