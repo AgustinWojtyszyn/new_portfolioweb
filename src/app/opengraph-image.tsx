@@ -1,0 +1,5 @@
+import { ImageResponse } from 'next/og';
+export const alt='Agustín Wojtyszyn — Full Stack Developer';
+export const size={width:1200,height:630};
+export const contentType='image/png';
+export default function Image(){return new ImageResponse(<div style={{background:'#111713',color:'#eeeFe6',width:'100%',height:'100%',display:'flex',padding:'64px',flexDirection:'column',justifyContent:'space-between',fontFamily:'sans-serif'}}><div style={{display:'flex',justifyContent:'space-between',fontSize:21,letterSpacing:3}}><span>AGUSTÍN WOJTYSZYN</span><span style={{color:'#78e6ad'}}>AW. / SYSTEM ATLAS</span></div><div style={{display:'flex',flexDirection:'column',fontSize:82,lineHeight:1.06,letterSpacing:-4}}><span>Building systems</span><span>for the <span style={{color:'#78e6ad'}}>real world.</span></span></div><div style={{display:'flex',justifyContent:'space-between',borderTop:'1px solid #47584b',paddingTop:25,fontSize:22}}><span>FULL STACK DEVELOPER</span><span>San Juan · Argentina</span></div></div>,size);}

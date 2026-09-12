@@ -1,0 +1,44 @@
+/* Motion only: preserve the original dimensions, grid and editorial composition. */
+.scroll-progress{position:fixed;inset:0 0 auto;height:2px;background:var(--green);z-index:60;transform:scaleX(var(--progress,0));transform-origin:left;pointer-events:none;opacity:.75}
+.motion-reveal{transition:opacity .7s ease var(--reveal-delay,0ms),transform .85s cubic-bezier(.2,.65,.25,1) var(--reveal-delay,0ms)}
+.motion-reveal[data-reveal=pending]{opacity:0;transform:translate3d(0,16px,0)}
+.motion-reveal[data-reveal=visible],.motion-reveal:focus-within{opacity:1;transform:translate3d(0,0,0)}
+.motion-enabled{position:relative;isolation:isolate}.motion-enabled:before{content:'';position:absolute;left:27px;top:145px;bottom:150px;width:1px;background:linear-gradient(transparent,#75a28626 10%,#75a28616 30%,transparent 47%,#75a28622 66%,transparent);pointer-events:none;z-index:-1}
+.system-map,.midnight-title{transform:translate3d(0,var(--scroll-depth,0px),0)}
+.system-map:before{content:'';position:absolute;inset:5%;background:radial-gradient(ellipse,#53c98b0a,transparent 65%);pointer-events:none;opacity:.3;transition:opacity .6s}.system-map:hover:before{opacity:1}
+.atlas-center{transform:translate(var(--center-x,0px),var(--center-y,0px));transition:transform .45s ease-out}
+.atlas-connection{stroke-dasharray:1;stroke-dashoffset:0}.motion-enabled .system-map:not(.motion-seen) .atlas-connection{stroke-dashoffset:1}
+.motion-seen .atlas-connection{animation:connect-in 1.15s cubic-bezier(.22,.61,.36,1) var(--node-delay,0ms) both}
+.atlas-signal{opacity:0;stroke:var(--green)!important;stroke-dasharray:.045 .955;stroke-dashoffset:1}
+.motion-active .map-node.active .atlas-signal{animation:signal-travel 3.6s linear infinite .9s}
+.motion-seen .map-link{animation:node-label-in .6s ease var(--node-delay,0ms) both}
+.map-link{transition:border-color .25s,background .25s,box-shadow .35s}.map-link:hover,.map-link:focus-visible{box-shadow:0 0 24px #5bd78e16}.map-link small{transition:color .3s}.map-link:hover small{color:var(--green)}
+.map-node .node-ring{transform-box:fill-box;transform-origin:center}.motion-active .map-node .node-ring{animation:node-breathe 4.8s ease-out var(--node-delay,0ms) infinite}
+.atlas-planes{animation-play-state:paused}.motion-active .atlas-planes{animation-play-state:running}
+.order-visual,.architecture,.project-row{position:relative;isolation:isolate}.order-visual:after,.architecture:after,.project-row:after{content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:0;background:radial-gradient(260px circle at var(--light-x,50%) var(--light-y,50%),#93e6b30c,transparent 80%);transition:opacity .5s}
+.order-visual:after,.architecture:after{z-index:0}.order-visual:hover:after,.architecture:hover:after,.project-row:hover:after{opacity:1}
+.order-blueprint,.flow{position:relative;z-index:1}.blueprint-line{position:relative;overflow:hidden}.blueprint-line:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent,var(--green),transparent);transform:translateY(-100%)}
+.motion-active .blueprint-line:after{animation:flow-down 4.8s ease-in-out infinite}
+.blueprint-core{transition:box-shadow .5s,border-color .5s}.order-visual:hover .blueprint-core{border-color:#9bd1a5;box-shadow:14px 14px 0 #141d15,15px 15px 0 #66866a}
+.motion-active .blueprint-branches span:before{animation:branch-state 4.8s ease-in-out infinite}.motion-active .blueprint-branches span:nth-child(2):before{animation-delay:.45s}.motion-active .blueprint-branches span:nth-child(3):before{animation-delay:.9s}
+.motion-active .blueprint-core-footer>span{animation:branch-state 4.8s ease-in-out .3s infinite}.motion-active .flow-arrow{animation:arrow-flow 3.6s ease-in-out infinite}.flow li:nth-child(2) .flow-arrow{animation-delay:.25s}.flow li:nth-child(3) .flow-arrow{animation-delay:.5s}.flow li:nth-child(4) .flow-arrow{animation-delay:.75s}
+.ecosystem-network{position:relative}.network-systems a:before{transform-origin:left}.motion-seen .network-systems a:before{animation:line-grow .8s ease both}.network-systems a:nth-child(2):before{animation-delay:.15s}.network-systems a:nth-child(3):before{animation-delay:.3s}.motion-active .network-systems .status-dot{animation:branch-state 5s ease-in-out infinite}.network-systems a:nth-child(2) .status-dot{animation-delay:.4s}.network-systems a:nth-child(3) .status-dot{animation-delay:.8s}
+.project-signal{height:36px;width:100%;margin-bottom:8px;fill:none;stroke:#6a987b;stroke-width:1;overflow:visible}.project-signal circle{fill:#83bc94;stroke:none}.signal-grid{stroke:#556b5b;opacity:.4}.signal-track{stroke-dasharray:1;stroke-dashoffset:0}.signal-tracer{stroke:var(--green);stroke-dasharray:.08 .92;stroke-dashoffset:1;opacity:0}.signal-document rect{fill:#1b2a20;stroke:#688f73}.signal-check{stroke:var(--green);stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:0}
+.motion-active .signal-tracer{animation:signal-travel 4.5s linear infinite}.motion-active .signal-document{animation:document-state 5s ease-in-out infinite}.motion-active .signal-check{animation:check-state 5s ease-in-out infinite}.motion-active .project-signal circle{animation:branch-state 4.5s ease-in-out infinite}
+.project-row:hover .signal-track,.project-row:focus-visible .signal-track{stroke:#a9d8b2}.project-number,.row-arrow,.index-stamp,.stack-item-top>span:last-child{transition:color .3s,transform .4s cubic-bezier(.2,.7,.2,1)}.project-row:hover .project-number{color:var(--green);transform:translateY(-2px)}.project-row:hover .row-arrow{transform:translate(3px,-3px)}.stack-item:hover .stack-item-top>span:last-child{transform:translate(2px,2px);color:var(--green)}.arrow-link span{transition:transform .3s}.arrow-link:hover span{transform:translate(3px,-3px)}.next-case strong{transition:color .4s}.next-case>span:last-child{transition:transform .4s}.next-case:hover>span:last-child{transform:translate(5px,-5px)}
+.midnight{position:relative;isolation:isolate}.midnight:before{content:'';position:absolute;inset:-90px 0 auto;height:210px;background:radial-gradient(ellipse at 50% 100%,#51856a0c,transparent 65%);pointer-events:none;z-index:-1}.road-scene{box-shadow:0 24px 60px #0002}.road-route{position:absolute;right:28px;bottom:85px;width:100px;height:85px;fill:none;stroke:#85a390;stroke-width:1}.road-route .route-outline{opacity:.3;stroke-width:5}.road-route .route-trace{stroke:#c0dcc3;stroke-dasharray:.18 .82;stroke-dashoffset:0}.road-route circle{fill:#bad8ba;stroke:none}.road-route text{font-family:var(--mono);font-size:7px;stroke:none;fill:#acbaa3;letter-spacing:2px}.road-running .route-trace{animation:route-travel 9s linear infinite}.road-hud .status-dot{box-shadow:0 0 10px #90d6a350}
+@keyframes connect-in{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes signal-travel{0%{stroke-dashoffset:1;opacity:0}15%,65%{opacity:.8}85%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes node-label-in{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}
+@keyframes node-breathe{0%,100%{opacity:.25;scale:1}50%{opacity:.65;scale:1.15}}
+@keyframes flow-down{0%,10%{transform:translateY(-100%)}70%,100%{transform:translateY(100%)}}
+@keyframes branch-state{0%,100%{opacity:.5}35%{opacity:1}}
+@keyframes arrow-flow{0%,100%{opacity:.45;translate:0 -2px}50%{opacity:1;translate:0 2px}}
+@keyframes line-grow{from{scale:0 1}to{scale:1 1}}
+@keyframes document-state{0%,100%{opacity:.55;translate:0 0}35%{opacity:1;translate:0 -2px}}
+@keyframes check-state{0%,15%{stroke-dashoffset:1;opacity:0}50%,80%{stroke-dashoffset:0;opacity:1}100%{opacity:0}}
+@keyframes route-travel{to{stroke-dashoffset:-1}}
+@media(min-width:801px) and (prefers-reduced-motion:no-preference){@supports (view-timeline-name:--road){.midnight{view-timeline-name:--road;view-timeline-axis:block}.road-scene{animation:road-arrive linear both;animation-timeline:--road;animation-range:entry 5% entry 90%}@keyframes road-arrive{from{clip-path:inset(3% 1% 0);opacity:.75}to{clip-path:inset(0);opacity:1}}}}
+@media(max-width:800px){.motion-reveal[data-reveal=pending]{transform:translate3d(0,9px,0)}.system-map,.midnight-title{transform:none}.motion-enabled:before{display:none}.motion-active .map-node .node-ring{animation:none}.road-route{width:75px;height:65px;right:20px;bottom:115px}}
+@media(max-width:600px){.road-route{width:64px;height:56px;right:15px;bottom:130px}.motion-reveal{transition-duration:.5s}.atlas-center{transform:none}}
+@media(prefers-reduced-motion:reduce){.scroll-progress{display:none}.motion-reveal[data-reveal=pending]{opacity:1;transform:none}.system-map,.midnight-title,.atlas-center{transform:none}.map-link{opacity:1;translate:none}.atlas-connection{stroke-dashoffset:0!important}.atlas-signal,.signal-tracer{display:none}.road-route .route-trace{stroke-dasharray:none}.motion-enabled:before{display:none}.road-scene{clip-path:none;opacity:1}}

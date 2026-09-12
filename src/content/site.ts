@@ -1,0 +1,62 @@
+import type { Language } from '@/lib/site';
+export const content = {
+ es: {
+  nav: ['Proyectos', 'Experiencia', 'Stack', 'Sobre mí', 'Contacto'], skip: 'Saltar al contenido', menu: 'Abrir navegación', close: 'Cerrar navegación',
+  eyebrow: 'AGUSTÍN FERNANDO WOJTYSZYN', hero: ['Construyo sistemas', 'para el', 'mundo real.'],
+  intro: 'De la primera interfaz al último incidente en producción. Diseño, construyo y evoluciono software que se vuelve parte de una operación.',
+  role: 'Full Stack Web Developer', location: '26 años · San Juan, Argentina', work: 'Explorar proyectos',
+  mapTitle: 'ATLAS DE SISTEMAS', mapHint: 'Explorá las conexiones', mapCaption: 'Una práctica. Múltiples dominios.',
+  selected: 'Trabajo seleccionado', selectedSub: 'La interfaz es el comienzo.\nEl sistema es la historia.', case: 'Explorar el caso',
+  visual: 'DIAGRAMA CONCEPTUAL · SIN DATOS OPERATIVOS',
+  ecosystemLabel: 'EL ECOSISTEMA SERVIFOOD', ecosystemTitle: 'Una empresa.\nMúltiples sistemas.', ecosystemText: 'El software crece cuando la operación empieza a depender de él. Pedidos, análisis y mantenimiento: distintas necesidades, una responsabilidad continua.',
+  ecosystemFoot: 'Del desarrollo al mantenimiento. Del dato a la decisión.',
+  midnightLabel: 'FUERA DEL CAMINO HABITUAL', midnightText: 'También construyo sistemas que se pueden conducir. Física, geometría y estado en tiempo real, dentro del navegador.', roadNote: 'Interpretación visual del proyecto · no es el juego', roadPause: 'Pausar escena', roadPlay: 'Animar escena',
+  experienceLabel: 'TRAYECTORIA', experienceTitle: 'Lanzar es\nsolo una etapa.', experienceIntro: 'El trabajo continúa cuando el producto entra en la rutina de una organización.',
+  present: 'AGO 2024 — ACTUALIDAD', job: 'Full Stack Web Developer', jobText: 'Desarrollo y evolución de aplicaciones internas en ServiFood. Desde el modelado de datos y los permisos hasta la experiencia de uso, los despliegues y la resolución de incidentes en producción.',
+  responsibilities: ['Entender la operación', 'Diseñar el sistema', 'Construir y desplegar', 'Mantener e iterar'],
+  education: 'Formación', schoolDate: 'AGO 2024 — DIC 2025', schoolText: 'Conquer Blocks · Full Stack Web Developer. Formación finalizada con presentación y defensa técnica de una aplicación.', english: 'Inglés · B2',
+  stackLabel: 'HERRAMIENTAS EN CONTEXTO', stackTitle: 'Lo que uso.\nY cómo se conecta.', stackText: 'Las tecnologías importan por el trabajo que permiten hacer.',
+  archiveLabel: 'ARCHIVO / EVOLUCIÓN', archiveTitle: 'Cada etapa\ndeja herramientas.', archiveText: 'Una selección de ejercicios y proyectos propios. El recorrido importa más que la cantidad.',
+  aboutLabel: 'DETRÁS DE LOS SISTEMAS', aboutTitle: 'Me interesa lo que\npasa después del clic.', aboutText: 'Trabajo mejor cuando el problema no termina en la interfaz. Me interesa entender qué necesita hacer una organización, cómo fluye la información y qué partes del proceso pueden convertirse en software.',
+  aboutSecond: 'Vivo en San Juan, Argentina. Disfruto encontrar inconsistencias, resolver bugs difíciles y mejorar productos con uso real. Fuera de la operación, exploro conducción y simulación. Uso IA como herramienta de ingeniería, con criterio técnico propio.',
+  contactLabel: 'PRÓXIMO SISTEMA', contactTitle: '¿Hay un sistema\nque debería existir?', contactCta: 'Construyámoslo.', contactText: 'Productos, equipos y problemas que necesitan algo más que una interfaz.', footer: 'Diseñado alrededor de sistemas reales.', back: 'Volver a proyectos', context: 'Contexto', system: 'Sistema', complexity: 'Complejidad', engineering: 'Ingeniería', impact: 'Qué permite hacer', decisions: 'Decisiones de ingeniería', architecture: 'Arquitectura del sistema', next: 'Siguiente sistema', repository: 'Ver repositorio público', privateRepo: 'Repositorio privado', status: 'ESTADO DEL PORTFOLIO', statusValues: ['Software operativo', 'Exploración en tiempo real', 'San Juan, AR'], statusLabels: ['Práctica', 'Laboratorio', 'Base'],
+ },
+ en: {
+  nav: ['Work', 'Experience', 'Stack', 'About', 'Contact'], skip: 'Skip to content', menu: 'Open navigation', close: 'Close navigation',
+  eyebrow: 'AGUSTÍN FERNANDO WOJTYSZYN', hero: ['I build systems', 'for the', 'real world.'],
+  intro: 'From the first interface to the latest production incident. I design, build and evolve software that becomes part of an operation.',
+  role: 'Full Stack Web Developer', location: '26 years old · San Juan, Argentina', work: 'Explore selected work',
+  mapTitle: 'SYSTEM ATLAS', mapHint: 'Explore the connections', mapCaption: 'One practice. Multiple domains.',
+  selected: 'Selected work', selectedSub: 'The interface is the beginning.\nThe system is the story.', case: 'Explore the case',
+  visual: 'CONCEPTUAL DIAGRAM · NO OPERATIONAL DATA',
+  ecosystemLabel: 'THE SERVIFOOD ECOSYSTEM', ecosystemTitle: 'One company.\nMultiple systems.', ecosystemText: 'Software grows when operations start depending on it. Orders, analytics and maintenance: different needs, one ongoing responsibility.',
+  ecosystemFoot: 'From development to maintenance. From data to decisions.',
+  midnightLabel: 'OFF THE USUAL ROAD', midnightText: 'I also build systems you can drive. Physics, geometry and real-time state, inside the browser.', roadNote: 'Visual interpretation of the project · not the game', roadPause: 'Pause scene', roadPlay: 'Animate scene',
+  experienceLabel: 'EXPERIENCE', experienceTitle: 'Shipping is\njust one stage.', experienceIntro: 'The work continues when a product becomes part of an organization’s routine.',
+  present: 'AUG 2024 — PRESENT', job: 'Full Stack Web Developer', jobText: 'Building and evolving internal applications at ServiFood. From data modeling and permissions to user experience, deployment and production incident resolution.',
+  responsibilities: ['Understand operations', 'Design the system', 'Build and deploy', 'Maintain and iterate'],
+  education: 'Education', schoolDate: 'AUG 2024 — DEC 2025', schoolText: 'Conquer Blocks · Full Stack Web Developer. Completed with a technical presentation and defense of a developed application.', english: 'English · B2',
+  stackLabel: 'TOOLS IN CONTEXT', stackTitle: 'What I work with.\nHow it connects.', stackText: 'Technologies matter for the work they make possible.',
+  archiveLabel: 'ARCHIVE / EVOLUTION', archiveTitle: 'Every stage\nleaves a toolkit.', archiveText: 'Selected exercises and original projects. The journey matters more than the count.',
+  aboutLabel: 'BEHIND THE SYSTEMS', aboutTitle: 'I care about what\nhappens after the click.', aboutText: 'I work best when the problem extends beyond the interface. I want to understand what an organization needs to do, how information moves, and which parts of a process can become software.',
+  aboutSecond: 'Based in San Juan, Argentina. I enjoy finding inconsistencies, solving difficult bugs and improving products through real use. Outside operations, I explore driving and simulation. I use AI as an engineering tool, guided by my own technical judgment.',
+  contactLabel: 'THE NEXT SYSTEM', contactTitle: 'Have a system\nthat should exist?', contactCta: 'Let’s build it.', contactText: 'Products, teams and problems that need more than an interface.', footer: 'Designed around real systems.', back: 'Back to selected work', context: 'Context', system: 'System', complexity: 'Complexity', engineering: 'Engineering', impact: 'What it enables', decisions: 'Engineering decisions', architecture: 'System architecture', next: 'Next system', repository: 'View public repository', privateRepo: 'Private repository', status: 'PORTFOLIO STATUS', statusValues: ['Operational software', 'Real-time exploration', 'San Juan, AR'], statusLabels: ['Practice', 'Laboratory', 'Base'],
+ }
+};
+export const getContent = (lang: Language) => content[lang];
+export const stack = [
+ { title: 'Interface', tools: 'React · Next.js · TypeScript', es: 'Interfaces, navegación y experiencia responsive.', en: 'Interfaces, navigation and responsive experiences.' },
+ { title: 'Application', tools: 'Node.js · Express · REST', es: 'Lógica de negocio y validación server-side.', en: 'Business logic and server-side validation.' },
+ { title: 'Data', tools: 'PostgreSQL · SQL · Supabase', es: 'Modelos que representan procesos reales.', en: 'Models that represent real processes.' },
+ { title: 'Security', tools: 'Auth · RLS · Roles · Storage', es: 'Identidad, aislamiento y acceso a documentos.', en: 'Identity, isolation and document access.' },
+ { title: 'Automation', tools: 'RPC · Edge Functions · ExcelJS · jsPDF', es: 'Procesos programados, ingesta y exportaciones.', en: 'Scheduled processes, ingestion and exports.' },
+ { title: 'Engineering', tools: 'Vitest · Testing Library · GitHub Actions', es: 'Pruebas y flujos de entrega.', en: 'Testing and delivery workflows.' },
+ { title: 'Production', tools: 'Render · Supabase · Git', es: 'Deploy, monitoreo, diagnóstico y mantenimiento.', en: 'Deployment, monitoring, diagnosis and maintenance.' },
+ { title: 'Realtime / 3D', tools: 'Three.js · R3F · Rapier · LOD', es: 'Física, instancing y entornos procedurales.', en: 'Physics, instancing and procedural environments.' },
+];
+export const archive = [
+ { era: '01', es: 'Componer interfaces', en: 'Composing interfaces', tech: 'HTML / CSS', projects: [{ name: 'Modern Art Gallery', repo: 'Modern-art-gallery' }, { name: 'LuxurySpa', repo: 'LuxurySpa' }] },
+ { era: '02', es: 'Entender la interacción', en: 'Understanding interaction', tech: 'JAVASCRIPT / APIs', projects: [{ name: 'AppClima', repo: 'AppClima' }, { name: 'JavaScript exercises', repo: 'Javascriptex' }] },
+ { era: '03', es: 'Construir aplicaciones', en: 'Building applications', tech: 'REACT / FULL-STACK', projects: [{ name: 'Skillconnect', repo: 'Skillconnect' }, { name: 'Divide tus gastos', repo: 'Divide-tus-gastos' }, { name: 'ArcadeReactApp', repo: 'ArcadeReactApp' }] },
+ { era: '04', es: 'Operar y experimentar', en: 'Operating and experimenting', tech: 'SYSTEMS / REALTIME', projects: [{ name: 'ServiFood', href: '#work' }, { name: 'MIDNIGHT PASS', href: '#midnight' }] },
+];
