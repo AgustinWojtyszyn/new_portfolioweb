@@ -19,7 +19,7 @@ export function MotionLayer() {
    const scenes = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.order-visual,.architecture,.ecosystem-network,.midnight,.project-row,.stack-item'));
    const layers = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.midnight-title'));
    const trackedSections = Array.from(main.querySelectorAll<HTMLElement>('section[id]'));
-   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.main-nav a[href^="#"]'));
+   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.main-nav a[href*="#"]'));
    const visible = new Set<Element>();
    let frame = 0;
    reveals.forEach((el, i) => {
@@ -48,7 +48,7 @@ export function MotionLayer() {
     if (!centered) return;
     trackedSections.forEach(section=>section.classList.toggle('section-focus',section===centered.target));
     const id=(centered.target as HTMLElement).id;
-    navLinks.forEach(link=>link.classList.toggle('is-current',link.getAttribute('href')===`#${id}`));
+    navLinks.forEach(link=>link.classList.toggle('is-current',link.getAttribute('href')?.endsWith(`#${id}`)===true));
    },{rootMargin:'-22% 0px -55% 0px',threshold:0});
    trackedSections.forEach(section=>sectionObserver.observe(section));
    const update = () => {
