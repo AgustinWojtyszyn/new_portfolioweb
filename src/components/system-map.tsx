@@ -3,10 +3,10 @@ import { useEffect, useState, type CSSProperties } from 'react';
 import { getContent } from '@/content/site';
 import type { Language } from '@/lib/site';
 const nodes = [
- { es: 'App de Pedidos', en: 'Orders App', slug: 'servifood-orders', x: 315, y: 113, code: '01' },
- { es: 'Analysis App', en: 'Analysis App', slug: 'servifood-analytics', x: 480, y: 210, code: '04' },
- { es: 'ServiFood Tracking', en: 'ServiFood Tracking', slug: 'servifood-tracking', x: 420, y: 386, code: '03' },
- { es: 'EP Consultora', en: 'EP Consultora', slug: 'ep-consultora-sgi', x: 150, y: 380, code: '05' },
+ { es: 'Pedidos', en: 'Orders', slug: 'servifood-orders', x: 315, y: 113, code: '01' },
+ { es: 'Análisis', en: 'Analytics', slug: 'servifood-analytics', x: 480, y: 210, code: '04' },
+ { es: 'Tracking', en: 'Tracking', slug: 'servifood-tracking', x: 420, y: 386, code: '03' },
+ { es: 'SGI', en: 'SGI', slug: 'ep-consultora-sgi', x: 150, y: 380, code: '05' },
  { es: 'MIDNIGHT PASS', en: 'MIDNIGHT PASS', slug: 'midnight-pass', x: 98, y: 205, code: '02' },
 ];
 export function SystemMap({ lang }: { lang: Language }) {
