@@ -1,0 +1,105 @@
+name: Build VIDA Web
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build-vida-web.yml"
+      - "src/app/vida/**"
+
+permissions:
+  contents: write
+
+jobs:
+  build-vida-web:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://barichello/godot-ci:4.7.2
+
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Configure Godot templates
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.local/share/godot/export_templates"
+          if [ -d "/root/.local/share/godot/export_templates/4.7.2.stable" ]; then
+            mv "/root/.local/share/godot/export_templates/4.7.2.stable" "$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          fi
+
+      - name: Checkout current VIDA source
+        shell: bash
+        run: |
+          rm -rf /tmp/vida
+          git clone https://github.com/AgustinWojtyszyn/Life--simulador-de-vida.git /tmp/vida
+          cd /tmp/vida
+          git checkout e82749ea419d6e12346eaf0ddc71ba86a3b50751
+          test "$(git rev-parse HEAD)" = "e82749ea419d6e12346eaf0ddc71ba86a3b50751"
+
+      - name: Add temporary Web export preset
+        shell: bash
+        run: |
+          cat >> /tmp/vida/export_presets.cfg <<'EOF'
+
+          [preset.1]
+          name="Web"
+          platform="Web"
+          runnable=true
+          advanced_options=false
+          dedicated_server=false
+          custom_features=""
+          export_filter="all_resources"
+          include_filter=""
+          exclude_filter="tests/*,build/*,docs/*"
+          export_path="web/index.html"
+          script_export_mode=2
+
+          [preset.1.options]
+          custom_template/debug=""
+          custom_template/release=""
+          variant/extensions_support=false
+          variant/thread_support=false
+          vram_texture_compression/for_desktop=true
+          vram_texture_compression/for_mobile=true
+          html/export_icon=true
+          html/custom_html_shell=""
+          html/head_include=""
+          html/canvas_resize_policy=2
+          html/focus_canvas_on_start=true
+          html/experimental_virtual_keyboard=true
+          progressive_web_app/enabled=false
+          EOF
+
+      - name: Import VIDA resources
+        shell: bash
+        run: |
+          cd /tmp/vida
+          godot --headless --path /tmp/vida --import
+
+      - name: Export VIDA for Web
+        shell: bash
+        run: |
+          rm -rf "$GITHUB_WORKSPACE/public/vida-game"
+          mkdir -p "$GITHUB_WORKSPACE/public/vida-game"
+          godot --headless --path /tmp/vida --export-release "Web" "$GITHUB_WORKSPACE/public/vida-game/index.html"
+          test -s "$GITHUB_WORKSPACE/public/vida-game/index.html"
+
+      - name: Commit generated game
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/vida-game
+          if git diff --cached --quiet; then
+            echo "VIDA Web build is already current."
+          else
+            git commit -m "chore: publish VIDA web build [skip ci]"
+            git push origin HEAD:main
+          fi
