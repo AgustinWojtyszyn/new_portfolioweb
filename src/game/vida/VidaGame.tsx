@@ -223,11 +223,11 @@ export function VidaGame(){
    for(const [x,y] of [[723,811],[4240,1030]] as const)prop('assets/city/props/ar/parrilla.png',x,y,94,88);
    for(const p of parks){for(let i=0;i<6;i++){const tx=p.x+55+(i%3)*(p.w-110)/2,ty=p.y+80+Math.floor(i/3)*(p.h-120);prop('assets/city/vegetation/tree.png',tx,ty,92,124)}}
    // NPCs
-   for(const n of npcs.current){if(Math.abs(n.x-cam.x)>vw*.7||Math.abs(n.y-cam.y)>vh*.8)continue;const dir='south';const im=asset(`assets/characters/${n.gender}/${dir}.png`);if(im.complete&&im.naturalWidth)ctx.drawImage(im,n.x-19,n.y-45,38,45)}
+   for(const n of npcs.current){if(Math.abs(n.x-cam.x)>vw*.7||Math.abs(n.y-cam.y)>vh*.8)continue;const dir='south';const im=asset(`assets/characters/${n.gender}/${dir}.png`);if(im.complete&&im.naturalWidth)ctx.drawImage(im,n.x-22,n.y-52,44,52)}
    // Traffic
    for(const v of vehicles.current){if(Math.abs(v.x-cam.x)>vw*.8||Math.abs(v.y-cam.y)>vh*.9)continue;const dir=v.route?.length?(v.facing??'south'):(v.dir>0?'east':'west');const im=asset(`assets/vehicles/${v.model}/${dir}.png`);const w=v.model==='colectivo'?128:92,h=v.model==='colectivo'?62:48;if(im.complete&&im.naturalWidth)ctx.drawImage(im,v.x-w/2,v.y-h,w,h)}
    // Player
-   const pi=asset(`assets/characters/male/${facing.current}.png`);if(pi.complete&&pi.naturalWidth)ctx.drawImage(pi,player.current.x-23,player.current.y-54,46,54);else{ctx.fillStyle='#2f8d89';ctx.fillRect(player.current.x-12,player.current.y-32,24,32)}
+   const pi=asset(`assets/characters/male/${facing.current}.png`);if(pi.complete&&pi.naturalWidth)ctx.drawImage(pi,player.current.x-26,player.current.y-61,52,61);else{ctx.fillStyle='#2f8d89';ctx.fillRect(player.current.x-13,player.current.y-38,26,38)}
    ctx.restore();
 
    let near='';
