@@ -24,13 +24,16 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Configure Godot templates
+      - name: Configure Godot environment
         shell: bash
         run: |
+          apt-get update
+          apt-get install -y --no-install-recommends libfontconfig1
           mkdir -p "$HOME/.local/share/godot/export_templates"
           if [ -d "/root/.local/share/godot/export_templates/4.7.2.stable" ]; then
             mv "/root/.local/share/godot/export_templates/4.7.2.stable" "$HOME/.local/share/godot/export_templates/4.7.2.stable"
           fi
+          test -d "$HOME/.local/share/godot/export_templates/4.7.2.stable"
 
       - name: Checkout current VIDA source
         shell: bash
@@ -57,6 +60,12 @@ jobs:
           include_filter=""
           exclude_filter="tests/*,build/*,docs/*"
           export_path="web/index.html"
+          patches=PackedStringArray()
+          encryption_include_filters=""
+          encryption_exclude_filters=""
+          seed=0
+          encrypt_pck=false
+          encrypt_directory=false
           script_export_mode=2
 
           [preset.1.options]
@@ -73,12 +82,19 @@ jobs:
           html/focus_canvas_on_start=true
           html/experimental_virtual_keyboard=true
           progressive_web_app/enabled=false
+          progressive_web_app/ensure_cross_origin_isolation_headers=false
+          progressive_web_app/offline_page=""
+          progressive_web_app/display=0
+          progressive_web_app/orientation=1
+          progressive_web_app/icon_144x144=""
+          progressive_web_app/icon_180x180=""
+          progressive_web_app/icon_512x512=""
+          progressive_web_app/background_color=Color(0, 0, 0, 1)
           EOF
 
       - name: Import VIDA resources
         shell: bash
         run: |
-          cd /tmp/vida
           godot --headless --path /tmp/vida --import
 
       - name: Export VIDA for Web
@@ -86,7 +102,7 @@ jobs:
         run: |
           rm -rf "$GITHUB_WORKSPACE/public/vida-game"
           mkdir -p "$GITHUB_WORKSPACE/public/vida-game"
-          godot --headless --path /tmp/vida --export-release "Web" "$GITHUB_WORKSPACE/public/vida-game/index.html"
+          godot --headless --verbose --path /tmp/vida --export-release "Web" "$GITHUB_WORKSPACE/public/vida-game/index.html"
           test -s "$GITHUB_WORKSPACE/public/vida-game/index.html"
 
       - name: Commit generated game
