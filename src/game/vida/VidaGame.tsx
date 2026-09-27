@@ -217,7 +217,7 @@ export function VidaGame(){
    ctx.fillStyle='#8e7b62';ctx.fillRect(1945,2050,800,580);ctx.fillStyle='#527a58';ctx.fillRect(2020,2130,650,400);ctx.strokeStyle='#edf0d8';ctx.lineWidth=3;ctx.strokeRect(2028,2138,634,384);ctx.beginPath();ctx.moveTo(2345,2138);ctx.lineTo(2345,2522);ctx.stroke();ctx.beginPath();ctx.arc(2345,2330,46,0,Math.PI*2);ctx.stroke();
    // Buildings and props
    const visible=buildings.filter(b=>b.x>cam.x-vw*.75&&b.x<cam.x+vw*.75&&b.y>cam.y-vh*.85&&b.y<cam.y+vh*.85).sort((a,b)=>a.y-b.y);
-   for(const b of visible){const im=asset(b.asset);ctx.fillStyle='rgba(25,34,38,.18)';ctx.beginPath();ctx.ellipse(b.x,b.y+4,b.w*.42,13,0,0,Math.PI*2);ctx.fill();if(im.complete&&im.naturalWidth){ctx.drawImage(im,b.x-b.w/2,b.y-b.h,b.w,b.h)}ctx.fillStyle='rgba(26,45,48,.92)';ctx.fillRect(b.x-52,b.y-8,104,16);ctx.fillStyle='#efd39b';ctx.font='9px system-ui';ctx.textAlign='center';ctx.fillText(b.title,b.x,b.y+3)}
+   for(const b of visible){const im=asset(b.asset);ctx.fillStyle='rgba(25,34,38,.18)';ctx.beginPath();ctx.ellipse(b.x,b.y+4,b.w*.42,13,0,0,Math.PI*2);ctx.fill();if(im.complete&&im.naturalWidth){ctx.drawImage(im,b.x-b.w/2,b.y-b.h,b.w,b.h)}if(b.kind!=='house'){ctx.fillStyle='rgba(26,45,48,.92)';ctx.fillRect(b.x-52,b.y-8,104,16);ctx.fillStyle='#efd39b';ctx.font='9px system-ui';ctx.textAlign='center';ctx.fillText(b.title,b.x,b.y+3)}}
    const prop=(path:string,x:number,y:number,w:number,h:number)=>{const im=asset(path);if(im.complete&&im.naturalWidth)ctx.drawImage(im,x-w/2,y-h,w,h)};
    for(const [x,y] of [[150,802],[3270,1710]] as const)prop('assets/city/props/ar/choripan_stand.png',x,y,90,84);
    for(const [x,y] of [[723,811],[4240,1030]] as const)prop('assets/city/props/ar/parrilla.png',x,y,94,88);
