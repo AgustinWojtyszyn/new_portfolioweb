@@ -74,6 +74,13 @@ function createNpcs():Npc[]{
 }
 function createVehicles():Vehicle[]{
  const traffic:Vehicle[]=Array.from({length:8},(_,i)=>({x:120+i*520,y:i%2?454:512,speed:78+(i%4)*10,lane:i%2,model:i%3===0?'taxi':'compact',dir:i%2?-1:1 as 1|-1}));
+ const avenueRows=[[1168,1218],[1935,1988],[2695,2748]];
+ avenueRows.forEach((ys,row)=>{
+  traffic.push(
+   {x:420+row*640,y:ys[0],speed:76+row*4,lane:10+row*2,model:row%2?'taxi':'compact',dir:1},
+   {x:3100-row*370,y:ys[1],speed:82+row*3,lane:11+row*2,model:row%2?'compact':'taxi',dir:-1}
+  );
+ });
  traffic.push(
   {x:958,y:930,speed:76,lane:2,model:'colectivo',dir:1,route:[{x:958,y:1160},{x:958,y:512},{x:1870,y:512},{x:1870,y:1160}],routeIndex:1,facing:'north'},
   {x:2842,y:1500,speed:72,lane:3,model:'colectivo',dir:1,route:[{x:2842,y:1962},{x:2842,y:1190},{x:3822,y:1190},{x:3822,y:1962}],routeIndex:1,facing:'north'}
