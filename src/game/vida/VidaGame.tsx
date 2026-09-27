@@ -6,7 +6,7 @@ import styles from './vida.module.css';
 type Vec={x:number;y:number};
 type Building={x:number;y:number;w:number;h:number;asset:string;title:string;kind:string;facing?:string};
 type Npc={x:number;y:number;phase:number;speed:number;gender:'male'|'female';route:Vec[]};
-type Vehicle={x:number;y:number;speed:number;lane:number;model:'compact'|'taxi'|'colectivo';dir:1|-1};
+type Vehicle={x:number;y:number;speed:number;lane:number;model:'compact'|'taxi'|'colectivo';dir:1|-1;route?:Vec[];routeIndex?:number;facing?:'north'|'south'|'east'|'west'};
 type ImgCache=Record<string,HTMLImageElement>;
 
 const ROOT='https://raw.githubusercontent.com/AgustinWojtyszyn/Life--simulador-de-vida/main/';
@@ -73,7 +73,12 @@ function createNpcs():Npc[]{
  return out;
 }
 function createVehicles():Vehicle[]{
- return Array.from({length:10},(_,i)=>({x:120+i*430,y:i%2?454:512,speed:70+(i%4)*10,lane:i%2,model:i%5===0?'colectivo':i%3===0?'taxi':'compact',dir:i%2?-1:1 as 1|-1}));
+ const traffic:Vehicle[]=Array.from({length:8},(_,i)=>({x:120+i*520,y:i%2?454:512,speed:78+(i%4)*10,lane:i%2,model:i%3===0?'taxi':'compact',dir:i%2?-1:1 as 1|-1}));
+ traffic.push(
+  {x:958,y:930,speed:76,lane:2,model:'colectivo',dir:1,route:[{x:958,y:1160},{x:958,y:512},{x:1870,y:512},{x:1870,y:1160}],routeIndex:1,facing:'north'},
+  {x:2842,y:1500,speed:72,lane:3,model:'colectivo',dir:1,route:[{x:2842,y:1962},{x:2842,y:1190},{x:3822,y:1190},{x:3822,y:1962}],routeIndex:1,facing:'north'}
+ );
+ return traffic;
 }
 
 export function VidaGame(){
@@ -185,7 +190,13 @@ export function VidaGame(){
     n.phase+=dt*n.speed/95;const seg=Math.floor(n.phase)%n.route.length;const a=n.route[seg],b=n.route[(seg+1)%n.route.length],t=n.phase-Math.floor(n.phase);
     n.x=a.x+(b.x-a.x)*t;n.y=a.y+(b.y-a.y)*t;
    }
-   for(const v of vehicles.current){v.x+=v.speed*v.dir*dt;if(v.x>WORLD.w+150)v.x=-150;if(v.x<-150)v.x=WORLD.w+150}
+   for(const v of vehicles.current){
+    if(v.route?.length){
+     const idx=v.routeIndex??0,target=v.route[idx],dx=target.x-v.x,dy=target.y-v.y,d=Math.hypot(dx,dy);
+     if(d<8){v.routeIndex=(idx+1)%v.route.length}
+     else{const ux=dx/d,uy=dy/d;v.x+=ux*v.speed*dt;v.y+=uy*v.speed*dt;v.facing=Math.abs(ux)>Math.abs(uy)?(ux>0?'east':'west'):(uy>0?'south':'north')}
+    }else{v.x+=v.speed*v.dir*dt;if(v.x>WORLD.w+150)v.x=-150;if(v.x<-150)v.x=WORLD.w+150}
+   }
    const vw=innerWidth,vh=innerHeight,cam=camera.current;
    ctx.clearRect(0,0,vw,vh);ctx.save();ctx.translate(vw/2-cam.x,vh/2-cam.y);
    ctx.fillStyle='#bdb9a5';ctx.fillRect(0,0,WORLD.w,WORLD.h);
@@ -207,7 +218,7 @@ export function VidaGame(){
    // NPCs
    for(const n of npcs.current){if(Math.abs(n.x-cam.x)>vw*.7||Math.abs(n.y-cam.y)>vh*.8)continue;const dir='south';const im=asset(`assets/characters/${n.gender}/${dir}.png`);if(im.complete&&im.naturalWidth)ctx.drawImage(im,n.x-19,n.y-45,38,45)}
    // Traffic
-   for(const v of vehicles.current){if(Math.abs(v.x-cam.x)>vw*.8)continue;const dir=v.dir>0?'east':'west';const im=asset(`assets/vehicles/${v.model}/${dir}.png`);const w=v.model==='colectivo'?128:92,h=v.model==='colectivo'?62:48;if(im.complete&&im.naturalWidth)ctx.drawImage(im,v.x-w/2,v.y-h,w,h)}
+   for(const v of vehicles.current){if(Math.abs(v.x-cam.x)>vw*.8||Math.abs(v.y-cam.y)>vh*.9)continue;const dir=v.route?.length?(v.facing??'south'):(v.dir>0?'east':'west');const im=asset(`assets/vehicles/${v.model}/${dir}.png`);const w=v.model==='colectivo'?128:92,h=v.model==='colectivo'?62:48;if(im.complete&&im.naturalWidth)ctx.drawImage(im,v.x-w/2,v.y-h,w,h)}
    // Player
    const pi=asset(`assets/characters/male/${facing.current}.png`);if(pi.complete&&pi.naturalWidth)ctx.drawImage(pi,player.current.x-23,player.current.y-54,46,54);else{ctx.fillStyle='#2f8d89';ctx.fillRect(player.current.x-12,player.current.y-32,24,32)}
    ctx.restore();
@@ -232,7 +243,8 @@ export function VidaGame(){
  const stickDown=(e:React.PointerEvent<HTMLDivElement>)=>{ensureAudio();stickPointer.current=e.pointerId;e.currentTarget.setPointerCapture(e.pointerId);stickMove(e)};
  const stickUp=(e:React.PointerEvent<HTMLDivElement>)=>{if(stickPointer.current!==e.pointerId)return;stickPointer.current=null;input.current={x:0,y:0};e.currentTarget.style.setProperty('--x','0px');e.currentTarget.style.setProperty('--y','0px')};
 
- const toggleSound=()=>{if(muted){setMuted(false);setTimeout(()=>playTrack(0),0)}else{setMuted(true);stopAudio()}};
+ useEffect(()=>{if(muted)stopAudio();else if(audioCtx.current)playTrack(0)},[muted,playTrack,stopAudio]);
+ const toggleSound=()=>setMuted(v=>!v);
 
  return <div className={styles.shell}>
   <canvas ref={canvasRef} className={styles.canvas}/>
