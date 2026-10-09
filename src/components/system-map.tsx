@@ -7,7 +7,7 @@ const nodes = [
  { es: 'Análisis', en: 'Analytics', slug: 'servifood-analytics', x: 480, y: 210, code: '04' },
  { es: 'Tracking', en: 'Tracking', slug: 'servifood-tracking', x: 420, y: 386, code: '03' },
  { es: 'SGI', en: 'SGI', slug: 'ep-consultora-sgi', x: 150, y: 380, code: '05' },
- { es: 'MIDNIGHT PASS', en: 'MIDNIGHT PASS', slug: 'midnight-pass', x: 98, y: 205, code: '02' },
+ { es: 'RPG', en: 'RPG', slug: 'rpg-premium', x: 98, y: 205, code: '02' },
 ];
 export function SystemMap({ lang }: { lang: Language }) {
  const t = getContent(lang); const [active, setActive] = useState(nodes[0].slug); const [paused,setPaused]=useState(false);
