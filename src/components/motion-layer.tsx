@@ -16,8 +16,8 @@ export function MotionLayer() {
    if (!main) return;
    const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
    const reveals = Array.from(main.querySelectorAll<HTMLElement>('.hero-copy,.hero-top,.hero-bottom,.section-heading,.split-heading,.featured-copy,.project-row,.experience-entry,.education,.stack-item,.archive-row,.about-copy,.status-panel,.case-narrative article,.decisions-grid article,.case-intro,.contact-bottom'));
-   const scenes = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.order-visual,.architecture,.ecosystem-network,.midnight,.project-row,.stack-item'));
-   const layers = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.midnight-title'));
+   const scenes = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.order-visual,.architecture,.ecosystem-network,.personal,.project-row,.stack-item'));
+   const layers = Array.from(main.querySelectorAll<HTMLElement>('.system-map,.personal-title'));
    const trackedSections = Array.from(main.querySelectorAll<HTMLElement>('section[id]'));
    const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.main-nav a[href*="#"]'));
    const visible = new Set<Element>();
