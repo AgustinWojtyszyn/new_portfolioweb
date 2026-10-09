@@ -11,12 +11,12 @@ export const pick = <T,>(lang: Language, es: T, en: T): T => lang === 'es' ? es 
 
 const projectNames: Record<string,string> = {
   'servifood-orders': 'ServiFood Order System',
-  'midnight-pass': 'MIDNIGHT PASS',
+  'rpg-premium': 'RPG Premium',
   'servifood-tracking': 'ServiFood Tracking',
   'servifood-analytics': 'ServiFood Analytics',
-  'ep-consultora-sgi': 'EP Consultora / SGI',
+  'ep-consultora-sgi': 'gestiQa · Gestión Integrada',
 };
 
 export const projectName = (slug: string, fallback = slug) => projectNames[slug] ?? fallback;
 
-export const canPublishRepositoryLink = (_slug: string) => true;
+export const canPublishRepositoryLink = (slug: string) => ['rpg-premium','ep-consultora-sgi'].includes(slug);

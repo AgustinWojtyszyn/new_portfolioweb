@@ -7,7 +7,7 @@ test('bilingual home, cases and mobile navigation',async({page})=>{
  await page.goto('/es');await page.locator('#contact').scrollIntoViewIfNeeded();expect(await page.evaluate(()=>scrollY)).toBeGreaterThan(100);await page.getByRole('link',{name:'EN',exact:true}).click();await expect(page).toHaveURL(/\/en$/);await expect(page.locator('html')).toHaveAttribute('lang','en');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeLessThan(80);
  await expect(page.locator('#contact').getByRole('link',{name:/GitHub/})).toBeVisible();await expect(page.locator('#contact').getByRole('link',{name:/LinkedIn/})).toBeVisible();await expect(page.locator('#contact').getByRole('link',{name:/WhatsApp/i})).toHaveCount(0);
  await page.goto('/es/work/servifood-orders');await expect(page.locator('h1')).toContainText('solo el principio');await page.getByRole('link',{name:'EN',exact:true}).click();await expect(page).toHaveURL(/\/en\/work\/servifood-orders/);await expect(page.locator('html')).toHaveAttribute('lang','en');
- await page.goto('/en');await expect(page.locator('h1')).toContainText('real world');
- await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#midnight').scrollIntoViewIfNeeded();await expect(page.getByRole('button',{name:'Animate scene',exact:true})).toBeVisible();
+ await page.goto('/en');await expect(page.locator('h1')).toContainText('real world');await expect(page.getByText('MIDNIGHT PASS')).toHaveCount(0);await page.goto('/en/work/rpg-premium');await expect(page.locator('h1')).toContainText('one run at a time');await expect(page.locator('.game-showcase')).toBeVisible();
+ await page.goto('/en');await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#personal').scrollIntoViewIfNeeded();await expect(page.locator('.game-showcase')).toBeVisible();await expect(page.getByRole('link',{name:/RPG/}).first()).toBeAttached();
  expect(errors).toEqual([]);
 });

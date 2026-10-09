@@ -1,53 +1,44 @@
-# Agustín Wojtyszyn / System Atlas
+# Agustín Wojtyszyn — Portfolio / System Atlas
 
-Portfolio bilingüe construido con Next.js App Router, TypeScript y React. Tipografías locales Manrope e IBM Plex Mono; diagramas SVG/CSS propios y una interpretación procedural de MIDNIGHT PASS en Canvas 2D, cargada en un chunk separado. No carga el juego ni necesita WebGL.
+Portfolio bilingüe (es/en) realizado con **Next.js, React y TypeScript**, con diseño responsive, ilustraciones SVG originales y casos documentados.
 
-## Desarrollo
+## Contenido actualizado · octubre de 2026
 
-```sh
+- **ServiFood Orders:** pedidos corporativos, menús, permisos, sedes, remitos, reportes y automatización.
+- **ServiFood Tracking:** trabajos diarios, mantenimiento, vehículos, kilometraje, activos e informes.
+- **ServiFood Analytics / Calidad:** Excel, documentación SGC, certificaciones, desvíos e inspecciones BPM.
+- **gestiQa:** gestión documental multiempresa, flujos de aprobación, versiones, roles y requisitos ISO.
+- **RPG Premium:** roguelite top-down en desarrollo para PC y Android con Godot 4.7; el nombre definitivo todavía está en definición.
+
+Los repositorios privados se presentan mediante casos documentados, sin enlaces al código inaccesible al público. El repositorio público del juego es `roguelike_premium`. El sitio no contiene datos privados ni capturas de sistemas internos.
+
+## Ejecutar
+
+```bash
 npm ci
 npm run dev
 ```
 
-Abrir http://localhost:3000/es. Inglés: `/en`. Los cinco casos tienen rutas independientes en `/{es,en}/work/{slug}`. El selector de idioma conserva el caso actual.
+Español: `http://localhost:3000/es` · Inglés: `http://localhost:3000/en`.
 
-```sh
+## Verificaciones
+
+```bash
 npm run lint
 npm run typecheck
 npm run build
-npm start
+npx playwright install chromium
+npm run test:e2e
 ```
+
+Para las pruebas de navegador, Playwright levanta el servidor en el puerto 3100. CI comprueba lint, TypeScript, compilación y pruebas de interfaz. Se omite `public/vida-game/**` en ESLint porque es una exportación generada de Godot, no código fuente del sitio.
 
 ## Publicación
 
-Definir `SITE_URL` con el origen HTTPS definitivo antes del build (sin barra final), por ejemplo mediante las variables del proveedor de hosting. Se utiliza en canonical, alternates, OpenGraph, schema y sitemap. Sin esta variable, la versión local utiliza localhost y solicita no indexar. No hay dominio de producción inventado.
+Establecer `SITE_URL=https://agustinwojtyszyn.com` en el entorno de compilación. Render puede construir el sitio con `npm ci && npm run build` e iniciarlo con `npm start -- --port $PORT`, según la configuración del servicio.
 
-Render: servicio web Node, build `npm ci && npm run build`, start `npm start -- --port $PORT`. Compatible con un despliegue estándar de Next.js. Esta entrega no publica el sitio ni modifica repositorios remotos.
+## Diseño y accesibilidad
 
-## Estructura
+El sitio usa fuentes locales Manrope e IBM Plex Mono, navegación con teclado, enlaces bilingües, secciones semánticas y `prefers-reduced-motion`. La ilustración de RPG Premium es arte conceptual vectorial original **no una captura del videojuego**. Los diagramas de sistemas son representaciones conceptuales, no datos reales ni métricas inventadas.
 
-- `src/app/[lang]`: home, layouts y rutas de casos.
-- `src/content`: copy ES/EN y modelo de proyectos.
-- `src/sections`: secciones de la home.
-- `src/components`: navegación, atlas, diagramas y escena de carretera.
-- `src/lib`: identidad, idioma y configuración del sitio.
-- `src/app/globals.css`: sistema visual y responsive.
-- `src/app/opengraph-image.tsx`: imagen social original de 1200 × 630.
-
-## Contenido y alcance
-
-El briefing del propietario es fuente de experiencia, fechas, tecnologías y alcance de los productos. La consulta de metadata pública de GitHub identificó repositorios originales y forks. Se revisaron además documentación y símbolos de proyectos locales. LinkedIn no permitió lectura; no se atribuyen verificaciones a esa fuente.
-
-Los enlaces de los cuatro sistemas empresariales corresponden a repositorios públicos observados durante la consulta. MIDNIGHT PASS se documentó desde material local y enlaza al repositorio público Midnight_pass indicado por el propietario. ServiFood Orders enlaza a App_de_pedidos. Los proyectos pequeños se muestran como evolución, sin presentar forks como autoría propia.
-
-Las visualizaciones son diagramas conceptuales, no capturas reales ni telemetría de producción. No se copiaron datos empresariales, credenciales o archivos privados. Las etiquetas de 60 Hz y tres cámaras describen el proyecto MIDNIGHT PASS, no el rendimiento del portfolio. No se afirman uptime, cantidad de clientes, disponibilidad laboral ni métricas de impacto no comprobadas.
-
-La primera versión incluye enlaces directos a email, LinkedIn, GitHub y WhatsApp. El contacto no depende de un formulario o backend. Quedan para una siguiente iteración capturas reales autorizadas y mediciones de rendimiento sobre el dominio definitivo.
-
-## Movimiento incremental
-
-Se conserva la composición editorial original y sus diagramas. `src/components/motion-layer.tsx` coordina reveals con IntersectionObserver, progreso de scroll y parallax de hasta 7 px; `src/app/motion.css` contiene la capa visual. El Atlas dibuja conexiones, presenta etiquetas en secuencia y responde al puntero. Los proyectos usan señales abstractas, sin capturas ni métricas simuladas de producción.
-
-MIDNIGHT PASS conserva la carretera original: líneas en movimiento, ruta ilustrada y desplazamiento de cámara mínimo. La animación se detiene fuera de pantalla y con la pestaña oculta; limita resolución y frecuencia en móviles. El botón de pausa detiene también la ruta. `prefers-reduced-motion` desactiva reveals, parallax y animaciones, y el contenido sigue accesible sin JavaScript.
-
-Pruebas de navegador: `npm run test:e2e` (puerto 3100). Edad de 26 años: dato provisto por el propietario, actualización manual.
+El repositorio `public/vida-game` conserva una exportación web del proyecto VIDA en su ruta independiente; no forma parte del nuevo bloque de proyectos destacados.

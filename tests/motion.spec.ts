@@ -5,8 +5,8 @@ test('atlas interaction, progress, reveal and reduced-motion fallback',async({pa
  await page.goto('/es');
  const atlas=page.locator('.system-map');
  await expect(atlas).toHaveClass(/motion-active/);
- await atlas.getByRole('link',{name:/Analytics/}).hover();
- await expect(atlas.getByRole('link',{name:/Analytics/})).toHaveClass(/active/);
+ await atlas.getByRole('link',{name:/Análisis/}).hover();
+ await expect(atlas.getByRole('link',{name:/Análisis/})).toHaveClass(/active/);
  await expect(page.locator('.hero-top')).toContainText('AGUSTÍN FERNANDO WOJTYSZYN');
  await expect(page.locator('.hero-bottom')).toContainText('26 años');
  await page.locator('#contact').scrollIntoViewIfNeeded();
@@ -16,13 +16,11 @@ test('atlas interaction, progress, reveal and reduced-motion fallback',async({pa
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect(page.locator('[data-reveal=pending]')).toHaveCount(0);
  await expect(page.locator('.scroll-progress')).toBeHidden();
- await page.locator('#midnight').scrollIntoViewIfNeeded();
- await expect(page.getByRole('button',{name:'Animar escena',exact:true})).toBeVisible();
- await expect(page.locator('.road-scene')).not.toHaveClass(/road-running/);
+ await page.locator('#personal').scrollIntoViewIfNeeded();
+ await expect(page.locator('.game-showcase')).toBeVisible();
+ await expect(page.locator('.game-art')).toBeVisible();
  await page.emulateMedia({reducedMotion:'no-preference'});
- await expect(page.getByRole('button',{name:'Pausar escena',exact:true})).toBeVisible();
- await page.getByRole('button',{name:'Pausar escena',exact:true}).click();
- await expect(page.locator('.road-scene')).not.toHaveClass(/road-running/);
+ await expect(page.locator('.personal-title')).toBeVisible();
 });
 
 test('content and diagrams remain available without JavaScript',async({browser})=>{
@@ -32,5 +30,6 @@ test('content and diagrams remain available without JavaScript',async({browser})
  await expect(page.locator('.atlas-connection')).toHaveCount(5);
  await expect(page.locator('.contact-bottom')).toBeVisible();
  await expect(page.locator('img')).toHaveCount(0);
+ await expect(page.locator('.game-showcase')).toBeAttached();
  await context.close();
 });
