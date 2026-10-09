@@ -5,8 +5,8 @@ test('atlas interaction, progress, reveal and reduced-motion fallback',async({pa
  await page.goto('/es');
  const atlas=page.locator('.system-map');
  await expect(atlas).toHaveClass(/motion-active/);
- await atlas.getByRole('link',{name:/Analytics/}).hover();
- await expect(atlas.getByRole('link',{name:/Analytics/})).toHaveClass(/active/);
+ await atlas.getByRole('link',{name:/Análisis/}).hover();
+ await expect(atlas.getByRole('link',{name:/Análisis/})).toHaveClass(/active/);
  await expect(page.locator('.hero-top')).toContainText('AGUSTÍN FERNANDO WOJTYSZYN');
  await expect(page.locator('.hero-bottom')).toContainText('26 años');
  await page.locator('#contact').scrollIntoViewIfNeeded();
