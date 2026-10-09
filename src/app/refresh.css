@@ -211,3 +211,9 @@ a,button{transition-timing-function:cubic-bezier(.22,.8,.25,1)}
  .game-overlay-note{max-width:260px}
 }
 @media(prefers-reduced-motion:reduce){.game-hero,.game-bolts{animation:none!important}}
+
+/* Conversion-friendly hero details and repository disclosure */
+.hero-points{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:24px;color:#bde6dc;font-size:11px;line-height:1.5}
+.hero-points span{border:1px solid #68b9ab52;background:#17323894;border-radius:8px;padding:8px 11px}
+.private-repo{color:#9db5bc;font-size:12px;letter-spacing:.08em;padding:8px 0}
+@media(max-width:600px){.hero-points{gap:7px;font-size:9px}.hero-points span{padding:7px 8px}}
