@@ -1,7 +1,7 @@
 import type { Language } from '@/lib/site';
 export const content = {
  es: {
-  nav: ['Proyectos', 'Experiencia', 'Stack', 'Sobre mí', 'Contacto'], skip: 'Saltar al contenido', menu: 'Abrir navegación', close: 'Cerrar navegación',
+  nav: ['Servicios', 'Trabajos', 'Cómo trabajo', 'Sobre mí', 'Contacto'], skip: 'Saltar al contenido', menu: 'Abrir navegación', close: 'Cerrar navegación',
   eyebrow: 'AGUSTÍN FERNANDO WOJTYSZYN', hero: ['Construyo sistemas', 'para el', 'mundo real.'],
   intro: 'Diseño y desarrollo aplicaciones completas que resuelven problemas reales y siguen mejorando después de publicarse.',
   role: 'Full Stack Web Developer', location: '26 años · San Juan, Argentina', work: 'Explorar proyectos',
@@ -22,7 +22,7 @@ export const content = {
   contactLabel: 'CONTACTO', contactTitle: '¿Tenés una idea\no un problema por resolver?', contactCta: 'Hablemos.', contactText: 'Aplicaciones web, herramientas internas, automatización y proyectos que necesiten pasar de idea a producto.', footer: 'Hecho en San Juan, Argentina.', back: 'Volver a proyectos', context: 'El problema', system: 'Lo que construí', complexity: 'El desafío', engineering: 'Cómo lo hice', impact: 'Qué resuelve', decisions: 'Decisiones importantes', architecture: 'Cómo está armado', next: 'Siguiente proyecto', repository: 'Ver código en GitHub', privateRepo: 'Código privado', status: 'AGUSTÍN / EN RESUMEN', statusValues: ['Aplicaciones en uso real', 'Roguelite para PC y Android', 'San Juan, Argentina'], statusLabels: ['Trabajo', 'Proyecto personal', 'Base'],
  },
  en: {
-  nav: ['Work', 'Experience', 'Stack', 'About', 'Contact'], skip: 'Skip to content', menu: 'Open navigation', close: 'Close navigation',
+  nav: ['Services', 'Projects', 'Process', 'About', 'Contact'], skip: 'Skip to content', menu: 'Open navigation', close: 'Close navigation',
   eyebrow: 'AGUSTÍN FERNANDO WOJTYSZYN', hero: ['I build systems', 'for the', 'real world.'],
   intro: 'I design and build complete applications that solve real problems and keep improving after launch.',
   role: 'Full Stack Web Developer', location: '26 years old · San Juan, Argentina', work: 'Explore projects',
