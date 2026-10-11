@@ -164,3 +164,34 @@
 @media(max-width:1120px){.site-header .nav-inner{width:calc(100% - 40px)}}
 @media(max-width:940px){.site-header .brand-name{display:none}}
 @media(max-width:610px){.site-header .nav-inner{width:calc(100% - 28px)}.site-header .nav-right{gap:9px}.site-header .brand-symbol{font-size:26px}}
+
+/* Case studies: reader-first, with optional technical information. */
+.cp-detail-header{padding-top:90px;padding-bottom:95px}
+.cp-detail-back{display:inline-flex;font-size:13px;color:#a8f4db;margin-bottom:65px;font-weight:700}
+.cp-detail-back:hover{color:#fff}
+.cp-detail-header .cp-kicker{margin-bottom:19px}
+.cp-detail-header h1{font-size:clamp(45px,6.4vw,82px);line-height:1.05;letter-spacing:-.06em;max-width:900px}
+.cp-detail-header>p{color:#b8c8dc;line-height:1.75;font-size:19px;max-width:780px;margin-top:25px}
+.cp-detail-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}
+.cp-detail-pills span{padding:9px 14px;background:#172637;border:1px solid #375166;border-radius:999px;font-size:11px;color:#aff7de}
+.cp-detail-story{background:#121d2d;border-block:1px solid #334356}
+.cp-detail-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cp-detail-cards article{background:#1c2a3e;border:1px solid #3c5067;border-radius:16px;padding:28px}
+.cp-detail-cards article>span{font:12px var(--mono);color:#9cf3d3}
+.cp-detail-cards h2{font-size:25px;letter-spacing:-.04em;margin:22px 0 15px}
+.cp-detail-cards p{font-size:14px;line-height:1.8;color:#c0cbdb}
+.cp-detail-technical{margin-top:35px;background:#111c2b;border:1px solid #3f5068;border-radius:14px;padding:19px 23px}
+.cp-detail-technical summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-weight:700;color:#b5f6db;gap:20px}
+.cp-detail-technical summary::-webkit-details-marker{display:none}
+.cp-detail-technical summary span{font-size:22px}
+.cp-detail-technical[open] summary span{transform:rotate(45deg)}
+.cp-detail-technical p{color:#b6c7d9;line-height:1.8;font-size:14px;margin-top:20px}
+.cp-detail-technical div{font:12px var(--mono);line-height:1.8;color:#a8f4db;margin-top:20px}
+.cp-detail-next{padding-block:65px}
+.cp-detail-next .cp-kicker{margin-bottom:10px}
+.cp-detail-next a{font-size:clamp(22px,3vw,38px);font-weight:800;letter-spacing:-.04em}
+.cp-detail-next a:hover{color:#9cf3d3}
+.cp-detail-contact{padding-block:85px}
+.cp-detail-contact h2{max-width:820px}
+@media(max-width:850px){.cp-detail-cards{grid-template-columns:1fr}.cp-detail-header{padding-top:65px;padding-bottom:65px}.cp-detail-back{margin-bottom:40px}}
+@media(max-width:610px){.cp-detail-header>p{font-size:16px}.cp-detail-cards article{padding:24px}.cp-detail-technical{padding:16px}.cp-detail-header h1{font-size:43px}}
