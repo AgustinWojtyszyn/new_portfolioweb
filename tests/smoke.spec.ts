@@ -10,6 +10,12 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page.locator('.aw-evidence-hero')).toBeVisible();
  await expect(page.locator('.aw-evidence-choices button')).toHaveCount(4);
  await expect(page.locator('.aw-evidence-shot img')).toHaveCount(1);
+ await page.locator('.aw-evidence-choices button').nth(1).click();
+ await expect(page.locator('.aw-evidence-choices button').nth(1)).toHaveAttribute('aria-pressed','true');
+ await page.locator('.aw-evidence-shot').click();
+ await expect(page.getByRole('dialog',{name:'Ampliar captura'})).toBeVisible();
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog',{name:'Ampliar captura'})).toHaveCount(0);
  await expect(page.locator('.aw-service-visual')).toHaveCount(3);
  await expect(page.locator('.aw-work-small')).toHaveCount(3);
  await expect(page.locator('.aw-featured-evidence')).toBeVisible();
@@ -34,7 +40,7 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page.locator('html')).toHaveAttribute('lang','en');
  await expect(page.locator('h1')).toContainText('Websites with');
  await expect(page.locator('.studio-service-index').first()).toContainText('SERVICE');
- await expect(page.locator('.aw-hero-visual')).toBeVisible();
+ await expect(page.locator('.aw-evidence-hero')).toBeVisible();
  await page.locator('.studio-featured').click();
  await expect(page).toHaveURL(/\/en\/work\/servifood-analytics/);
  await expect(page.locator('.aw-case-evidence')).toBeVisible();

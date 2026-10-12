@@ -225,3 +225,7 @@
 @media(prefers-reduced-motion:reduce){
  .aw-evidence-shot img,.aw-featured-evidence-window,.studio-button-dark{transition:none!important;transform:none!important}
 }
+
+/* Native modal focus management for the enlarged portfolio screenshots. */
+.aw-evidence-lightbox{inset:0;margin:0;width:100vw;max-width:none;height:100vh;max-height:none;border:0;overflow:auto;color:#eaf4f5}
+.aw-evidence-lightbox::backdrop{background:#030608ea}

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect,useRef,useState } from 'react';
 import { StudioIcon } from '@/components/studio-icon';
 import type { Language } from '@/lib/site';
 
@@ -39,6 +39,8 @@ export function EvidenceHero({lang}:{lang:Language}){
 export function EvidenceCollection({lang}:{lang:Language}){
  const [index,setIndex]=useState(0);
  const [large,setLarge]=useState(false);
+ const viewerDialog=useRef<HTMLDialogElement>(null);
+ useEffect(()=>{const dialog=viewerDialog.current;if(large&&dialog&&!dialog.open)dialog.showModal();return()=>{if(dialog?.open)dialog.close();};},[large]);
  const t=tr[lang];
  const item=actualScreens[index];
  return <section className="aw-evidence-section" id="evidence" aria-labelledby="aw-evidence-title">
@@ -49,7 +51,7 @@ export function EvidenceCollection({lang}:{lang:Language}){
     <div className="aw-evidence-detail"><span className="aw-evidence-detail-kicker">{item[lang].label}</span><h3>{item[lang].name}</h3><p>{item[lang].description}</p><div className="aw-evidence-choices" role="group" aria-label={t.hint}>{actualScreens.map((v,i)=><button key={v.src} type="button" className={i===index?'is-selected':''} onClick={()=>setIndex(i)} aria-pressed={i===index}><span>0{i+1}</span><span>{v[lang].name}</span><StudioIcon name="arrow"/></button>)}</div><Link className="aw-evidence-project-link" href={'/'+lang+'/work/servifood-analytics'}>{t.goto}<StudioIcon name="arrow"/></Link><p className="aw-evidence-disclaimer">{t.note}</p></div>
    </div>
   </div>
-  {large&&<div className="aw-evidence-lightbox" role="presentation" onClick={()=>setLarge(false)}><div role="dialog" aria-modal="true" aria-label={t.enlarge} className="aw-evidence-lightbox-inner" onClick={e=>e.stopPropagation()}><button type="button" className="aw-evidence-lightbox-close" onClick={()=>setLarge(false)} aria-label={lang==='es'?'Cerrar imagen':'Close image'}><StudioIcon name="close"/></button><div className="aw-evidence-lightbox-image"><Image src={item.src} alt={item[lang].name} fill sizes="95vw" quality={95}/></div><div className="aw-evidence-lightbox-bottom"><span>{item[lang].name}</span><div><button type="button" onClick={()=>setIndex(i=>(i+actualScreens.length-1)%actualScreens.length)} aria-label={t.previous}>←</button><button type="button" onClick={()=>setIndex(i=>(i+1)%actualScreens.length)} aria-label={t.next}>→</button></div></div></div></div>}
+  {large&&<dialog ref={viewerDialog} aria-label={t.enlarge} className="aw-evidence-lightbox" onClose={()=>setLarge(false)} onClick={e=>{if(e.target===viewerDialog.current)viewerDialog.current?.close();}}><div className="aw-evidence-lightbox-inner" onClick={e=>e.stopPropagation()}><button type="button" className="aw-evidence-lightbox-close" onClick={()=>viewerDialog.current?.close()} aria-label={lang==='es'?'Cerrar imagen':'Close image'}><StudioIcon name="close"/></button><div className="aw-evidence-lightbox-image"><Image src={item.src} alt={item[lang].name} fill sizes="95vw" quality={95}/></div><div className="aw-evidence-lightbox-bottom"><span>{item[lang].name}</span><div><button type="button" onClick={()=>setIndex(i=>(i+actualScreens.length-1)%actualScreens.length)} aria-label={t.previous}>←</button><button type="button" onClick={()=>setIndex(i=>(i+1)%actualScreens.length)} aria-label={t.next}>→</button></div></div></div></dialog>}
  </section>;
 }
 
