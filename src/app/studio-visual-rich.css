@@ -64,7 +64,7 @@
 .studio-service-icon{width:62px;height:62px;background:#192a35}
 .studio-service-visual{min-width:0}
 .aw-service-visual{width:242px;height:153px;position:relative;overflow:hidden;border:1px solid #455664;background:#1e2a38;isolation:isolate}
-.aw-service-visual:before{position:absolute;content:"";inset:0;background-image:linear-gradient(#fff08 1px,transparent 1px),linear-gradient(90deg,#fff08 1px,transparent 1px);background-size:18px 18px;opacity:.65}
+.aw-service-visual:before{position:absolute;content:"";inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:18px 18px;opacity:.65}
 .aw-service-web{background:#192b38}
 .aw-service-app{background:#241f38}
 .aw-service-automation{background:#2b2820}

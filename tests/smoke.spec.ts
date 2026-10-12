@@ -7,6 +7,11 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page.locator('#services .studio-service')).toHaveCount(3);
  await expect(page.locator('.studio-project')).toHaveCount(3);
  await expect(page.locator('.studio-featured')).toBeVisible();
+ await expect(page.locator('.aw-hero-visual')).toBeVisible();
+ await expect(page.locator('.aw-service-visual')).toHaveCount(3);
+ await expect(page.locator('.aw-work-small')).toHaveCount(3);
+ await expect(page.locator('.aw-orders-visual')).toBeVisible();
+ await expect(page.locator('.aw-phone-shell')).toBeVisible();
  await expect(page.locator('.game-showcase')).toHaveCount(0);
  expect((await page.request.get('/iconoir/web-window.svg')).ok()).toBeTruthy();
  for(const width of [1440,768,390]){await page.setViewportSize({width,height:850});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();}

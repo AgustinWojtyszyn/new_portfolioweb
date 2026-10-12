@@ -2,6 +2,8 @@ import { test,expect } from '@playwright/test';
 test('keyboard operation, FAQ and reduced motion',async({page})=>{
  await page.goto('/es');await page.emulateMedia({reducedMotion:'reduce'});
  await expect(page.locator('.game-showcase')).toHaveCount(0);
+ await expect(page.locator('.aw-hero-visual')).toBeVisible();
+ await expect(page.locator('.aw-service-visual')).toHaveCount(3);
  await page.getByRole('button',{name:/Contame tu proyecto/}).first().click();
  await expect(page.getByRole('dialog')).toBeVisible();
  await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toBeHidden();
