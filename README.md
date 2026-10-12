@@ -1,44 +1,31 @@
-# Agustín Wojtyszyn — Portfolio / System Atlas
+# Agustín Wojtyszyn — sitio web profesional
 
-Portfolio bilingüe (es/en) realizado con **Next.js, React y TypeScript**, con diseño responsive, ilustraciones SVG originales y casos documentados.
+Sitio comercial bilingüe (español / inglés) para ofrecer páginas web, aplicaciones a medida y automatización a clientes no técnicos.
 
-## Contenido actualizado · octubre de 2026
+## Enfoque visual
 
-- **ServiFood Orders:** pedidos corporativos, menús, permisos, sedes, remitos, reportes y automatización.
-- **ServiFood Tracking:** trabajos diarios, mantenimiento, vehículos, kilometraje, activos e informes.
-- **ServiFood Analytics / Calidad:** Excel, documentación SGC, certificaciones, desvíos e inspecciones BPM.
-- **gestiQa:** gestión documental multiempresa, flujos de aprobación, versiones, roles y requisitos ISO.
-- **RPG Premium:** roguelite top-down en desarrollo para PC y Android con Godot 4.7; el nombre definitivo todavía está en definición.
+- Identidad editorial: blanco cálido, tipografía oscura, azul y composición gráfica propia.
+- Jerarquía comercial: qué ofrezco, casos reales, cómo trabajo y cómo contactarme.
+- Sin emojis, stickers, dashboards ficticios, estadísticas inventadas ni videojuegos en portada.
+- Contacto mediante consulta que abre el cliente de correo del visitante, con opción de copiar texto. No se envían ni almacenan datos desde el sitio.
+- Las páginas de trabajos ofrecen explicaciones comprensibles y detalles técnicos opcionales.
 
-Los repositorios privados se presentan mediante casos documentados, sin enlaces al código inaccesible al público. El repositorio público del juego es `roguelike_premium`. El sitio no contiene datos privados ni capturas de sistemas internos.
+## Íconos
 
-## Ejecutar
+14 archivos SVG de Iconoir (MIT) integrados localmente, sin CDN, atribución y copyright preservados en public/iconoir/LICENSE.
+Fuente: https://github.com/iconoir-icons/iconoir
 
-```bash
+## Comandos
+
 npm ci
-npm run dev
-```
-
-Español: `http://localhost:3000/es` · Inglés: `http://localhost:3000/en`.
-
-## Verificaciones
-
-```bash
 npm run lint
 npm run typecheck
 npm run build
-npx playwright install chromium
 npm run test:e2e
-```
 
-Para las pruebas de navegador, Playwright levanta el servidor en el puerto 3100. CI comprueba lint, TypeScript, compilación y pruebas de interfaz. Se omite `public/vida-game/**` en ESLint porque es una exportación generada de Godot, no código fuente del sitio.
+## Producción
 
-## Publicación
+El sitio utiliza Next.js y necesita que el servicio de hosting despliegue la rama main.
+Establecer SITE_URL=https://agustinwojtyszyn.com en el entorno de compilación.
 
-Establecer `SITE_URL=https://agustinwojtyszyn.com` en el entorno de compilación. Render puede construir el sitio con `npm ci && npm run build` e iniciarlo con `npm start -- --port $PORT`, según la configuración del servicio.
-
-## Diseño y accesibilidad
-
-El sitio usa fuentes locales Manrope e IBM Plex Mono, navegación con teclado, enlaces bilingües, secciones semánticas y `prefers-reduced-motion`. La ilustración de RPG Premium es arte conceptual vectorial original **no una captura del videojuego**. Los diagramas de sistemas son representaciones conceptuales, no datos reales ni métricas inventadas.
-
-El repositorio `public/vida-game` conserva una exportación web del proyecto VIDA en su ruta independiente; no forma parte del nuevo bloque de proyectos destacados.
+Nota: los cambios de GitHub no implican por sí solos que Render haya ejecutado un despliegue.
