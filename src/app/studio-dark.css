@@ -1,0 +1,161 @@
+/* 2026 dark editorial refinement.
+   A calm charcoal palette, muted typography and small blue accents.
+   Overrides the light editorial layer without adding artificial glow or gimmicks. */
+:root{
+ --studio-paper:#11161d;
+ --studio-ink:#e8edf2;
+ --studio-blue:#9eb5ff;
+ --studio-blue-dark:#809cfa;
+ --studio-muted:#9faab7;
+ --studio-line:#33404c;
+ color-scheme:dark;
+}
+html,body{background:#11161d;color:#e8edf2}
+::selection{background:#526eb2;color:#fff}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#aabfff}
+.skip-link{background:#e2e9f4;color:#151b23}
+.studio-page{background:#11161d;color:#e8edf2}
+.studio-page a{color:inherit}
+.studio-header{background:#151b23;border-bottom-color:#2e3945;color:#e8edf2}
+.studio-brand-mark{background:#ccd9fa;color:#162038}
+.studio-brand-text strong{color:#e8edf2}
+.studio-brand-text small{color:#96a3b0}
+.studio-main-nav a{color:#b5c0cb}
+.studio-main-nav a:hover,.studio-main-nav a:focus-visible{color:#d4e0ff}
+.studio-language a{color:#a4afbd}
+.studio-language a[aria-current="page"]{color:#c5d5ff}
+.studio-nav-cta{background:#dce4f5;color:#1b2431!important}
+.studio-nav-cta:hover{background:#b3c6fc;color:#101827!important}
+.studio-menu-toggle{background:#1e2732;border-color:#475260;color:#dbe3ed}
+.studio-menu-toggle:hover{background:#303c4a}
+.studio-overline{color:#b2bdca}
+.studio-overline-rule{background:#8ca6fb}
+.studio-hero h1{color:#e8edf2}
+.studio-hero h1 em{color:#abc0ff}
+.studio-hero-intro{color:#b1bdca}
+.studio-button-dark{background:#dce4f5;color:#1d2634}
+.studio-button-dark:hover{background:#afc4ff;color:#161e29}
+.studio-button-light{background:#dce4f5;color:#171f2b}
+.studio-button-light:hover{background:#bcccf3}
+.studio-link{color:#d3deea;border-bottom-color:#647286}
+.studio-link:hover{color:#bdd0ff;border-bottom-color:#bdd0ff}
+.studio-hero-note{color:#95a3b2}
+.studio-hero-note .studio-icon{color:#b2c6ff}
+.studio-art{background:#1d2630;border-color:#3a4652}
+.studio-art:before{background-image:linear-gradient(90deg,#a5b9d914 1px,transparent 1px),linear-gradient(#a5b9d914 1px,transparent 1px)}
+.studio-art-top,.studio-art-foot{color:#a9b7c6}
+.studio-art-paper{background:#2b3541;border-color:#596675;box-shadow:12px 16px 0 #0e141b;color:#e5eaf0}
+.studio-art-paper-head{border-bottom-color:#697687;color:#d5dde6}
+.studio-art-paper-head .studio-icon{color:#d8e3ef}
+.studio-art-grid span{background:#455261;border-color:#5a697b}
+.studio-art-grid span:first-child{background:#536683}
+.studio-art-paper-foot{border-top-color:#637080;color:#c8d2dc}
+.studio-art-blue{background:#425c98;color:#fff;box-shadow:-9px 10px 0 #0c1119}
+.studio-assurances{background:#181f28;border-color:#313c48}
+.studio-assurances .studio-container>div{color:#bfccd7}
+.studio-assurances .studio-container>div+div{border-left-color:#35414c}
+.studio-assurances span{color:#b3c6ff}
+.studio-eyebrow{color:#aec4ff}
+.studio-section-intro h2,.studio-about h2,.studio-faq h2,.studio-contact h2{color:#e8edf2}
+.studio-section-intro p{color:#acb8c5}
+.studio-service-list{border-top-color:#3d4956}
+.studio-service{border-bottom-color:#34414d}
+.studio-service-icon{background:#202a35;border-color:#465461}
+.studio-service-icon .studio-icon{color:#bdd0ff}
+.studio-service-index{color:#96a6b9}
+.studio-service h3{color:#e8edf2}
+.studio-service-lead{color:#c7d1dd}
+.studio-service-detail{color:#9eaab9}
+.studio-service-action{border-color:#66768a;color:#dae4f2;background:#1b2530}
+.studio-service-action:hover{border-color:#bdd0ff;background:#36465b;color:#fff}
+.studio-work-section{background:#171e27;border-color:#323e4b}
+.studio-featured{background:#242f3d;color:#eaf0f6!important;border:1px solid #445368}
+.studio-mini-label{color:#aec0d5}
+.studio-featured-brand{color:#e7edf7}
+.studio-featured-copy>p{color:#bac7d5}
+.studio-featured-link{color:#d7e4fb;border-bottom-color:#79889c}
+.studio-featured:hover .studio-featured-link{color:#d0dcff}
+.studio-featured-art{background:#303f52;color:#edf3fa}
+.studio-featured-art:before{background-image:linear-gradient(90deg,#cad9ef18 1px,transparent 1px),linear-gradient(#cad9ef18 1px,transparent 1px)}
+.studio-featured-rail{color:#cbd7e7}
+.studio-featured-disc{background:#506ca4;border-color:#72849c;box-shadow:0 0 0 1px #8b9cad;color:#f5f7fc}
+.studio-featured-fields span{background:#202c3b;border-color:#53677f;color:#e2eaf5}
+.studio-featured-fields b{color:#a9c0ff}
+.studio-featured-stripe{color:#c5d1e1}
+.studio-project-list{border-top-color:#35424e}
+.studio-project{border-bottom-color:#34414d}
+.studio-project:hover{background:#202a36}
+.studio-project-num{color:#9eacba}
+.studio-project-icon{background:#222d39;border-color:#455461;color:#b4c9ff}
+.studio-project-copy small{color:#a4b2c1}
+.studio-project-copy strong{color:#e6edf4}
+.studio-project-copy>span{color:#adb9c6}
+.studio-project-arrow{color:#b8caff}
+.studio-steps article{border-top-color:#485363}
+.studio-steps article>span{color:#bacaff}
+.studio-steps h3{color:#e8edf2}
+.studio-steps p{color:#acb8c5}
+.studio-about{background:#1b2530;color:#e8edf2}
+.studio-about-sign{background:#232f3d;border-color:#4b5b6e}
+.studio-about-sign .studio-dot{color:#abc1ff}
+.studio-about-sign small{color:#b1c0d1}
+.studio-about .studio-eyebrow{color:#adc3ff}
+.studio-about h2{color:#e9edf4}
+.studio-about p{color:#bfccd9}
+.studio-about blockquote{border-left-color:#99aff2;color:#ecf2f9}
+.studio-faq details,.studio-faq details:first-child{border-color:#3d4b57}
+.studio-faq summary strong{color:#e0e7ef}
+.studio-faq-number{color:#b6c8fb}
+.studio-faq-toggle{color:#bacbfb}
+.studio-faq details p{color:#aebbc8}
+.studio-contact{background:#293e65;color:#eaf0fa}
+.studio-contact .studio-eyebrow{color:#cbd8fa}
+.studio-contact h2{color:#f2f4f8}
+.studio-contact p{color:#cdd8e8}
+.studio-contact-email{color:#f3f5fb;border-bottom-color:#97aacc}
+.studio-contact-bottom{color:#b6c5df}
+.studio-footer{background:#11161d;border-color:#33404b;color:#e5ebf3}
+.studio-footer strong{color:#e7ecf3}
+.studio-footer strong span{color:#acc0ff}
+.studio-footer p,.studio-footer small{color:#9babb9}
+.studio-footer-links a{color:#c4cedb}
+.studio-footer-links a:hover{color:#b9caff}
+.studio-dialog::backdrop{background:#05080cdd}
+.studio-dialog-inner{background:#1b2530;border-color:#4b5b6b;color:#ebf0f5}
+.studio-dialog-close{border-color:#556575;color:#dce6f0;background:#263340}
+.studio-dialog-close:hover{background:#384657}
+.studio-dialog h2{color:#eaf0f6}
+.studio-dialog-inner>p{color:#b7c4d0}
+.studio-dialog label{color:#dde6f0}
+.studio-dialog input,.studio-dialog select,.studio-dialog textarea{background:#111a24;color:#edf2f7;border-color:#556475}
+.studio-dialog input::placeholder,.studio-dialog textarea::placeholder{color:#8d9ba9}
+.studio-dialog input:focus-visible,.studio-dialog textarea:focus-visible,.studio-dialog select:focus-visible{outline-color:#a6bbf4}
+.studio-form-hint{color:#b4c1cf}
+.studio-form-copy{color:#b8caff;border-bottom-color:#74839a}
+.studio-form-copy:hover{color:#e1e9ff}
+.studio-form-fallback{color:#a8b7c5}
+.studio-form-fallback a{color:#c1d0ff}
+.studio-case-back{color:#b6c9ff!important;border-bottom-color:#56687e}
+.studio-case-back:hover{border-bottom-color:#b6c9ff}
+.studio-case-tag{color:#a5b2c2}
+.studio-case-tag span{color:#b2c5ff}
+.studio-case-hero h1{color:#e9edf3}
+.studio-case-hero>p{color:#b3c0ce}
+.studio-case-rule{border-top-color:#384552;color:#a1b0bd}
+.studio-case-chapters{border-top-color:#44515e}
+.studio-case-chapters article{border-bottom-color:#394653}
+.studio-case-chapter-index{color:#b6c8ff}
+.studio-case-chapter-index>span{color:#e8edf2}
+.studio-case-chapters p{color:#abb8c6}
+.studio-case-tech{border-bottom-color:#3d4b58}
+.studio-case-tech summary,.studio-case-tech summary span{color:#b6caff}
+.studio-case-tech p{color:#b1becc}
+.studio-case-tech>div{color:#a3afbe}
+.studio-case-next{background:#1a222d;border-color:#35414e}
+.studio-case-next a{color:#e6ecf3}
+.studio-case-next a:hover,.studio-case-next .studio-icon{color:#bbceff}
+@media(max-width:700px){
+ .studio-main-nav{background:#19212b;border-bottom-color:#404e5c;box-shadow:0 22px 30px #0004}
+ .studio-main-nav a{color:#e4eaf3;border-bottom-color:#374554}
+ .studio-assurances .studio-container>div+div{border-top-color:#344250;border-left:none}
+}
