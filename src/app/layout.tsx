@@ -5,5 +5,6 @@ import './studio.css';
 import './studio-dark.css';
 import './studio-visual-rich.css';
 import './signature.css';
+import './brand-mark.css';
 export const metadata: Metadata = { metadataBase: new URL(siteUrl) };
 export default function RootLayout({children}:{children:React.ReactNode}) {return children;}

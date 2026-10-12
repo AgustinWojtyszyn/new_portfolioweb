@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect,useState } from 'react';
 import { StudioIcon } from '@/components/studio-icon';
+import { BrandMark } from '@/components/brand-mark';
 import type { Language } from '@/lib/site';
 const labels={
  es:{nav:['Servicios','Trabajos','Cómo trabajo','Contacto'],brand:'DISEÑO Y DESARROLLO',contact:'Hablemos',menu:'Abrir menú',close:'Cerrar menú',skip:'Saltar al contenido'},
@@ -16,7 +17,7 @@ export function Navigation({lang}:{lang:Language}){
  useEffect(()=>{if(sessionStorage.getItem(switchKey)!=='1')return;sessionStorage.removeItem(switchKey);requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'auto'}));},[path,lang]);
  const languageChange=(next:Language)=>{if(next===lang)return;sessionStorage.setItem(switchKey,'1');setOpen(false);};
  return <><a className="skip-link" href="#main">{t.skip}</a><header className="studio-header"><div className="studio-nav-inner">
-  <Link href={'/'+lang} className="studio-brand" aria-label="Agustín Wojtyszyn — Home" onClick={()=>setOpen(false)}><span className="studio-brand-mark">aw</span><span className="studio-brand-text"><strong>Agustín Wojtyszyn</strong><small>{t.brand}</small></span></Link>
+  <Link href={'/'+lang} className="studio-brand" aria-label="Agustín Wojtyszyn — Home" onClick={()=>setOpen(false)}><span className="studio-brand-mark"><BrandMark/></span><span className="studio-brand-text"><strong>Agustín Wojtyszyn</strong><small>{t.brand}</small></span></Link>
   <nav id="main-navigation" className={open?'studio-main-nav is-open':'studio-main-nav'} aria-label={lang==='es'?'Navegación principal':'Main navigation'}>{t.nav.map((label,i)=><Link key={label} href={'/'+lang+'#'+anchors[i]} onClick={()=>setOpen(false)}>{label}</Link>)}</nav>
   <div className="studio-nav-right"><div className="studio-language" aria-label={lang==='es'?'Idioma':'Language'}>{(['es','en'] as const).map(l=><Link key={l} href={path.replace(/^\/(es|en)/,'/'+l)} hrefLang={l} lang={l} scroll={true} aria-current={lang===l?'page':undefined} onClick={()=>languageChange(l)}>{l.toUpperCase()}</Link>)}</div><Link href={'/'+lang+'#contact'} className="studio-nav-cta" onClick={()=>setOpen(false)}>{t.contact}<StudioIcon name="arrow"/></Link><button id="studio-menu-toggle" type="button" className="studio-menu-toggle" aria-expanded={open} aria-controls="main-navigation" aria-label={open?t.close:t.menu} onClick={()=>setOpen(x=>!x)}><StudioIcon name={open?'close':'menu'}/></button></div>
  </div></header></>;

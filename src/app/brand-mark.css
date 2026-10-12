@@ -1,0 +1,8 @@
+/* Signature monogram: bevel-cut frame and custom drawn letter paths. */
+.studio-brand-mark{padding:0;border:0;clip-path:none;background:none;box-shadow:none;width:46px;height:46px}
+.studio-brand-mark::after{display:none}
+.studio-brand-mark svg{width:46px;height:46px;display:block}
+@media(max-width:700px){
+ .studio-brand-mark{width:39px;height:39px}
+ .studio-brand-mark svg{width:39px;height:39px}
+}
