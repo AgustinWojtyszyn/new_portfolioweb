@@ -1,0 +1,15 @@
+@import '@fontsource-variable/manrope';
+@import '@fontsource/ibm-plex-mono/400.css';
+:root{--sans:'Manrope Variable',Arial,sans-serif;--mono:'IBM Plex Mono',monospace;--studio-paper:#f6f5f0;--studio-ink:#171c23;--studio-blue:#284dd7}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:94px}
+body{margin:0;background:var(--studio-paper);font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--studio-ink);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+p,h1,h2,h3{margin:0}
+h1,h2,h3{font-weight:700}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #284dd7;outline-offset:4px}
+::selection{background:#c9d5ff;color:#14254c}
+.skip-link{position:fixed;z-index:100;top:-120px;left:18px;background:#171c23;color:#fff;padding:12px 18px}
+.skip-link:focus{top:9px}
