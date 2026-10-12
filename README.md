@@ -29,3 +29,8 @@ El sitio utiliza Next.js y necesita que el servicio de hosting despliegue la ram
 Establecer SITE_URL=https://agustinwojtyszyn.com en el entorno de compilación.
 
 Nota: los cambios de GitHub no implican por sí solos que Render haya ejecutado un despliegue.
+## Visuales propios (2026)
+
+Se incorporaron capturas tomadas del repositorio propio de Análisis ServiFood, alojadas localmente en `public/portfolio-evidence/` (sin dependencias externas). Los recursos visuales de portada, proyecto destacado y galería muestran producto existente, no estadísticas ficticias. La interfaz real puede haber evolucionado desde estas capturas. El resto de diagramas de sistemas siguen siendo ilustraciones conceptuales identificadas como tales.
+
+La galería es bilingüe, navegable con botones, permite ampliar una vista y mantiene un tratamiento de baja luminosidad para la interfaz oscura del portfolio.

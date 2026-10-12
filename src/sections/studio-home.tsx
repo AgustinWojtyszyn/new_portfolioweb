@@ -3,15 +3,16 @@ import Link from 'next/link';
 import { useEffect,useRef,useState,type FormEvent } from 'react';
 import { identity,type Language } from '@/lib/site';
 import { StudioIcon,type IconName } from '@/components/studio-icon';
-import { HeroSystemVisual,ServiceVisual,OrdersVisual,WorkVisual } from '@/components/studio-visuals';
+import { ServiceVisual,WorkVisual } from '@/components/studio-visuals';
+import { EvidenceHero,EvidenceCollection,FeaturedEvidence } from '@/components/evidence-studio';
 
 const copy={
  es:{
  brandSub:'DISEÑO Y DESARROLLO',
  navigation:['Servicios','Trabajos','Cómo trabajo','Contacto'],start:'Hablemos',menu:'Abrir menú',close:'Cerrar menú',
  eyebrow:'DESARROLLO WEB Y APLICACIONES · SAN JUAN, ARGENTINA',
- headline:['Páginas web y apps','que trabajan a favor','de tu negocio.'],
- intro:'Soy Agustín. Diseño y desarrollo páginas web, aplicaciones y herramientas digitales para negocios que quieren verse mejor, ahorrar tiempo y trabajar más ordenados.',
+ headline:['Hago webs','con carácter.','Y apps que sirven.'],
+ intro:'Soy Agustín. Transformo ideas en páginas web que representan tu marca y aplicaciones que resuelven tareas reales. Vos contás qué necesitás; yo me ocupo de construirlo.',
  primary:'Contame tu proyecto',secondary:'Conocé mi trabajo',
  note:'Trabajás directamente conmigo, desde la primera charla hasta la entrega.',
  visualTop:'DISEÑO / DESARROLLO / EVOLUCIÓN',
@@ -25,10 +26,10 @@ const copy={
   {id:'automation',icon:'automate',label:'03',title:'Automatización',lead:'Menos tareas manuales. Más tiempo para lo que importa.',details:'Reportes, documentos, seguimiento y pequeñas mejoras que simplifican el trabajo de todos los días.',action:'Quiero automatizar'}
  ],
  workEyebrow:'02 / TRABAJOS SELECCIONADOS',workTitle:'Proyectos reales. Problemas resueltos.',workLead:'Estos sistemas están construidos para situaciones de trabajo concretas. Acá importa qué permiten hacer, no cuántas tecnologías tienen detrás.',
- workMain:{label:'PROYECTO DESTACADO',name:'ServiFood',title:'De pedidos dispersos a una operación organizada.',desc:'Una aplicación donde distintas empresas realizan pedidos y la administración gestiona menús, usuarios, remitos y reportes desde un mismo lugar.',link:'Ver cómo funciona',fields:['PEDIDOS','MENÚS','REMITOS','REPORTES']},
+ workMain:{label:'PROYECTO DESTACADO',name:'ServiFood / Análisis',title:'Información que se entiende. Trabajo que se simplifica.',desc:'Una aplicación real para centralizar documentación, inspecciones y reportes. Menos buscar archivos, más encontrar respuestas.',link:'Ver el proyecto',fields:['DOCUMENTOS','INFORMES','INSPECCIONES','ANÁLISIS']},
  workOthers:[
-  {slug:'servifood-tracking',num:'02',icon:'calendar',name:'ServiFood Tracking',type:'GESTIÓN DE TRABAJOS',desc:'Trabajos, vehículos y mantenimiento con información ordenada y disponible.'},
-  {slug:'servifood-analytics',num:'03',icon:'reports',name:'ServiFood Analytics',type:'ANÁLISIS Y CALIDAD',desc:'Documentación, reportes e inspecciones reunidos para trabajar con mayor claridad.'},
+  {slug:'servifood-orders',num:'02',icon:'app',name:'ServiFood Pedidos',type:'PEDIDOS Y OPERACIONES',desc:'Menús, pedidos y remitos organizados en una misma aplicación.'},
+  {slug:'servifood-tracking',num:'03',icon:'calendar',name:'ServiFood Tracking',type:'GESTIÓN DE TRABAJOS',desc:'Trabajos, vehículos y mantenimiento con información ordenada y disponible.'},
   {slug:'ep-consultora-sgi',num:'04',icon:'data',name:'gestiQa',type:'GESTIÓN DOCUMENTAL',desc:'Documentos, responsables, versiones y aprobaciones sin perder el seguimiento.'}
  ],
  processEyebrow:'03 / ASÍ TRABAJO',processTitle:'Simple para vos. Bien hecho por dentro.',processIntro:'No hace falta que sepas cómo se programa una aplicación. Hace falta que me cuentes qué querés lograr.',
@@ -51,8 +52,8 @@ const copy={
  en:{
  brandSub:'DESIGN & DEVELOPMENT',navigation:['Services','Projects','Process','Contact'],start:'Let’s talk',menu:'Open menu',close:'Close menu',
  eyebrow:'WEBSITES & CUSTOM APPLICATIONS · ARGENTINA',
- headline:['Websites and apps','that work for','your business.'],
- intro:'I’m Agustín. I design and develop websites, applications and digital tools to help businesses look professional, save time and stay organized.',
+ headline:['Websites with','character.','Apps that work.'],
+ intro:'I’m Agustín. I build websites that express your brand and custom apps that make everyday work easier. You tell me what you need; I make it happen.',
  primary:'Tell me about your project',secondary:'Explore my work',
  note:'Work directly with me, from the first conversation through launch.',
  visualTop:'DESIGN / DEVELOPMENT / EVOLUTION',visualTag:'MADE FOR YOU',visualSmall:'A good idea deserves thoughtful execution.',
@@ -65,10 +66,10 @@ const copy={
   {id:'automation',icon:'automate',label:'03',title:'Workflow automation',lead:'Less repetitive work. More time for what matters.',details:'Reports, documents, tracking and practical improvements that simplify everyday operations.',action:'Automate my work'}
  ],
  workEyebrow:'02 / SELECTED WORK',workTitle:'Real projects. Real problems solved.',workLead:'Software made for everyday working situations. What matters here is what each solution does for people, not a list of frameworks.',
- workMain:{label:'FEATURED PROJECT',name:'ServiFood',title:'From scattered orders to organized operations.',desc:'An application where different companies place orders while administrators manage menus, users, delivery notes and reporting together.',link:'Explore the case',fields:['ORDERS','MENUS','DELIVERY','REPORTS']},
+ workMain:{label:'FEATURED PROJECT',name:'ServiFood / Analytics',title:'Useful information. Clearer everyday decisions.',desc:'A real application that brings documentation, inspections and reporting into one workspace.',link:'Explore the case',fields:['DOCUMENTS','REPORTS','INSPECTIONS','ANALYTICS']},
  workOthers:[
-  {slug:'servifood-tracking',num:'02',icon:'calendar',name:'ServiFood Tracking',type:'WORK MANAGEMENT',desc:'Jobs, vehicles and maintenance information organized and accessible.'},
-  {slug:'servifood-analytics',num:'03',icon:'reports',name:'ServiFood Analytics',type:'ANALYTICS & QUALITY',desc:'Documents, reports and inspections collected in one coherent workflow.'},
+  {slug:'servifood-orders',num:'02',icon:'app',name:'ServiFood Orders',type:'ORDERS & OPERATIONS',desc:'Menus, orders and delivery notes organized in a single application.'},
+  {slug:'servifood-tracking',num:'03',icon:'calendar',name:'ServiFood Tracking',type:'WORK MANAGEMENT',desc:'Jobs, vehicles and maintenance information organized and accessible.'},
   {slug:'ep-consultora-sgi',num:'04',icon:'data',name:'gestiQa',type:'DOCUMENT MANAGEMENT',desc:'Documents, owners, versions and approvals without losing track.'}
  ],
  processEyebrow:'03 / MY PROCESS',processTitle:'Easy for you. Thoughtful under the hood.',processIntro:'You don’t need to know how an application is built. Just tell me what you want to achieve.',
@@ -101,12 +102,13 @@ export function StudioHome({lang}:{lang:Language}){
  return <main id="main" className="studio-page">
   <section className="studio-hero studio-container" aria-labelledby="studio-title">
    <div className="studio-hero-copy"><div className="studio-overline"><span className="studio-overline-rule"/>{t.eyebrow}</div><h1 id="studio-title">{t.headline[0]}<br/>{t.headline[1]}<br/><em>{t.headline[2]}</em></h1><p className="studio-hero-intro">{t.intro}</p><div className="studio-hero-actions">{openButton(t.primary)}<a className="studio-link" href="#work">{t.secondary}<StudioIcon name="arrow"/></a></div><p className="studio-hero-note"><StudioIcon name="check"/>{t.note}</p></div>
-   <HeroSystemVisual lang={lang}/>
+   <EvidenceHero lang={lang}/>
   </section>
   <div className="studio-assurances"><div className="studio-container">{[t.cred1,t.cred2,t.cred3].map((line,i)=><div key={line}><span>0{i+1}</span>{line}</div>)}</div></div>
   <section id="services" className="studio-section studio-container"><div className="studio-section-intro"><span className="studio-eyebrow">{t.servicesEyebrow}</span><div><h2>{t.servicesTitle}</h2><p>{t.servicesLead}</p></div></div><div className="studio-service-list">{t.services.map(s=><article className="studio-service" key={s.id}><div className="studio-service-icon"><StudioIcon name={s.icon as IconName}/></div><div className="studio-service-main"><span className="studio-service-index">{s.label} / {lang==='es'?'SERVICIO':'SERVICE'}</span><h3>{s.title}</h3><p className="studio-service-lead">{s.lead}</p><p className="studio-service-detail">{s.details}</p></div><ServiceVisual lang={lang} kind={s.id as 'web'|'app'|'automation'}/><div className="studio-service-side">{openButton(s.action,s.id,'studio-service-action')}</div></article>)}</div></section>
-  <section id="work" className="studio-work-section"><div className="studio-container"><div className="studio-section-intro"><span className="studio-eyebrow">{t.workEyebrow}</span><div><h2>{t.workTitle}</h2><p>{t.workLead}</p></div></div><Link href={'/'+lang+'/work/servifood-orders'} className="studio-featured"><div className="studio-featured-copy"><span className="studio-mini-label">{t.workMain.label}</span><strong className="studio-featured-brand">{t.workMain.name}</strong><h3>{t.workMain.title}</h3><p>{t.workMain.desc}</p><span className="studio-featured-link">{t.workMain.link}<StudioIcon name="arrow"/></span></div><OrdersVisual lang={lang}/></Link>
+  <section id="work" className="studio-work-section"><div className="studio-container"><div className="studio-section-intro"><span className="studio-eyebrow">{t.workEyebrow}</span><div><h2>{t.workTitle}</h2><p>{t.workLead}</p></div></div><Link href={'/'+lang+'/work/servifood-analytics'} className="studio-featured"><div className="studio-featured-copy"><span className="studio-mini-label">{t.workMain.label}</span><strong className="studio-featured-brand">{t.workMain.name}</strong><h3>{t.workMain.title}</h3><p>{t.workMain.desc}</p><span className="studio-featured-link">{t.workMain.link}<StudioIcon name="arrow"/></span></div><FeaturedEvidence lang={lang}/></Link>
    <div className="studio-project-list">{t.workOthers.map(p=><Link href={'/'+lang+'/work/'+p.slug} key={p.slug} className="studio-project"><span className="studio-project-num">{p.num}</span><WorkVisual slug={p.slug} lang={lang}/><span className="studio-project-copy"><small>{p.type}</small><strong>{p.name}</strong><span>{p.desc}</span></span><span className="studio-project-arrow"><StudioIcon name="arrow"/></span></Link>)}</div></div></section>
+  <EvidenceCollection lang={lang}/>
   <section id="process" className="studio-section studio-container studio-process"><div className="studio-section-intro"><span className="studio-eyebrow">{t.processEyebrow}</span><div><h2>{t.processTitle}</h2><p>{t.processIntro}</p></div></div><div className="studio-steps">{t.steps.map(s=><article key={s.n}><span>{s.n}</span><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></section>
   <section className="studio-about"><div className="studio-container studio-about-inner"><div className="studio-about-sign"><span>AGUSTÍN<br/>WOJTYSZYN<span className="studio-dot">.</span></span><small>FULL-STACK DEVELOPMENT / AR</small></div><div><span className="studio-eyebrow">{t.aboutEyebrow}</span><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p><blockquote>{t.aboutQuote}</blockquote></div></div></section>
   <section className="studio-section studio-container studio-faq"><div><span className="studio-eyebrow">{t.faqEyebrow}</span><h2>{t.faqTitle}</h2></div><div>{t.faqs.map(([question,answer],i)=><details key={question}><summary><span className="studio-faq-number">0{i+1}</span><strong>{question}</strong><span className="studio-faq-toggle" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>

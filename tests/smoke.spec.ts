@@ -3,15 +3,17 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/es');
  await expect(page.locator('html')).toHaveAttribute('lang','es');
- await expect(page.locator('h1')).toContainText('Páginas web y apps');
+ await expect(page.locator('h1')).toContainText('Hago webs');
  await expect(page.locator('#services .studio-service')).toHaveCount(3);
  await expect(page.locator('.studio-project')).toHaveCount(3);
  await expect(page.locator('.studio-featured')).toBeVisible();
- await expect(page.locator('.aw-hero-visual')).toBeVisible();
+ await expect(page.locator('.aw-evidence-hero')).toBeVisible();
+ await expect(page.locator('.aw-evidence-choices button')).toHaveCount(4);
+ await expect(page.locator('.aw-evidence-shot img')).toHaveCount(1);
  await expect(page.locator('.aw-service-visual')).toHaveCount(3);
  await expect(page.locator('.aw-work-small')).toHaveCount(3);
- await expect(page.locator('.aw-orders-visual')).toBeVisible();
- await expect(page.locator('.aw-phone-shell')).toBeVisible();
+ await expect(page.locator('.aw-featured-evidence')).toBeVisible();
+ await expect(page.locator('.aw-evidence-main-frame')).toBeVisible();
  await expect(page.locator('.game-showcase')).toHaveCount(0);
  expect((await page.request.get('/iconoir/web-window.svg')).ok()).toBeTruthy();
  for(const width of [1440,768,390]){await page.setViewportSize({width,height:850});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();}
@@ -30,10 +32,11 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await page.getByRole('link',{name:'EN',exact:true}).click();
  await expect(page).toHaveURL(/\/en$/);
  await expect(page.locator('html')).toHaveAttribute('lang','en');
- await expect(page.locator('h1')).toContainText('Websites and apps');
+ await expect(page.locator('h1')).toContainText('Websites with');
  await expect(page.locator('.studio-service-index').first()).toContainText('SERVICE');
  await expect(page.locator('.aw-hero-visual')).toBeVisible();
  await page.locator('.studio-featured').click();
- await expect(page).toHaveURL(/\/en\/work\/servifood-orders/);
+ await expect(page).toHaveURL(/\/en\/work\/servifood-analytics/);
+ await expect(page.locator('.aw-case-evidence')).toBeVisible();
  expect(errors).toEqual([]);
 });

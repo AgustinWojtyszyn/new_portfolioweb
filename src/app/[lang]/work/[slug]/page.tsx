@@ -5,6 +5,7 @@ import { projects } from '@/content/projects';
 import { identity,isLanguage,projectName } from '@/lib/site';
 import { StudioIcon } from '@/components/studio-icon';
 import { CaseStudyVisual } from '@/components/studio-visuals';
+import { CaseEvidence } from '@/components/evidence-studio';
 type Params={params:Promise<{lang:string;slug:string}>};
 export function generateStaticParams(){return projects.map(p=>({slug:p.slug}));}
 export async function generateMetadata({params}:Params):Promise<Metadata>{
@@ -26,7 +27,7 @@ export default async function CaseStudy({params}:Params){
  const sections=[{index:'01',title:t.challenge,body:c.context},{index:'02',title:t.solution,body:c.system},{index:'03',title:t.impact,body:c.impact}];
  return <main id="main" className="studio-page studio-case">
   <div className="studio-container studio-case-hero"><Link href={'/'+lang+'#work'} className="studio-case-back">← {t.back}</Link><div className="studio-case-tag">{t.tag}<span>/</span>{c.category}</div><h1>{name}</h1><p>{c.summary}</p><div className="studio-case-rule"><span>{t.intro}</span><span>AW / WORK</span></div></div>
-  <section className="studio-container aw-case-visual-wrap"><CaseStudyVisual slug={slug} lang={lang}/></section>
+  <section className="studio-container aw-case-visual-wrap">{slug==='servifood-analytics'?<CaseEvidence lang={lang}/>:<CaseStudyVisual slug={slug} lang={lang}/>}</section>
   <section className="studio-container studio-case-body"><div className="studio-section-intro"><span className="studio-eyebrow">01 / {t.tag}</span><div><h2>{t.what}</h2></div></div>
    <div className="studio-case-chapters">{sections.map(item=><article key={item.index}><div className="studio-case-chapter-index">{item.index}<span>{item.title}</span></div><p>{item.body}</p></article>)}</div>
    <details className="studio-case-tech"><summary>{t.tech}<span aria-hidden="true">+</span></summary><p>{c.engineering}</p><div>{p.stack.join(' / ')}</div></details>
