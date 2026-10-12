@@ -56,7 +56,7 @@
 .studio-section-intro h2,.studio-about h2,.studio-faq h2{max-width:800px;letter-spacing:-.068em}
 .studio-section-intro p{max-width:580px;color:#b9c3d0}
 .studio-service-list{border-top-color:#536373}
-.studio-service{grid-template-columns:78px minmax(0,1fr) 242px 156px}
+/* Grid tracks are owned by studio-visual-rich.css, including the mobile breakpoints. */
 .studio-service:hover{background:linear-gradient(90deg,#9ddfc60b,transparent 42%)}
 .studio-service-index{color:#8fd3c2}
 .studio-service h3{font-size:clamp(28px,2.8vw,39px)}
