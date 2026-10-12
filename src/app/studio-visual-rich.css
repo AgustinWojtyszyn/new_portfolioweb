@@ -202,7 +202,7 @@
  .studio-service-icon{grid-column:1;grid-row:1;justify-self:start;align-self:start;width:54px;height:54px}
  .studio-service-main{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:none}
  .studio-service-main h3,.studio-service-main p{max-width:none;overflow-wrap:normal;word-break:normal}
- .studio-service .aw-service-visual{grid-column:1 / -1;grid-row:auto;width:min(100%,300px);max-width:100%;justify-self:start;margin:4px 0 0}
+ .studio-service .aw-service-visual{grid-column:1 / -1;grid-row:auto;width:100%;max-width:100%;justify-self:stretch;margin:4px 0 0}
  .studio-service-side{grid-column:1 / -1;grid-row:auto;justify-self:stretch;align-self:start;width:100%;margin:0}
  .studio-service-action{width:100%;max-width:none;min-width:0;min-height:48px;justify-content:space-between}
  .studio-featured{grid-template-columns:1fr}
