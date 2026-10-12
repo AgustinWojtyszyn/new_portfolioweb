@@ -267,3 +267,59 @@
 @media(prefers-reduced-motion:reduce){
  .aw-desktop-shell,.aw-phone-shell,.aw-orders-screen{transform:none!important;transition:none!important}
 }
+
+/* Project-specific workflow boards on the detailed case pages. */
+.aw-case-visual-wrap{margin-block:0 32px}
+.aw-case-illustration{height:410px;position:relative;border:1px solid #46566a;background:#1a2936;overflow:hidden;isolation:isolate;color:#e2ebf5}
+.aw-case-illustration:before{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,#ffffff0a 1px,transparent 1px),linear-gradient(#ffffff0a 1px,transparent 1px);background-size:26px 26px;opacity:.8}
+.aw-case-servifood-tracking{background:#192e33}
+.aw-case-servifood-analytics{background:#1c2940}
+.aw-case-ep-consultora-sgi{background:#292536}
+.aw-case-illustration-toolbar{height:39px;background:#202f3d;border-bottom:1px solid #4c6173;padding:0 17px;position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;font:9px var(--mono);color:#9eb1c3;gap:16px}
+.aw-case-illustration-toolbar>span:last-child{color:#a6dbc9}
+.aw-case-illustration-content{position:relative;z-index:1;display:grid;grid-template-columns:150px minmax(0,1fr);max-width:885px;margin:26px auto;height:277px;border:1px solid #516477;background:#10202d;box-shadow:12px 13px 0 #0b161e9c}
+.aw-case-illustration-aside{border-right:1px solid #435969;background:#172d3b;padding:18px 15px;display:flex;flex-direction:column;gap:12px}
+.aw-case-illustration-aside>span{font:8px var(--mono);color:#abc2ce;margin-bottom:13px}
+.aw-case-illustration-aside>div{height:31px;display:flex;gap:12px;align-items:center;padding:6px 9px;color:#94abb8}
+.aw-case-illustration-aside>div.selected{background:#304f59;border-left:2px solid #a1e7d0;color:#cce9df}
+.aw-case-illustration-aside .studio-icon{height:17px;width:17px}
+.aw-case-illustration-aside div span{font:9px var(--mono)}
+.aw-case-illustration-main{padding:22px 30px;min-width:0}
+.aw-case-kicker{font:9px var(--mono);color:#9edac8;letter-spacing:.1em}
+.aw-case-illustration-main h3{font-size:clamp(27px,3vw,40px);font-weight:820;letter-spacing:-.06em;color:#e6f0f5;margin-top:12px}
+.aw-case-illustration-main p{font-size:12px;color:#9fb4c4;line-height:1.65;margin-top:8px}
+.aw-case-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:25px}
+.aw-case-steps>div{background:#253c4b;border:1px solid #4b6472;min-height:72px;padding:13px;display:flex;flex-direction:column;gap:9px}
+.aw-case-steps span{font:8px var(--mono);color:#9ad1c0}
+.aw-case-steps strong{font-size:11px;color:#edf1f4;line-height:1.3}
+.aw-case-steps i{height:2px;width:55%;background:#658d92;margin-top:auto}
+.aw-case-connector{display:flex;justify-content:space-between;font:9px var(--mono);color:#addbcc;margin-top:15px}
+.aw-case-caption{position:absolute;z-index:2;bottom:15px;right:22px;font:9px var(--mono);color:#a0b5c0}
+@media(max-width:700px){
+ .aw-case-illustration{height:340px}
+ .aw-case-illustration-toolbar{font-size:7px}
+ .aw-case-illustration-content{grid-template-columns:59px minmax(0,1fr);margin:19px 10px;height:240px}
+ .aw-case-illustration-aside{padding:13px 5px}
+ .aw-case-illustration-aside>span{display:none}
+ .aw-case-illustration-aside>div{height:36px;gap:0;justify-content:center}
+ .aw-case-illustration-aside>div span{display:none}
+ .aw-case-illustration-main{padding:18px 12px}
+ .aw-case-illustration-main h3{font-size:23px}
+ .aw-case-illustration-main p{font-size:10px}
+ .aw-case-steps{gap:5px;margin-top:14px}
+ .aw-case-steps>div{min-height:70px;padding:8px 5px;gap:8px}
+ .aw-case-steps strong{font-size:8px}
+ .aw-case-caption{font-size:7px}
+}
+@media(max-width:420px){
+ .aw-case-illustration{height:320px}
+ .aw-case-illustration-toolbar{padding:0 7px;font-size:6px}
+ .aw-case-illustration-content{grid-template-columns:45px minmax(0,1fr);margin:17px 6px;height:236px}
+ .aw-case-illustration-aside{padding:10px 3px}
+ .aw-case-illustration-main{padding:12px 8px}
+ .aw-case-illustration-main h3{font-size:20px;margin-top:8px}
+ .aw-case-illustration-main p{font-size:9px}
+ .aw-case-steps>div{padding:6px 3px}
+ .aw-case-steps strong{font-size:7px}
+ .aw-case-caption{right:8px}
+}
