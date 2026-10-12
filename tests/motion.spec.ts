@@ -16,3 +16,20 @@ test('important content loads without JavaScript',async({browser})=>{
  await expect(page.locator('.studio-project')).toHaveCount(3);
  await context.close();
 });
+
+test('site uses consistent dark backgrounds without dazzling light sections',async({page})=>{
+ await page.goto('/es');
+ const actual=await page.evaluate(()=>{
+   const background=(query:string)=>getComputedStyle(document.querySelector(query)!).backgroundColor;
+   return {body:background('body'),main:background('.studio-page'),header:background('.studio-header'),work:background('.studio-work-section'),contact:background('.studio-contact'),footer:background('.studio-footer'),dialog:background('.studio-dialog-inner')};
+ });
+ // Every major area stays in a comfortable dark range.
+ for(const [section,color] of Object.entries(actual)){
+   const nums=color.match(/[\d.]+/g)?.slice(0,3).map(Number)||[];
+   expect(nums.length,section).toBe(3);
+   expect(Math.max(...nums),section+' '+color).toBeLessThan(120);
+ }
+ await page.goto('/en/work/servifood-orders');
+ const projectBg=await page.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor);
+ expect(projectBg).not.toBe('rgb(246, 245, 240)');
+});
