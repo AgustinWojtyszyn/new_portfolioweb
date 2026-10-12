@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect,useRef,useState,type FormEvent } from 'react';
 import { identity,type Language } from '@/lib/site';
-import { StudioIcon } from '@/components/studio-icon';
+import { StudioIcon,type IconName } from '@/components/studio-icon';
 import { HeroSystemVisual,ServiceVisual,OrdersVisual,WorkVisual } from '@/components/studio-visuals';
 
 const copy={
