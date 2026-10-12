@@ -199,7 +199,7 @@
  .aw-visual-footer{left:13px;right:13px;bottom:9px;font-size:7px}
  /* Explicit tracks and placement: no desktop column can compress mobile copy. */
  .studio-service{grid-template-columns:54px minmax(0,1fr);gap:14px;align-items:start;padding:28px 0;min-height:0}
- .studio-service-icon{grid-column:1;grid-row:1;justify-self:start;align-self:start}
+ .studio-service-icon{grid-column:1;grid-row:1;justify-self:start;align-self:start;width:54px;height:54px}
  .studio-service-main{grid-column:2;grid-row:1;min-width:0;width:100%;max-width:none}
  .studio-service-main h3,.studio-service-main p{max-width:none;overflow-wrap:normal;word-break:normal}
  .studio-service .aw-service-visual{grid-column:1 / -1;grid-row:auto;width:min(100%,300px);max-width:100%;justify-self:start;margin:4px 0 0}
