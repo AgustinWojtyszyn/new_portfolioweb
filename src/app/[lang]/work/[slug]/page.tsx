@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/content/projects';
 import { identity,isLanguage,projectName } from '@/lib/site';
-import { StudioIcon } from '@/sections/studio-home';
+import { StudioIcon } from '@/components/studio-icon';
 type Params={params:Promise<{lang:string;slug:string}>};
 export function generateStaticParams(){return projects.map(p=>({slug:p.slug}));}
 export async function generateMetadata({params}:Params):Promise<Metadata>{
