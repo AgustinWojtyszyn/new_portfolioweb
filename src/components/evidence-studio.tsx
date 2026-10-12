@@ -52,3 +52,19 @@ export function EvidenceCollection({lang}:{lang:Language}){
   {large&&<div className="aw-evidence-lightbox" role="presentation" onClick={()=>setLarge(false)}><div role="dialog" aria-modal="true" aria-label={t.enlarge} className="aw-evidence-lightbox-inner" onClick={e=>e.stopPropagation()}><button type="button" className="aw-evidence-lightbox-close" onClick={()=>setLarge(false)} aria-label={lang==='es'?'Cerrar imagen':'Close image'}><StudioIcon name="close"/></button><div className="aw-evidence-lightbox-image"><Image src={item.src} alt={item[lang].name} fill sizes="95vw" quality={95}/></div><div className="aw-evidence-lightbox-bottom"><span>{item[lang].name}</span><div><button type="button" onClick={()=>setIndex(i=>(i+actualScreens.length-1)%actualScreens.length)} aria-label={t.previous}>←</button><button type="button" onClick={()=>setIndex(i=>(i+1)%actualScreens.length)} aria-label={t.next}>→</button></div></div></div></div>}
  </section>;
 }
+
+export function FeaturedEvidence({lang}:{lang:Language}){
+ const label=lang==='es'?'CAPTURA DE LA APLICACIÓN':'APPLICATION SCREENSHOT';
+ return <div className="aw-featured-evidence" aria-label={label}>
+   <div className="aw-featured-evidence-rail"><span>QUALITY / SERVIFOOD</span><span>02 : 04</span></div>
+   <div className="aw-featured-evidence-window"><div className="aw-featured-evidence-top"><span><i/><i/><i/></span> analytics / yearly-review <StudioIcon name="arrow"/></div><div className="aw-featured-evidence-image"><Image src="/portfolio-evidence/servifood-quality-analysis.webp" alt={label} fill sizes="(max-width: 768px) 90vw, 660px" quality={86}/></div></div>
+   <span className="aw-featured-evidence-foot">AW / SELECTED WORK <span>↗</span></span>
+ </div>;
+}
+export function CaseEvidence({lang}:{lang:Language}){
+ return <div className="aw-case-evidence" aria-label={lang==='es'?'Captura real de la aplicación de Análisis de ServiFood':'Real screenshot of ServiFood Analytics'}>
+  <div className="aw-case-evidence-title"><span>SF / ANALYTICS</span><span>{lang==='es'?'VISTA REAL':'REAL APPLICATION'}</span></div>
+  <div className="aw-case-evidence-image"><Image src="/portfolio-evidence/servifood-quality-charts.webp" alt={lang==='es'?'Panel real de gráficos de la aplicación de Análisis':'Real analytics application charts'} fill sizes="(max-width: 900px) 90vw, 1000px" quality={88}/></div>
+  <span className="aw-case-evidence-note">{lang==='es'?'CAPTURA ORIGINAL DEL PROYECTO':'ORIGINAL PROJECT SCREENSHOT'}</span>
+ </div>;
+}
