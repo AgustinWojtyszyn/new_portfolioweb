@@ -49,3 +49,36 @@ export function WorkVisual({slug,lang}:{slug:string;lang:Language}){
  if(type==='analytics')return <div className="aw-work-small aw-small-analytics" aria-hidden="true"><div className="aw-small-header"><StudioIcon name="reports"/><span>ANALYTICS / 03</span></div><div className="aw-small-title">{t.analyticsTitle}</div><div className="aw-small-bars">{[36,66,49,85,60,76].map((n,i)=><span key={i} style={{height:n+'%'}}/>)}</div></div>;
  return <div className="aw-work-small aw-small-documents" aria-hidden="true"><div className="aw-small-header"><StudioIcon name="data"/><span>DOCUMENTS / 04</span></div><div className="aw-small-title">{t.documentTitle}</div><div className="aw-small-doc-stack"><div><i/><span>V1</span></div><div><i/><span>V2</span></div><div><StudioIcon name="check"/><span>V3</span></div></div></div>;
 }
+
+
+const caseViews={
+ es:{
+  banner:'ESQUEMA ILUSTRATIVO · NO ES UNA CAPTURA REAL',
+  sidebar:'ÁREAS DE TRABAJO',
+  connected:'UN SOLO SISTEMA',
+  'servifood-orders':{title:'Pedidos y gestión',sub:'Menús, pedidos, remitos y reportes conectados.',steps:['Solicitar menú','Administrar pedidos','Generar remitos'],icon:'app'},
+  'servifood-tracking':{title:'Tareas y mantenimiento',sub:'El trabajo cotidiano queda registrado y disponible.',steps:['Registrar tarea','Asignar equipo','Consultar historial'],icon:'calendar'},
+  'servifood-analytics':{title:'Análisis y calidad',sub:'Reportes, documentación e inspecciones en una misma herramienta.',steps:['Registrar inspección','Revisar información','Consultar reporte'],icon:'reports'},
+  'ep-consultora-sgi':{title:'Documentos ordenados',sub:'Versiones, responsables y aprobaciones en un mismo lugar.',steps:['Cargar documento','Revisar versión','Aprobar cambio'],icon:'data'}
+ },
+ en:{
+  banner:'ILLUSTRATED WORKFLOW · NOT A REAL SCREENSHOT',
+  sidebar:'WORK AREAS',
+  connected:'ONE CONNECTED SYSTEM',
+  'servifood-orders':{title:'Orders and operations',sub:'Menus, orders, delivery notes and reporting in one place.',steps:['Choose a menu','Manage orders','Produce documents'],icon:'app'},
+  'servifood-tracking':{title:'Tasks and maintenance',sub:'Everyday work is recorded and easy to find.',steps:['Log a job','Assign a team','See history'],icon:'calendar'},
+  'servifood-analytics':{title:'Analytics and quality',sub:'Reports, documentation and inspections in one workflow.',steps:['Log inspection','Review data','View reports'],icon:'reports'},
+  'ep-consultora-sgi':{title:'Documents in order',sub:'Versions, owners and approvals gathered together.',steps:['Upload document','Review version','Approve update'],icon:'data'}
+ }
+};
+export function CaseStudyVisual({slug,lang}:{slug:string;lang:Language}){
+ const v=caseViews[lang];const key=slug as 'servifood-orders'|'servifood-tracking'|'servifood-analytics'|'ep-consultora-sgi';
+ const data=v[key]??v['servifood-orders'];
+ const icons=['app','calendar','reports','data'] as const;
+ return <div className={'aw-case-illustration aw-case-'+slug} role="img" aria-label={v.banner}>
+  <div className="aw-case-illustration-toolbar"><span className="aw-chrome-dots"><i/><i/><i/></span><span>WORKSPACE / {slug}</span><span>AW</span></div>
+  <div className="aw-case-illustration-content"><div className="aw-case-illustration-aside"><span>{v.sidebar}</span>{icons.map((icon,i)=><div key={icon} className={icon===data.icon?'selected':''}><StudioIcon name={icon}/><span>0{i+1}</span></div>)}</div>
+   <div className="aw-case-illustration-main"><span className="aw-case-kicker">PROJECT / WORKFLOW</span><h3>{data.title}</h3><p>{data.sub}</p><div className="aw-case-steps">{data.steps.map((s,i)=><div key={s}><span>0{i+1}</span><strong>{s}</strong><i/></div>)}</div><div className="aw-case-connector"><span>{v.connected}</span><span>→</span></div></div></div>
+  <span className="aw-case-caption">{v.banner}</span>
+ </div>;
+}
