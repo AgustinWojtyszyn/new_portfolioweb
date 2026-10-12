@@ -31,6 +31,8 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page).toHaveURL(/\/en$/);
  await expect(page.locator('html')).toHaveAttribute('lang','en');
  await expect(page.locator('h1')).toContainText('Websites and apps');
+ await expect(page.locator('.studio-service-index').first()).toContainText('SERVICE');
+ await expect(page.locator('.aw-hero-visual')).toBeVisible();
  await page.locator('.studio-featured').click();
  await expect(page).toHaveURL(/\/en\/work\/servifood-orders/);
  expect(errors).toEqual([]);
