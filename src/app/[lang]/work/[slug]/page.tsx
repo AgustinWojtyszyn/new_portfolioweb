@@ -3,28 +3,34 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/content/projects';
 import { identity,isLanguage,projectName } from '@/lib/site';
+import { StudioIcon } from '@/sections/studio-home';
 type Params={params:Promise<{lang:string;slug:string}>};
 export function generateStaticParams(){return projects.map(p=>({slug:p.slug}));}
 export async function generateMetadata({params}:Params):Promise<Metadata>{
- const {lang,slug}=await params;const p=projects.find(p=>p.slug===slug);
+ const {lang,slug}=await params;const p=projects.find(item=>item.slug===slug);
  if(!p||!isLanguage(lang))notFound();
- return {title:projectName(p.slug,p.name),description:p[lang].summary,alternates:{canonical:'/'+lang+'/work/'+slug,languages:{es:'/es/work/'+slug,en:'/en/work/'+slug}},openGraph:{title:projectName(p.slug,p.name)+' — Agustín Wojtyszyn',description:p[lang].summary,url:'/'+lang+'/work/'+slug,images:[{url:'/opengraph-image',width:1200,height:630}]}};
+ const name=projectName(p.slug,p.name);
+ return {title:name,description:p[lang].summary,alternates:{canonical:'/'+lang+'/work/'+slug,languages:{es:'/es/work/'+slug,en:'/en/work/'+slug}},openGraph:{title:name+' — Agustín Wojtyszyn',description:p[lang].summary,url:'/'+lang+'/work/'+slug,images:[{url:'/opengraph-image',width:1200,height:630}]}};
 }
 const labels={
- es:{back:'Volver a los trabajos',eyebrow:'UN PROYECTO REAL',challenge:'La necesidad',solution:'La solución',result:'Qué permite mejorar',tech:'Para quien quiera saber cómo está hecho',techNote:'Esta información es opcional: lo importante es cómo ayuda a las personas.',next:'Conocer otro trabajo',closingTitle:'¿Necesitás algo parecido para tu negocio?',closingText:'Podemos pensar una solución a medida, con las funciones que realmente necesitás.',cta:'Contame tu idea',email:'O escribime por correo',home:'Volver al inicio',footer:'Páginas web y aplicaciones a medida'},
- en:{back:'Back to projects',eyebrow:'A REAL PROJECT',challenge:'The challenge',solution:'The solution',result:'How it helps',tech:'Technical details, if you’re curious',techNote:'Optional information: what matters most is how it helps real people.',next:'See another project',closingTitle:'Need something like this for your business?',closingText:'We can plan a custom solution around what you actually need.',cta:'Tell me about your project',email:'Or send me an email',home:'Back to the homepage',footer:'Websites and custom applications'}
+ es:{back:'Volver a los trabajos',tag:'UN CASO REAL',what:'De una necesidad a una solución concreta.',intro:'No es una demostración inventada: este proyecto nació para resolver una necesidad de trabajo.',challenge:'El problema',solution:'Lo que desarrollé',impact:'Qué permite hacer',tech:'Ver detalles técnicos',next:'También podés conocer',callLabel:'¿TENÉS UN PROYECTO EN MENTE?',call:'Hagamos algo útil para tu negocio.',callText:'Contame qué necesitás y vemos qué solución tiene sentido para vos.',cta:'Empecemos a hablar',mail:'Escribirme por correo',home:'Volver al inicio',footer:'Páginas web y aplicaciones a medida'},
+ en:{back:'Back to projects',tag:'A REAL CASE STUDY',what:'From a real need to a practical solution.',intro:'This is not an invented demo: the project was built to solve a real workflow problem.',challenge:'The problem',solution:'What I built',impact:'What it makes possible',tech:'Show technical details',next:'You might also like',callLabel:'HAVE A PROJECT IN MIND?',call:'Let’s build something useful.',callText:'Tell me what you need and we’ll find a solution that makes sense for your business.',cta:'Let’s talk',mail:'Send me an email',home:'Back home',footer:'Websites and custom applications'}
 };
 export default async function CaseStudy({params}:Params){
  const {lang,slug}=await params;const p=projects.find(item=>item.slug===slug);
  if(!p||!isLanguage(lang))notFound();
  const t=labels[lang],c=p[lang],name=projectName(p.slug,p.name);
  const business=projects.filter(item=>item.slug!=='rpg-premium');
- const next=business[(business.indexOf(p)+1)%business.length];
- return <main id="main" className="commercial-page cp-detail">
-  <div className="cp-wrap cp-detail-header"><Link href={'/'+lang+'#work'} className="cp-detail-back">← {t.back}</Link><span className="cp-kicker">{t.eyebrow} / {c.category}</span><h1>{name}</h1><p>{c.summary}</p><div className="cp-detail-pills"><span>{lang==='es'?'Aplicación a medida':'Custom application'}</span><span>{lang==='es'?'Trabajo real':'Real use case'}</span></div></div>
-  <section className="cp-detail-story cp-section"><div className="cp-wrap"><div className="cp-section-head"><span className="cp-kicker">{lang==='es'?'DE LA NECESIDAD A LA SOLUCIÓN':'FROM CHALLENGE TO SOLUTION'}</span><h2>{lang==='es'?'El objetivo era que todo fuera más simple.':'The goal was to make things simpler.'}</h2></div><div className="cp-detail-cards"><article><span>01</span><h2>{t.challenge}</h2><p>{c.context}</p></article><article><span>02</span><h2>{t.solution}</h2><p>{c.system}</p></article><article><span>03</span><h2>{t.result}</h2><p>{c.impact}</p></article></div><details className="cp-detail-technical"><summary>{t.tech}<span aria-hidden="true">+</span></summary><p>{t.techNote}</p><p>{c.engineering}</p><div>{p.stack.join(' · ')}</div></details></div></section>
-  <section className="cp-wrap cp-detail-next"><div><span className="cp-kicker">{t.next}</span><Link href={'/'+lang+'/work/'+next.slug}>{projectName(next.slug,next.short)} ↗</Link></div></section>
-  <section className="cp-contact"><div className="cp-wrap cp-detail-contact"><div><span className="cp-kicker">{lang==='es'?'HABLEMOS':'LET’S TALK'}</span><h2>{t.closingTitle}</h2><p>{t.closingText}</p><div className="cp-actions"><Link className="cp-btn cp-btn-dark" href={'/'+lang+'#contact'}>{t.cta} ↗</Link><a href={'mailto:'+identity.email} className="cp-contact-link">{t.email} ↗</a></div></div></div></section>
-  <footer className="cp-footer cp-wrap"><div><strong>Agustín Wojtyszyn<span>.</span></strong><p>{t.footer}</p></div><div className="cp-footer-links"><Link href={'/'+lang}>{t.home} ↑</Link><a href={'mailto:'+identity.email}>Email ↗</a></div></footer>
+ const next=business[(Math.max(0,business.indexOf(p))+1)%business.length];
+ const sections=[{index:'01',title:t.challenge,body:c.context},{index:'02',title:t.solution,body:c.system},{index:'03',title:t.impact,body:c.impact}];
+ return <main id="main" className="studio-page studio-case">
+  <div className="studio-container studio-case-hero"><Link href={'/'+lang+'#work'} className="studio-case-back">← {t.back}</Link><div className="studio-case-tag">{t.tag}<span>/</span>{c.category}</div><h1>{name}</h1><p>{c.summary}</p><div className="studio-case-rule"><span>{t.intro}</span><span>AW / WORK</span></div></div>
+  <section className="studio-container studio-case-body"><div className="studio-section-intro"><span className="studio-eyebrow">01 / {t.tag}</span><div><h2>{t.what}</h2></div></div>
+   <div className="studio-case-chapters">{sections.map(item=><article key={item.index}><div className="studio-case-chapter-index">{item.index}<span>{item.title}</span></div><p>{item.body}</p></article>)}</div>
+   <details className="studio-case-tech"><summary>{t.tech}<span aria-hidden="true">+</span></summary><p>{c.engineering}</p><div>{p.stack.join(' / ')}</div></details>
+  </section>
+  <section className="studio-case-next"><div className="studio-container"><span className="studio-eyebrow">{t.next}</span><Link href={'/'+lang+'/work/'+next.slug}>{projectName(next.slug,next.name)}<StudioIcon name="arrow"/></Link></div></section>
+  <section id="contact" className="studio-contact"><div className="studio-container studio-contact-inner"><span className="studio-eyebrow">{t.callLabel}</span><h2>{t.call}</h2><p>{t.callText}</p><div className="studio-contact-actions"><Link href={'/'+lang+'#contact'} className="studio-button studio-button-light">{t.cta}<StudioIcon name="arrow"/></Link><a href={'mailto:'+identity.email} className="studio-contact-email"><StudioIcon name="mail"/>{t.mail}</a></div></div></section>
+  <footer className="studio-footer"><div className="studio-container"><div><strong>Agustín Wojtyszyn<span>.</span></strong><p>{t.footer}</p></div><div className="studio-footer-links"><Link href={'/'+lang}>{t.home} ↑</Link><a href={'mailto:'+identity.email}>Email <StudioIcon name="arrow"/></a></div><small>© {new Date().getFullYear()}</small></div></footer>
  </main>;
 }
