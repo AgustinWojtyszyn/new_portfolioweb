@@ -229,3 +229,86 @@
 /* Native modal focus management for the enlarged portfolio screenshots. */
 .aw-evidence-lightbox{inset:0;margin:0;width:100vw;max-width:none;height:100vh;max-height:none;border:0;overflow:auto;color:#eaf4f5}
 .aw-evidence-lightbox::backdrop{background:#030608ea}
+
+
+/* Services responsive contract. Keep last: signature.css loads after the earlier
+   mobile rules and its desktop four-column grid previously squeezed copy into
+   one-word lines on embedded mobile browsers. */
+@media (max-width: 1050px) {
+  .studio-service {
+    grid-template-columns: 68px minmax(0, 1fr) 210px;
+    column-gap: 20px;
+    row-gap: 18px;
+    align-items: center;
+  }
+  .studio-service-main {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+  }
+  .studio-service .aw-service-visual {
+    grid-column: 3;
+    grid-row: 1;
+    width: 210px;
+    max-width: 100%;
+  }
+  .studio-service-side {
+    grid-column: 2 / -1;
+    grid-row: 2;
+    justify-self: start;
+    margin: 0;
+  }
+}
+@media (max-width: 700px) {
+  .studio-service {
+    grid-template-columns: 52px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 15px;
+    align-items: start;
+    padding: 28px 0;
+  }
+  .studio-service-icon {
+    grid-column: 1;
+    grid-row: 1;
+    width: 52px;
+    height: 52px;
+  }
+  .studio-service-main {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .studio-service-main h3,
+  .studio-service-main p,
+  .studio-service-index {
+    max-width: 100%;
+    min-width: 0;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  .studio-service .aw-service-visual {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    max-width: none;
+    height: 153px;
+    margin: 0;
+  }
+  .studio-service-side {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    justify-self: stretch;
+    margin: 0;
+  }
+  .studio-service-action {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    justify-content: space-between;
+  }
+}

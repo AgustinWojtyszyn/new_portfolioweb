@@ -46,3 +46,38 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page.locator('.aw-case-evidence')).toBeVisible();
  expect(errors).toEqual([]);
 });
+
+
+test('service cards keep readable widths across mobile and tablet breakpoints',async({page})=>{
+  await page.goto('/es');
+  for(const width of [320,360,390,430,600,700,768,900,1024,1280]){
+    await page.setViewportSize({width,height:840});
+    const metrics=await page.locator('#services .studio-service').evaluateAll(cards=>
+      cards.map(card=>{
+        const rect=card.getBoundingClientRect();
+        const main=card.querySelector('.studio-service-main')!.getBoundingClientRect();
+        const visual=card.querySelector('.aw-service-visual')!.getBoundingClientRect();
+        const action=card.querySelector('.studio-service-side')!.getBoundingClientRect();
+        const copy=card.querySelector('.studio-service-lead')!.getBoundingClientRect();
+        return {cardWidth:rect.width,mainWidth:main.width,copyWidth:copy.width,
+          visualWidth:visual.width,visualTop:visual.top,mainBottom:main.bottom,
+          actionTop:action.top,visualBottom:visual.bottom,
+          overflow:Math.max(rect.right,visual.right,action.right)-innerWidth};
+      })
+    );
+    expect(metrics).toHaveLength(3);
+    for(const m of metrics){
+      expect(m.overflow).toBeLessThanOrEqual(1);
+      if(width<=700){
+        expect(m.mainWidth/m.cardWidth).toBeGreaterThan(.7);
+        expect(m.copyWidth).toBeGreaterThan(185);
+        expect(m.visualWidth/m.cardWidth).toBeGreaterThan(.95);
+        expect(m.visualTop).toBeGreaterThanOrEqual(m.mainBottom-1);
+        expect(m.actionTop).toBeGreaterThanOrEqual(m.visualBottom-1);
+      }else if(width<=1024){
+        expect(m.mainWidth/m.cardWidth).toBeGreaterThan(.42);
+      }
+    }
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  }
+});
