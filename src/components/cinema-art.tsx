@@ -68,26 +68,49 @@ export function ChromeSculpture({ variant = 'hero' }: { variant?: 'hero' | 'deta
  </div>;
 }
 
-/** A typographic material plate, not a screenshot or product mockup. */
+/** An optical poster: a single sculpted glyph, lit by moving reflective blades. */
 export function TypographicPlate() {
- return <div className="vx-typeplate" aria-hidden="true">
-  <div className="vx-typeplate-field">
-   <span className="vx-typeplate-a">FORMA</span>
-   <span className="vx-typeplate-w">FONDO</span>
-   <span className="vx-typeplate-slit"/>
-   <span className="vx-typeplate-foil"/>
-  </div>
- </div>;
+  return <div className="vx-typeplate" aria-hidden="true">
+    <div className="vx-typeplate-ambient"/>
+    <div className="vx-typeplate-wires"><i/><i/><i/><i/><i/><i/></div>
+    <div className="vx-typeplate-sculpture">
+      <span className="vx-typeplate-glyph vx-typeplate-glyph--echo">A</span>
+      <span className="vx-typeplate-glyph vx-typeplate-glyph--core">A</span>
+      <span className="vx-typeplate-glyph vx-typeplate-glyph--edge">A</span>
+    </div>
+    <div className="vx-typeplate-mirror"/>
+    <div className="vx-typeplate-sheen"/>
+    <span className="vx-typeplate-title">ART DIRECTION</span>
+    <span className="vx-typeplate-coordinate">Agustín / 001</span>
+  </div>;
 }
 
-/** A single restrained motion study that exists as static art without JS. */
+/** Animated orbital sculpture, not a miniature demonstration or a game. */
 export function MotionStudy() {
- const bars = Array.from({ length: 22 }, (_, index) => index);
- return <div className="vx-motionstudy" aria-hidden="true">
-  <div className="vx-motionstudy-core">
-   {bars.map(index => <span className="vx-motionstudy-line" key={index}
-    style={{ '--line-i': index } as CSSProperties}/>)}
-  </div>
-  <div className="vx-motionstudy-cut"/>
- </div>;
+  const rings = Array.from({ length: 9 }, (_, index) => index);
+  const particles = Array.from({ length: 36 }, (_, index) => index);
+  return <div className="vx-motionstudy" aria-hidden="true">
+    <div className="vx-motionstudy-glow"/>
+    <div className="vx-motionstudy-orb">
+      {rings.map(index => <span className="vx-motionstudy-ring" key={index} style={{ '--ring-x': (index*14)+'deg', '--ring-y': (index*13)+'deg', '--ring-z': (index*-6)+'deg', '--ring-opacity': String(Math.min(.9,.32+index*.065)) } as CSSProperties}/>)}
+      <div className="vx-motionstudy-heart"/>
+      {particles.map(index => <span className="vx-motionstudy-particle" key={index} style={{ left:(50+Math.cos(index*2.39996)*Math.sqrt((index+1)/36)*43).toFixed(2)+'%', top:(50+Math.sin(index*2.39996)*Math.sqrt((index+1)/36)*43).toFixed(2)+'%' } as CSSProperties}/>)}
+    </div>
+    <div className="vx-motionstudy-light"/>
+  </div>;
+}
+
+/** Original modular sculpture suggesting precise creative engineering. */
+export function KineticArchitecture() {
+  const tiles = Array.from({ length: 15 }, (_, index) => index);
+  return <div className="vx-build" aria-hidden="true">
+    <div className="vx-build-light"/>
+    <div className="vx-build-architecture">
+      {tiles.map(index => <span key={index} className="vx-build-piece" style={{ '--tile-shift': ((index-8)*3)+'px', '--tile-inverse': ((8-index)*3)+'px', '--tile-depth': index+'px', '--tile-delay': (index*-.41).toFixed(2)+'s' } as CSSProperties}><i/></span>)}
+    </div>
+    <div className="vx-build-rail vx-build-rail--a"/>
+    <div className="vx-build-rail vx-build-rail--b"/>
+    <div className="vx-build-line"/>
+    <div className="vx-build-word">AW</div>
+  </div>;
 }

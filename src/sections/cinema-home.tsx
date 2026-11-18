@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ChromeSculpture, TypographicPlate, MotionStudy } from '@/components/cinema-art';
+import { ChromeSculpture, TypographicPlate, MotionStudy, KineticArchitecture } from '@/components/cinema-art';
+import { CinematicSequence } from '@/components/cinematic-sequence';
 import { identity, type Language } from '@/lib/site';
 
 const copy = {
@@ -84,9 +85,13 @@ export function CinemaHome({ lang }: { lang: Language }) {
     <p className="vx-hero-lede">{t.heroLead}</p>
     <a className="vx-primary-link" href={mail}>{t.heroAction}<span aria-hidden="true">↗</span></a>
    </div>
-   <a className="vx-scroll-note" href="#statement">{t.discover}<span aria-hidden="true">↓</span></a>
+   <a className="vx-scroll-note" href="#transformation">{t.discover}<span aria-hidden="true">↓</span></a>
    <div className="vx-hero-serial" aria-hidden="true">AW / 2026</div>
   </section>
+
+  <div className="vx-kinetic-band" aria-hidden="true"><div className="vx-kinetic-band-track">{Array.from({length:4},(_,i)=><span key={i}>{lang === 'es' ? 'IMAGINAR / CREAR / SORPRENDER / ' : 'IMAGINE / CREATE / AMAZE / '}</span>)}</div></div>
+
+  <CinematicSequence lang={lang}/>
 
   <section className="vx-statement" id="statement" aria-label={t.manifesto}>
    <div className="vx-container">
@@ -104,16 +109,13 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
   <section className="vx-motion-chapter" aria-labelledby="vx-motion-title">
    <div className="vx-motion-image"><MotionStudy/></div>
+   <div className="vx-motion-figure" aria-hidden="true"><span>SPACE</span><span>IN MOTION</span></div>
    <div className="vx-container vx-motion-copy"><p className="vx-caption">{t.motionLabel}</p><h2 id="vx-motion-title">{t.motionTitle}</h2><p>{t.motionCopy}</p></div>
   </section>
 
   <section className="vx-chapter vx-chapter--engineering" id="approach" aria-labelledby="vx-engineer-title">
    <div className="vx-container vx-engineering-layout">
-    <div className="vx-engineering-art" aria-hidden="true">
-     <div className="vx-engineering-tracks"><i/><i/><i/><i/><i/><i/><i/></div>
-     <span className="vx-engineering-giant">DETALLE</span>
-     <span className="vx-engineering-seal">Idea → diseño → desarrollo</span>
-    </div>
+    <div className="vx-engineering-art"><KineticArchitecture/></div>
     <div className="vx-chapter-copy"><p className="vx-caption">{t.engineerLabel}</p><h2 id="vx-engineer-title">{t.engineerTitle}</h2><p>{t.engineerCopy}</p></div>
    </div>
   </section>
