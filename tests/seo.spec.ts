@@ -15,6 +15,8 @@ test('production allows indexing, exposes canonical domain and multilingual site
     expect(xml).toContain('https://agustinwojtyszyn.com' + path);
   }
   expect(xml).not.toContain('localhost:3000');
+  expect(xml).not.toContain('/work/servifood-');
+  expect(xml).not.toContain('/work/ep-consultora-');
 });
 
 test('commercial pages expose indexable metadata, structured data and contact', async ({ page }) => {
@@ -23,7 +25,7 @@ test('commercial pages expose indexable metadata, structured data and contact', 
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /San Juan/);
   expect(await page.locator('meta[name="robots"]').getAttribute('content')).not.toContain('noindex');
   expect(await page.locator('h1').count()).toBe(1);
-  await expect(page.locator('.seo-service-links a')).toHaveCount(3);
+  await expect(page.locator('.at-service-link')).toHaveCount(3);
   const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
   expect(schemas.some(schema => schema.includes('https://schema.org') && schema.includes('Person'))).toBeTruthy();
 
