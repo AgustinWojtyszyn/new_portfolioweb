@@ -1,24 +1,39 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect,useState } from 'react';
-import { StudioIcon } from '@/components/studio-icon';
-import { BrandMark } from '@/components/brand-mark';
+import { useEffect, useState } from 'react';
 import type { Language } from '@/lib/site';
-const labels={
- es:{nav:['Servicios','Trabajos','Cómo trabajo','Contacto'],brand:'DISEÑO Y DESARROLLO',contact:'Hablemos',menu:'Abrir menú',close:'Cerrar menú',skip:'Saltar al contenido'},
- en:{nav:['Services','Work','Process','Contact'],brand:'DESIGN & DEVELOPMENT',contact:'Let’s talk',menu:'Open menu',close:'Close menu',skip:'Skip to content'}
+
+const translations = {
+ es: { links: [['Experiencia','experience'],['Laboratorio','laboratory'],['Servicios','services'],['Cómo trabajo','approach']], inquiry: 'Empezar un proyecto', menu: 'Abrir menú', close: 'Cerrar menú', skip: 'Ir al contenido', home: 'Inicio' },
+ en: { links: [['Experience','experience'],['Playground','laboratory'],['Services','services'],['Approach','approach']], inquiry: 'Start a project', menu: 'Open menu', close: 'Close menu', skip: 'Skip to content', home: 'Home' }
 };
-const anchors=['services','work','process','contact'];
-const switchKey='studio:language-switch';
-export function Navigation({lang}:{lang:Language}){
- const t=labels[lang],path=usePathname();const [open,setOpen]=useState(false);
- useEffect(()=>{const escape=(e:KeyboardEvent)=>{if(e.key==='Escape'&&open){setOpen(false);document.getElementById('studio-menu-toggle')?.focus();}};window.addEventListener('keydown',escape);return()=>window.removeEventListener('keydown',escape);},[open]);
- useEffect(()=>{if(sessionStorage.getItem(switchKey)!=='1')return;sessionStorage.removeItem(switchKey);requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'auto'}));},[path,lang]);
- const languageChange=(next:Language)=>{if(next===lang)return;sessionStorage.setItem(switchKey,'1');setOpen(false);};
- return <><a className="skip-link" href="#main">{t.skip}</a><header className="studio-header"><div className="studio-nav-inner">
-  <Link href={'/'+lang} className="studio-brand" aria-label="Agustín Wojtyszyn — Home" onClick={()=>setOpen(false)}><span className="studio-brand-mark"><BrandMark/></span><span className="studio-brand-text"><strong>Agustín Wojtyszyn</strong><small>{t.brand}</small></span></Link>
-  <nav id="main-navigation" className={open?'studio-main-nav is-open':'studio-main-nav'} aria-label={lang==='es'?'Navegación principal':'Main navigation'}>{t.nav.map((label,i)=><Link key={label} href={'/'+lang+'#'+anchors[i]} onClick={()=>setOpen(false)}>{label}</Link>)}</nav>
-  <div className="studio-nav-right"><div className="studio-language" aria-label={lang==='es'?'Idioma':'Language'}>{(['es','en'] as const).map(l=><Link key={l} href={path.replace(/^\/(es|en)/,'/'+l)} hrefLang={l} lang={l} scroll={true} aria-current={lang===l?'page':undefined} onClick={()=>languageChange(l)}>{l.toUpperCase()}</Link>)}</div><Link href={'/'+lang+'#contact'} className="studio-nav-cta" onClick={()=>setOpen(false)}>{t.contact}<StudioIcon name="arrow"/></Link><button id="studio-menu-toggle" type="button" className="studio-menu-toggle" aria-expanded={open} aria-controls="main-navigation" aria-label={open?t.close:t.menu} onClick={()=>setOpen(x=>!x)}><StudioIcon name={open?'close':'menu'}/></button></div>
- </div></header></>;
+export function Navigation({ lang }: { lang: Language }) {
+ const t = translations[lang];
+ const path = usePathname();
+ const [open, setOpen] = useState(false);
+ useEffect(() => {
+  const onEscape = (event: KeyboardEvent) => { if (event.key === 'Escape' && open) {setOpen(false);document.getElementById('at-menu-toggle')?.focus();} };
+  window.addEventListener('keydown',onEscape);
+  return () => window.removeEventListener('keydown',onEscape);
+ }, [open]);
+ useEffect(() => setOpen(false), [path]);
+ return <>
+  <a className="at-skip" href="#main">{t.skip}</a>
+  <header className="at-header">
+   <div className="at-header-inner">
+    <Link href={'/' + lang} className="at-brand" aria-label={'Agustín Wojtyszyn — ' + t.home} onClick={() => setOpen(false)}>Agustín<span> Wojtyszyn</span><span className="at-brand-period">.</span></Link>
+    <nav className={open ? 'at-nav is-open' : 'at-nav'} id="at-navigation" aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
+     {t.links.map(([label,id]) => <Link key={id} href={'/' + lang + '#' + id} onClick={() => setOpen(false)}>{label}</Link>)}
+     <Link href={'/' + lang + '#contact'} className="at-nav-mobile-cta" onClick={() => setOpen(false)}>{t.inquiry}</Link>
+    </nav>
+    <div className="at-header-end">
+     <div className="at-language" aria-label={lang === 'es' ? 'Idioma' : 'Language'}>{(['es','en'] as const).map(value => <Link key={value} href={path.replace(/^\/(es|en)/, '/' + value)} hrefLang={value} lang={value} aria-current={lang === value ? 'page' : undefined} onClick={() => setOpen(false)}>{value.toUpperCase()}</Link>)}</div>
+     <Link className="at-nav-cta" href={'/' + lang + '#contact'}>{t.inquiry}<span aria-hidden="true">↗</span></Link>
+     <button type="button" className={open ? 'at-menu-toggle is-active' : 'at-menu-toggle'} id="at-menu-toggle" aria-expanded={open} aria-controls="at-navigation" aria-label={open ? t.close : t.menu} onClick={() => setOpen(value => !value)}><span/><span/></button>
+    </div>
+   </div>
+  </header>
+ </>;
 }
