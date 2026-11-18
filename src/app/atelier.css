@@ -87,6 +87,7 @@ body{background:var(--at-bg);color:var(--at-text);font-family:var(--at-body)}
 .at-field-modes button span{color:var(--at-muted);font-size:10px}
 .at-field-modes button:hover{border-color:var(--at-accent)}
 .at-field-modes button[aria-pressed="true"]{background:var(--at-accent-faint);border-color:var(--at-accent);color:var(--at-head)}
+.at-field-modes button[aria-pressed="true"]>span{color:var(--at-head)}
 .at-field-pause{border:1px solid var(--at-rule);background:var(--at-field-ink);color:var(--at-soft);height:39px;min-width:39px;display:inline-flex;align-items:center;justify-content:center;padding:9px;cursor:pointer;font-size:13px}
 .at-field-pause:hover{border-color:var(--at-accent)}
 .at-field-pause span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
