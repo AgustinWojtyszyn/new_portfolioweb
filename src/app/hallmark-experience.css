@@ -194,7 +194,11 @@ body{background:var(--hm-ink)}
  .studio-section,.studio-work-section{padding-block:78px}
  .studio-section-intro h2,.studio-about h2,.studio-faq h2{font-size:clamp(38px,9vw,55px)}
  .studio-section-intro p{font-size:15px}
- .studio-service{grid-template-columns:1fr;gap:16px;padding:28px 0 29px}
+ .studio-service{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:28px 0 29px}
+ .studio-service-icon{grid-column:1;grid-row:1}
+ .studio-service-main{grid-column:2;grid-row:1;min-width:0}
+ .studio-service .aw-service-visual{grid-column:1 / -1;grid-row:auto;width:100%;max-width:100%;justify-self:stretch}
+ .studio-service-side{grid-column:1 / -1;grid-row:auto;justify-self:stretch;margin:0}
  .studio-service-icon{width:47px;height:47px}
  .studio-service-icon .studio-icon{width:24px;height:24px}
  .studio-service-main,.studio-service-side{min-width:0;width:100%}
