@@ -1,47 +1,50 @@
-# Agustín Wojtyszyn — sitio web profesional
+# Agustín Wojtyszyn — portfolio como experiencia
 
-Sitio comercial bilingüe (español / inglés) para ofrecer páginas web, aplicaciones a medida y automatización a clientes no técnicos.
+Sitio comercial bilingüe (español e inglés) construido con Next.js y React. En lugar de mostrar productos internos de clientes, **demuestra lo que puedo diseñar y programar directamente en la web**.
 
-## Enfoque visual
+## Experiencias interactivas
 
-- Identidad editorial oscura: tinta, marfil y acentos lima con jerarquía tipográfica y composición propia. El rediseño sigue principios de la guía pública de Hallmark; no se afirma una certificación del linter.
-- Jerarquía comercial: qué ofrezco, casos reales, cómo trabajo y cómo contactarme.
-- Sin emojis, stickers, dashboards ficticios, estadísticas inventadas ni videojuegos en portada.
-- Portada con selector accesible de cuatro capturas reales, dirección artística diferenciada para web, aplicaciones y automatización, y soporte para movimiento reducido.
-- Contacto mediante consulta que abre el cliente de correo del visitante, con opción de copiar texto. No se envían ni almacenan datos desde el sitio.
-- Las páginas de trabajos ofrecen explicaciones comprensibles y detalles técnicos opcionales.
+- **Lienzo generativo:** tres escenas originales — Flujo, Órbita y Forma — que reaccionan al cursor y al tacto. Animación pausada fuera de pantalla, al ocultar la pestaña y cuando el usuario prefiere menos movimiento.
+- **Estudio tipográfico:** el visitante escribe su marca y puede probar direcciones Monumento, Editorial y Señal, además de ajustar la escala.
+- **Identidad:** negro grafito, cobre oscuro, tipografía editorial, navegación sin logo artificial y superficies exclusivamente oscuras.
+- **Contacto:** consulta que prepara un correo con los datos ingresados; opción de copiar el texto. No hay base de datos de consultas ni envío automático.
+- **Comercial:** páginas de servicios de web, aplicaciones a medida y automatización, FAQs y SEO bilingüe.
 
-## Íconos
+Los trabajos de clientes no figuran en la portada ni en el mapa de páginas; las rutas históricas de casos quedaron fuera de la navegación pública y con `noindex`. No se publica ninguna URL privada de sus aplicaciones.
 
-14 archivos SVG de Iconoir (MIT) integrados localmente, sin CDN, atribución y copyright preservados en public/iconoir/LICENSE.
-Fuente: https://github.com/iconoir-icons/iconoir
+## Código de referencia
 
-## Comandos
+- `src/sections/atelier-home.tsx` — portada y contacto.
+- `src/components/creative-field.tsx` — Canvas2D interactivo.
+- `src/components/type-playground.tsx` — laboratorio de marca.
+- `src/components/navigation.tsx` — navegación y selector ES/EN.
+- `src/app/atelier.css` — tokens, composición, adaptación y accesibilidad.
+- `DESIGN.md` — criterios de dirección artística para mantener coherencia.
 
+Los estilos de presentación antiguos quedan aislados en las rutas históricas de casos, sin imponerse a la nueva página.
+
+## Validación
+
+```bash
 npm ci
 npm run lint
 npm run typecheck
 npm run build
 npm run test:e2e
+```
 
-## Producción
+Las pruebas verifican contenidos comerciales, interacciones reales, navegación de teclado, preferencias de movimiento, lectura sin JavaScript, SEO y geometría móvil/escritorio desde 320 hasta 1920 píxeles.
 
-El sitio utiliza Next.js y necesita que el servicio de hosting despliegue la rama main.
-Establecer SITE_URL=https://agustinwojtyszyn.com en el entorno de compilación.
+## Publicación
 
-Nota: los cambios de GitHub no implican por sí solos que Render haya ejecutado un despliegue.
-## Visuales propios (2026)
+El sitio se compila desde `main` en el servicio de alojamiento configurado. Establecer `SITE_URL=https://agustinwojtyszyn.com` al compilar.
 
-Se incorporaron capturas tomadas del repositorio propio de Análisis ServiFood, alojadas localmente en `public/portfolio-evidence/` (sin dependencias externas). Los recursos visuales de portada, proyecto destacado y galería muestran producto existente, no estadísticas ficticias. La interfaz real puede haber evolucionado desde estas capturas. El resto de diagramas de sistemas siguen siendo ilustraciones conceptuales identificadas como tales.
+Publicar cambios en GitHub no confirma por sí solo que Render haya completado el despliegue. Verificar el estado del servicio antes de anunciar cambios en producción.
 
-La galería es bilingüe, navegable con botones, permite ampliar una vista y mantiene un tratamiento de baja luminosidad para la interfaz oscura del portfolio.
+## Privacidad y medición
 
+Se preservan `robots.txt`, `sitemap.xml`, URL canónicas, idiomas alternativos, JSON-LD `WebSite`, `Person`, `Service` y las páginas comerciales. `NEXT_PUBLIC_GA_MEASUREMENT_ID` habilita GA4 solo tras consentimiento explícito. La página de privacidad explica el contacto y la medición opcional.
 
-## Visibilidad en buscadores y clientes (SEO)
+## Referencias
 
-- La web genera robots.txt y sitemap.xml, URL canónicas, idiomas alternativos y datos estructurados WebSite, Person y Service. El dominio oficial se aplica por defecto, incluso si falta SITE_URL.
-- Hay páginas comerciales específicas en /es/servicios/paginas-web, /es/servicios/aplicaciones-a-medida y /es/servicios/automatizacion, y equivalentes /en/. Están enlazadas desde la portada.
-- Search Console: verificar la propiedad del dominio con DNS en el proveedor de dominio, o configurar GOOGLE_SITE_VERIFICATION para verificación HTML. Después enviar el sitemap y consultar Inspección de URL. La verificación requiere acceso a la cuenta de Google.
-- Analytics: crear un flujo web GA4, configurar NEXT_PUBLIC_GA_MEASUREMENT_ID con el ID G-... en Render y volver a desplegar. No se carga Google Analytics hasta que el visitante consiente. La página de privacidad explica esta medición.
-- Perfil de Empresa en Google: solo corresponde si se cumplen las reglas de atención presencial. No inventar ubicaciones, direcciones, reseñas ni calificaciones.
-- Pruebas: npm run lint, npm run typecheck, npm run build y npm run test:e2e. Los buscadores pueden tardar en rastrear los cambios y ningún ajuste garantiza posicionamiento.
+La dirección artesanal se apoya en los principios de Hallmark v2, y estudia portfolios creativos de código abierto. No se copiaron assets, código ni diseños enteros de terceros.
