@@ -12,7 +12,7 @@ export async function generateMetadata({params}:Params):Promise<Metadata>{
  const {lang,slug}=await params;const p=projects.find(item=>item.slug===slug);
  if(!p||!isLanguage(lang))notFound();
  const name=projectName(p.slug,p.name);
- return {title:name,description:p[lang].summary,alternates:{canonical:'/'+lang+'/work/'+slug,languages:{es:'/es/work/'+slug,en:'/en/work/'+slug}},openGraph:{title:name+' — Agustín Wojtyszyn',description:p[lang].summary,url:'/'+lang+'/work/'+slug,images:[{url:'/opengraph-image',width:1200,height:630}]}};
+ return {title:name,description:p[lang].summary,robots:{index:false,follow:false},alternates:{canonical:'/'+lang+'/work/'+slug,languages:{es:'/es/work/'+slug,en:'/en/work/'+slug}},openGraph:{title:name+' — Agustín Wojtyszyn',description:p[lang].summary,url:'/'+lang+'/work/'+slug,images:[{url:'/opengraph-image',width:1200,height:630}]}};
 }
 const labels={
  es:{back:'Volver a los trabajos',tag:'UN CASO REAL',what:'De una necesidad a una solución concreta.',intro:'No es una demostración inventada: este proyecto nació para resolver una necesidad de trabajo.',challenge:'El problema',solution:'Lo que desarrollé',impact:'Qué permite hacer',tech:'Ver detalles técnicos',next:'También podés conocer',callLabel:'¿TENÉS UN PROYECTO EN MENTE?',call:'Hagamos algo útil para tu negocio.',callText:'Contame qué necesitás y vemos qué solución tiene sentido para vos.',cta:'Empecemos a hablar',mail:'Escribirme por correo',home:'Volver al inicio',footer:'Páginas web y aplicaciones a medida'},
