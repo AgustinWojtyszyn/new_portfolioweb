@@ -231,3 +231,37 @@ body{background:var(--hm-ink)}
  .studio-page *, .studio-page *::before, .studio-page *::after, .studio-header *, .studio-header *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;transform:none!important}
  .aw-evidence-main-frame{transform:none!important}
 }
+
+/* Three original visual signatures, one for each service, not simulated interfaces. */
+.studio-page .hm-service-mark{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:14px 16px;border:1px solid var(--hm-line);background:var(--hm-board);color:var(--hm-paper);transition:border-color .2s,transform .25s}
+.studio-service:hover .hm-service-mark{border-color:var(--hm-acid);transform:translateY(-3px)}
+.hm-service-serial,.hm-service-bottom{position:relative;z-index:2;font-family:var(--sans);font-size:10px;line-height:1.35;letter-spacing:0;font-weight:700}
+.hm-service-serial{color:var(--hm-muted)}
+.hm-service-bottom{color:var(--hm-soft);max-width:170px}
+.hm-service-web:before{content:"";position:absolute;top:-28px;right:-28px;width:112px;height:112px;border:19px solid var(--hm-line);border-radius:50%;opacity:.45}
+.hm-service-letter{position:absolute;left:18px;top:28px;color:var(--hm-white);font-weight:900;font-size:clamp(67px,6vw,96px);letter-spacing:-.13em;line-height:1}
+.hm-service-letter span{color:var(--hm-acid)}
+.studio-page .hm-service-app{background:var(--hm-acid);border-color:var(--hm-acid);color:var(--hm-black)}
+.hm-service-app .hm-service-serial,.hm-service-app .hm-service-bottom{color:var(--hm-black)}
+.hm-app-symbol{position:absolute;right:20px;top:36px;width:100px;height:78px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:5px;transform:rotate(-12deg)}
+.hm-app-symbol span{display:block;border:2px solid var(--hm-black);background:transparent}
+.hm-app-symbol span:nth-child(2){background:var(--hm-black);transform:translate(5px,-5px)}
+.hm-app-symbol span:nth-child(3){border-radius:50%;border-width:8px}
+.hm-app-symbol span:nth-child(4){background:var(--hm-paper)}
+.studio-page .hm-service-automate{background:var(--hm-night)}
+.hm-automation-symbol{display:flex;align-items:center;gap:4px;margin-block:auto;padding-block:14px}
+.hm-automation-symbol span{font-size:9px;line-height:1.2;font-weight:800;color:var(--hm-acid);white-space:nowrap}
+.hm-automation-symbol span:nth-of-type(2){color:var(--hm-white)}
+.hm-automation-symbol i{display:block;flex:1;min-width:5px;height:2px;background:var(--hm-acid);position:relative}
+.hm-automation-symbol i:after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:2px solid var(--hm-acid);border-right:2px solid var(--hm-acid);transform:rotate(45deg)}
+@media(max-width:700px){
+ .studio-page .hm-service-mark{min-height:150px}
+ .hm-service-letter{font-size:88px}
+ .hm-app-symbol{width:115px;right:28px}
+ .hm-automation-symbol{gap:12px}
+ .hm-automation-symbol span{font-size:12px}
+}
+@media(max-width:390px){
+ .hm-automation-symbol{gap:5px}
+ .hm-automation-symbol span{font-size:10px}
+}
