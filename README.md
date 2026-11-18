@@ -1,29 +1,23 @@
-# Agustín Wojtyszyn — portfolio como experiencia
+# Agustín Wojtyszyn — Experiencias digitales
 
-Sitio comercial bilingüe (español e inglés) construido con Next.js y React. En lugar de mostrar productos internos de clientes, **demuestra lo que puedo diseñar y programar directamente en la web**.
+Portfolio bilingüe de diseño y desarrollo independiente, creado con Next.js 16 y React 19.
 
-## Experiencias interactivas
+La página es una exhibición visual original: no hay minijuegos, configuradores, paneles falsos, capturas de clientes ni cifras inventadas. El visitante recorre una composición cinematográfica de tipografía, material cromado y movimiento sutil, con una invitación clara a contratar.
 
-- **Lienzo generativo:** tres escenas originales — Flujo, Órbita y Forma — que reaccionan al cursor y al tacto. Animación pausada fuera de pantalla, al ocultar la pestaña y cuando el usuario prefiere menos movimiento.
-- **Estudio tipográfico:** el visitante escribe su marca y puede probar direcciones Monumento, Editorial y Señal, además de ajustar la escala.
-- **Identidad:** negro grafito, cobre oscuro, tipografía editorial, navegación sin logo artificial y superficies exclusivamente oscuras.
-- **Contacto:** consulta que prepara un correo con los datos ingresados; opción de copiar el texto. No hay base de datos de consultas ni envío automático.
-- **Comercial:** páginas de servicios de web, aplicaciones a medida y automatización, FAQs y SEO bilingüe.
+## Arquitectura
 
-Los trabajos de clientes no figuran en la portada ni en el mapa de páginas; las rutas históricas de casos quedaron fuera de la navegación pública y con `noindex`. No se publica ninguna URL privada de sus aplicaciones.
+- `src/sections/cinema-home.tsx` — portada comercial en español e inglés.
+- `src/components/cinema-art.tsx` — escultura SVG original y otras piezas visuales.
+- `src/app/cinema.css` — sistema visual y movimiento accesible, pensado primero para celulares.
+- `src/components/navigation.tsx` — marca tipográfica, navegación y selector de idioma.
+- `src/app/[lang]/servicios/[slug]/page.tsx` — páginas SEO de los servicios.
+- `src/app/[lang]/privacidad/page.tsx` — política de contacto y medición.
 
-## Código de referencia
+## Reglas de diseño
 
-- `src/sections/atelier-home.tsx` — portada y contacto.
-- `src/components/creative-field.tsx` — Canvas2D interactivo.
-- `src/components/type-playground.tsx` — laboratorio de marca.
-- `src/components/navigation.tsx` — navegación y selector ES/EN.
-- `src/app/atelier.css` — tokens, composición, adaptación y accesibilidad.
-- `DESIGN.md` — criterios de dirección artística para mantener coherencia.
+La experiencia debe poder observarse, no jugarse. No hay animaciones atadas al puntero, audio automático ni dependencias WebGL. Las piezas visuales son SVG/CSS y se desactivan con `prefers-reduced-motion`. El contenido esencial sigue siendo HTML normal, navegable sin JavaScript.
 
-Los estilos de presentación antiguos quedan aislados en las rutas históricas de casos, sin imponerse a la nueva página.
-
-## Validación
+## Verificación
 
 ```bash
 npm ci
@@ -33,18 +27,10 @@ npm run build
 npm run test:e2e
 ```
 
-Las pruebas verifican contenidos comerciales, interacciones reales, navegación de teclado, preferencias de movimiento, lectura sin JavaScript, SEO y geometría móvil/escritorio desde 320 hasta 1920 píxeles.
+La automatización valida acceso móvil, adaptación de 320 a 1920 píxeles, idioma, enlaces, SEO, contraste de texto y funcionamiento con movimiento reducido.
 
-## Publicación
+El proyecto se publica desde la rama `main`, tras comprobar el resultado visual en celular y escritorio.
 
-El sitio se compila desde `main` en el servicio de alojamiento configurado. Establecer `SITE_URL=https://agustinwojtyszyn.com` al compilar.
+### Referencias de diseño
 
-Publicar cambios en GitHub no confirma por sí solo que Render haya completado el despliegue. Verificar el estado del servicio antes de anunciar cambios en producción.
-
-## Privacidad y medición
-
-Se preservan `robots.txt`, `sitemap.xml`, URL canónicas, idiomas alternativos, JSON-LD `WebSite`, `Person`, `Service` y las páginas comerciales. `NEXT_PUBLIC_GA_MEASUREMENT_ID` habilita GA4 solo tras consentimiento explícito. La página de privacidad explica el contacto y la medición opcional.
-
-## Referencias
-
-La dirección artesanal se apoya en los principios de Hallmark v2, y estudia portfolios creativos de código abierto. No se copiaron assets, código ni diseños enteros de terceros.
+Los principios se estudiaron en Hallmark, Jesper Landberg, Meer Mohsin, Gionatan Nese y portfolios abiertos de Next.js. No se copiaron sus piezas, capturas ni código protegido.

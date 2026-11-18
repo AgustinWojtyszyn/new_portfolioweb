@@ -1,53 +1,40 @@
-# AW — Experience Atelier / Design system
+# Visual system — AW / The unforgettable
 
-This file locks the visual direction of the public personal website.
+A Hallmark v2.0–guided, fully bespoke personal portfolio for Agustín Wojtyszyn.
+The website itself is the demonstration. There are no client logos, screenshots, faux metrics, play tools, speculative results or test games in the public experience.
 
-## Purpose
-Show prospective clients what Agustín Wojtyszyn can design and implement *on this website itself*. The portfolio is a live, interactive demonstration and an invitation to start a commercial conversation, **not a directory of private client software**.
+## Art direction
+- Audience: prospective freelance web clients, agencies and founders.
+- Job: move visitors from a strong first impression to an email inquiry.
+- Visual language: near-black theatrical canvas, sculptural polished metal, restrained oxblood, off-white typography. Dark surfaces only.
+- Hero: cinematic title and original abstract chrome sculpture; text, purpose and CTA visible at desktop fold.
+- Choreography: very slow material drift, one structural scroll movement, hero entrance; no controls, no input-dependent experience, no autoplay audio.
+- Chapters: editorial statement / identity material plate / sculptural motion / engineering discipline / service rows / personal authored introduction / hiring finale.
+- Copy: bilingual and concrete. No fabricated data, client brands or unverified accolades.
+- Keep original links to bilingual service pages, privacy policy, actual GitHub/LinkedIn and mailto.
+- Fonts: self-hosted package Manrope Variable for text; Georgia as the statement face. Do not fetch remote font assets.
+- Accessibility: still readable without JavaScript; reduced-motion disables kinetic effects; visible focus; semantic headings.
+- Performance: no WebGL, canvas RAF, GSAP, Lenis, video downloads or inflated dependencies for a visual that can be accomplished with native CSS/SVG.
 
-## Core idea
-**The page is the proof.** Visitors should be able to touch and change something meaningful before they are asked to trust claims about creative web development.
+## Sources examined
+Hallmark v2.0: https://github.com/Nutlope/hallmark
+Jesper Landberg (2026): https://jesperlandberg.com
+Gionatan Nese (2026): https://www.gionatannese.com
+Meer Mohsin (2026): https://meermohsin.me
+Aristide Benoist: https://aristidebenoist.com
+Open-source references: https://github.com/darkroomengineering/lenis and https://github.com/sanjjuo/2026-Portfolio
+We studied principles, not copied client assets, layouts or code.
 
-## Visual language
-- Graphite near-black surfaces. No cream, mint, lime, light panels, aurora gradients, faux glass dashboards or glowing wallpaper.
-- Restrained burnished-copper thread, used in controls, separators and artwork. Never neon.
-- Typography is editorial: assertive heavy sans for structure, a true serif for significant long-form statements. No generic icon badge or fabricated monogram in the navigation.
-- Small labels are sentence case, untracked. Large headlines carry the drama.
-- Primary surfaces remain dark in every mode. No light theme is introduced without an explicit product requirement.
-- The public logo is the name in text, not a card icon. The favicon is a quiet typographic initial.
+## Code
+- Main experience: src/sections/cinema-home.tsx
+- Original sculptural SVG and decorative motion: src/components/cinema-art.tsx
+- Main design tokens and mobile-first styles: src/app/cinema.css
+- Navigation and language switching: src/components/navigation.tsx
+- Historical case routes are unlinked and noindexed; they remain for content preservation, not promoted publicly.
 
-## Homepage map
-1. Hero: a clear commercial proposition alongside the actual live generative canvas.
-2. Quiet statement about interacting with the work, not another logo wall.
-3. Typography studio: real input, three art directions and scale.
-4. Services: three editorial reading rows with working service-page links.
-5. Working philosophy: identity, speed/accessibility and direct collaboration.
-6. About: personal authorship and location, without clients' internal material.
-7. Contact: real inquiry via prepared email + copy alternative, then footer.
-
-## Engineering
-- Next.js App Router, React, TypeScript, bilingual routes /es and /en.
-- Main UI: src/sections/atelier-home.tsx.
-- Canvas animation: src/components/creative-field.tsx. Native Canvas2D, no heavy WebGL dependencies.
-- Typographic compositor: src/components/type-playground.tsx, rendered with HTML/CSS.
-- Header: src/components/navigation.tsx; palette/layout: src/app/atelier.css.
-- Font families: current local Manrope variable with Georgia serif accent (fallbacks declared); no runtime remote font fetch.
-- Never introduce client project names, private URLs, screenshots, fabricated testimonials or metrics on the public homepage.
-- Archived case routes are unlinked, noindexed and excluded from the sitemap; legacy CSS is isolated to those routes.
-- Preserve structured data, canonical links, bilingual alternates, service URLs and the analytics consent boundary.
-- No page should require Canvas support to expose its useful text and links.
-- Stop canvas loops when out of view or tab hidden; cap pixel ratio; provide a pause button and prefers-reduced-motion static mode.
-- Buttons, links, modal, input and range must be usable by keyboard and have strong focus-visible styles.
-- Every responsive change is checked at 320, 390, 768, 1024, 1440 and 1920px. No horizontal scroll, illegible text or hidden mobile action.
-
-## Source and inspiration
-Design principles studied from Nutlope/hallmark v2.0.0 (anti-generic visual floor and redesign guidance) and the interaction/craft approaches visible in the public codebases Giats2498/giats-portfolio and ArsalanKaleem/portfolio. The site's artwork, interactions and CSS are original; reference project code and assets are not copied.
-
-## Quality gate
-npm ci
+## Checks
 npm run lint
 npm run typecheck
 npm run build
 npm run test:e2e
-
-Do not call a change complete until CI succeeds on the final commit.
+All must pass on the published main commit. Do not rely on test success as proof of visual taste: inspect mobile and desktop screenshots as well.

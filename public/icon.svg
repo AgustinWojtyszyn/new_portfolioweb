@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="Agustín Wojtyszyn">
-<rect width="72" height="72" rx="8" fill="#0a0b0d"/>
-<text x="8" y="53" font-family="Georgia,serif" font-size="59" font-style="italic" fill="#eee8e1">a</text>
-<rect x="54" y="51" width="8" height="8" fill="#b36b56"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="5" fill="#090a0c"/>
+<path d="M13 51 31 10l20 41M19 38h26" fill="none" stroke="#ece8e3" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>
 </svg>
