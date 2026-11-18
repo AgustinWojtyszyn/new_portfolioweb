@@ -20,6 +20,10 @@ test('editorial bilingual homepage and accessible contact',async({page})=>{
  await expect(page.locator('.aw-work-small')).toHaveCount(3);
  await expect(page.locator('.aw-featured-evidence')).toBeVisible();
  await expect(page.locator('.aw-evidence-main-frame')).toBeVisible();
+ await expect(page.locator('.hm-stage-control')).toHaveCount(4);
+ await page.locator('.hm-stage-control').nth(2).click();
+ await expect(page.locator('.hm-stage-control').nth(2)).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('.aw-evidence-main-image img')).toHaveAttribute('alt',/Documentación SGC/);
  await expect(page.locator('.game-showcase')).toHaveCount(0);
  expect((await page.request.get('/iconoir/web-window.svg')).ok()).toBeTruthy();
  for(const width of [1440,768,390]){await page.setViewportSize({width,height:850});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();}
