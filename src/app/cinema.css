@@ -9,7 +9,7 @@
  --vx-display:'Manrope Variable', 'Arial', sans-serif;
  --vx-body:'Manrope Variable', 'Arial', sans-serif;
  --vx-serif:Georgia, 'Times New Roman', serif;
- --vx-max:1392px;--vx-gutter:18px;
+ --vx-max:1392px;--vx-gutter:18px; color-scheme:dark;
  --vx-space-1:8px;--vx-space-2:12px;--vx-space-3:16px;--vx-space-4:24px;
  --vx-space-5:40px;--vx-space-6:64px;--vx-space-7:96px;--vx-space-8:144px;
 }
@@ -135,13 +135,7 @@ body{background:var(--vx-bg);color:var(--vx-ink)}
 .vx-footer nav a{font-size:13px;color:var(--vx-quiet);font-weight:700}
 .vx-footer nav a:hover{color:var(--vx-ink)}
 /* Hero entrance: no hidden content until JS. */
-@media(prefers-reduced-motion:no-preference){
- .vx-hero-intro,.vx-hero h1,.vx-hero-lede,.vx-hero .vx-primary-link{animation:vx-intro-in .8s cubic-bezier(.2,.75,.2,1) both}
- .vx-hero h1{animation-delay:.09s}
- .vx-hero-lede{animation-delay:.18s}
- .vx-hero .vx-primary-link{animation-delay:.27s}
-}
-@keyframes vx-intro-in{from{opacity:.2;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* Main headline, lede and hiring action render at full opacity from the first frame. */
 @media(min-width:640px){
  :root{--vx-gutter:32px}
  .vx-hero h1{font-size:clamp(78px,9.1vw,117px)}
@@ -233,3 +227,13 @@ body{background:var(--vx-bg);color:var(--vx-ink)}
   }
  }
 }
+
+/* Analytics consent remains dark and keyboard accessible after legacy style isolation. */
+::selection{background:var(--vx-plum);color:var(--vx-ink)}
+.seo-consent{position:fixed;z-index:410;left:12px;bottom:12px;width:min(455px,calc(100% - 24px));background:var(--vx-surface-2);color:var(--vx-ink);border:1px solid var(--vx-rule);padding:20px;font:14px/1.55 var(--vx-body);box-shadow:0 20px 54px var(--vx-shadow)}
+.seo-consent p{margin:0 0 14px}
+.seo-consent a{text-decoration:underline;text-underline-offset:4px;color:var(--vx-ink)}
+.seo-consent-actions{display:flex;gap:10px;flex-wrap:wrap}
+.seo-consent-actions button{background:var(--vx-surface);border:1px solid var(--vx-stone);min-height:44px;padding:10px 13px;color:var(--vx-ink);cursor:pointer;font:700 12px var(--vx-body)}
+.seo-consent-actions button:hover{border-color:var(--vx-ink)}
+.seo-consent-actions :focus-visible,.seo-consent a:focus-visible{outline:3px solid var(--vx-focus);outline-offset:3px}
