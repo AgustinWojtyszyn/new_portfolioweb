@@ -1,10 +1,9 @@
 import type { MetadataRoute } from 'next';
-import { projects } from '@/content/projects';
 import { serviceSlugs } from '@/content/seo-services';
 import { languages, siteUrl } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', ...projects.map(project => '/work/' + project.slug), ...serviceSlugs.map(slug => '/servicios/' + slug)];
+  const paths = ['', ...serviceSlugs.map(slug => '/servicios/' + slug)];
   return languages.flatMap(lang => paths.map(path => ({
     url: siteUrl + '/' + lang + path,
     alternates: { languages: {
