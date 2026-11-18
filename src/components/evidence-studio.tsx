@@ -31,11 +31,11 @@ export function EvidenceHero({lang}:{lang:Language}){
  return <figure className="aw-evidence-hero" aria-label={t.imageLabel}>
   <div className="aw-evidence-grid" aria-hidden="true"/>
   <div className="aw-evidence-hero-top"><span className="aw-evidence-bullet"/><span>{t.pin}</span><span>© AW</span></div>
-  <div className="aw-evidence-backword" aria-hidden="true">01</div>
+  <div className="aw-evidence-backword" aria-hidden="true">{String(current+1).padStart(2,"0")}</div>
   <div className="aw-evidence-main-frame"><div className="aw-evidence-frame-top"><span><i/><i/><i/></span><span>servifood / quality / workspace</span><StudioIcon name="app"/></div><div className="aw-evidence-main-image"><Image key={selected.src} src={selected.src} alt={selected[lang].name+" — "+t.imageLabel} fill sizes="(max-width: 860px) 90vw, 640px" priority quality={88}/></div></div>
   <div className="hm-stage-controls" role="group" aria-label={lang==="es"?"Explorar pantallas reales":"Explore real app screens"}>{actualScreens.map((screen,index)=><button type="button" key={screen.src} className={current===index?"hm-stage-control is-active":"hm-stage-control"} aria-label={(index+1)+". "+screen[lang].name} aria-pressed={current===index} onClick={()=>setCurrent(index)}><span>{String(index+1).padStart(2,"0")}</span><span className="hm-stage-control-name">{screen[lang].name}</span></button>)}</div>
   <div className="aw-evidence-floating" aria-hidden="true"><div className="aw-evidence-floating-top">AW / 26 <StudioIcon name="arrow"/></div><b>BUILD<br/>WHAT<br/>MATTERS.</b><span>← {String(current+1).padStart(2,"0")} / 04</span></div>
-  <div className="aw-evidence-bottom"><span>{t.screen}</span><span>{t.heroAside}</span></div>
+  <div className="aw-evidence-bottom"><span aria-live="polite">{selected[lang].name}</span><span>{t.heroAside}</span></div>
  </figure>;
 }
 
