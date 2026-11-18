@@ -18,7 +18,6 @@ export function Navigation({ lang }: { lang: Language }) {
   window.addEventListener('keydown',onEscape);
   return () => window.removeEventListener('keydown',onEscape);
  }, [open]);
- useEffect(() => setOpen(false), [path]);
  return <>
   <a className="at-skip" href="#main">{t.skip}</a>
   <header className="at-header">
