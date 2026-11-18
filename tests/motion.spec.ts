@@ -1,37 +1,38 @@
-import { test,expect } from '@playwright/test';
-test('keyboard operation, FAQ and reduced motion',async({page})=>{
- await page.goto('/es');await page.emulateMedia({reducedMotion:'reduce'});
- await expect(page.locator('.game-showcase')).toHaveCount(0);
- await expect(page.locator('.aw-evidence-hero')).toBeVisible();
- await expect(page.locator('.aw-service-visual')).toHaveCount(3);
- await page.getByRole('button',{name:/Contame tu proyecto/}).first().click();
+import { test, expect } from '@playwright/test';
+
+test('keyboard interaction, reduced motion and the contact dialog', async ({page}) => {
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto('/es');
+ await expect(page.locator('.at-field canvas')).toBeVisible();
+ await expect(page.locator('.at-field-modes button')).toHaveCount(3);
+ await page.locator('.at-field-modes button').nth(2).focus();
+ await page.keyboard.press('Enter');
+ await expect(page.locator('.at-field-modes button').nth(2)).toHaveAttribute('aria-pressed','true');
+ await page.getByRole('button',{name:'Quiero una web así'}).click();
  await expect(page.getByRole('dialog')).toBeVisible();
- await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toBeHidden();
- const faq=page.locator('.studio-faq details').first();
- await faq.locator('summary').click();await expect(faq).toHaveAttribute('open','');
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog')).toBeHidden();
 });
-test('important content loads without JavaScript',async({browser})=>{
+
+test('core commercial content is visible without JavaScript', async ({browser}) => {
  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
- const page=await context.newPage();await page.goto('http://127.0.0.1:3100/es');
- await expect(page.locator('h1')).toContainText('Hago webs');
- await expect(page.locator('.studio-service')).toHaveCount(3);
- await expect(page.locator('.studio-project')).toHaveCount(3);
+ const page=await context.newPage();
+ await page.goto('http://127.0.0.1:3100/es');
+ await expect(page.locator('h1')).toContainText('No otra página.');
+ await expect(page.locator('.at-service-row')).toHaveCount(3);
+ await expect(page.locator('.at-type-word')).toContainText('TU MARCA');
  await context.close();
 });
 
-test('site uses consistent dark backgrounds without dazzling light sections',async({page})=>{
+test('homepage uses consistently dark surfaces, never a pastel or light panel',async({page})=>{
  await page.goto('/es');
- const actual=await page.evaluate(()=>{
-   const background=(query:string)=>getComputedStyle(document.querySelector(query)!).backgroundColor;
-   return {body:background('body'),main:background('.studio-page'),header:background('.studio-header'),work:background('.studio-work-section'),contact:background('.studio-contact'),footer:background('.studio-footer'),dialog:background('.studio-dialog-inner')};
+ const backgrounds=await page.evaluate(()=>{
+  const get=(selector:string)=>getComputedStyle(document.querySelector(selector)!).backgroundColor;
+  return {body:get('body'),main:get('.at-page'),header:get('.at-header'),playground:get('.at-type-lab'),services:get('.at-services'),contact:get('.at-contact'),footer:get('.at-footer'),modal:get('.at-dialog')};
  });
- // Every major area stays in a comfortable dark range.
- for(const [section,color] of Object.entries(actual)){
-   const nums=color.match(/[\d.]+/g)?.slice(0,3).map(Number)||[];
-   expect(nums.length,section).toBe(3);
-   expect(Math.max(...nums),section+' '+color).toBeLessThan(120);
+ for(const [name,color] of Object.entries(backgrounds)) {
+  const nums=color.match(/[\d.]+/g)?.slice(0,3).map(Number) || [];
+  expect(nums.length,name).toBe(3);
+  expect(Math.max(...nums),name+' '+color).toBeLessThan(95);
  }
- await page.goto('/en/work/servifood-orders');
- const projectBg=await page.locator('main').evaluate(el=>getComputedStyle(el).backgroundColor);
- expect(projectBg).not.toBe('rgb(246, 245, 240)');
 });
