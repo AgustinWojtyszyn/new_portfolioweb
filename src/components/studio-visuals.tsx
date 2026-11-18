@@ -35,10 +35,22 @@ export function HeroSystemVisual({lang}:{lang:Language}){
  </div>;
 }
 export function ServiceVisual({kind,lang}:{kind:'web'|'app'|'automation';lang:Language}){
- const t=labels[lang];
- if(kind==='web')return <div className="aw-service-visual aw-service-web" aria-hidden="true"><div className="aw-mini-window"><div className="aw-mini-top"><span>● ● ●</span><span>WWW.</span></div><div className="aw-mini-brand">{t.websiteTop}<span>↗</span></div><div className="aw-mini-headline">{t.website}</div><div className="aw-mini-cta">{t.websiteCta} <StudioIcon name="arrow"/></div><div className="aw-mini-lines"><i/><i/></div></div><span className="aw-visual-corner">WEB / 01</span></div>;
- if(kind==='app')return <div className="aw-service-visual aw-service-app" aria-hidden="true"><div className="aw-app-preview"><div className="aw-app-preview-nav"><StudioIcon name="app"/> APP / 02 <i/></div><b>{t.app}</b>{[t.appRow1,t.appRow2,t.appRow3].map((title,i)=><div className="aw-app-preview-row" key={title}><span>0{i+1}</span><strong>{title}</strong><StudioIcon name="right"/></div>)}</div><span className="aw-visual-corner">APP / 02</span></div>;
- return <div className="aw-service-visual aw-service-automation" aria-hidden="true"><div className="aw-automation-nodes"><div><StudioIcon name="data"/><b>{t.autoIn}</b></div><span className="aw-automation-wire">›</span><div><StudioIcon name="automate"/><b>{t.autoProcess}</b></div><span className="aw-automation-wire">›</span><div><StudioIcon name="reports"/><b>{t.autoOut}</b></div></div><div className="aw-automation-bottom">{t.automated} <StudioIcon name="check"/></div><span className="aw-visual-corner">FLOW / 03</span></div>;
+ const es=lang==='es';
+ if(kind==='web')return <div className="aw-service-visual hm-service-mark hm-service-web" aria-hidden="true">
+  <span className="hm-service-serial">01 / {es?'Presencia digital':'Digital presence'}</span>
+  <strong className="hm-service-letter">W<span>.</span></strong>
+  <span className="hm-service-bottom">{es?'Una identidad que se recuerda':'An identity worth remembering'}</span>
+ </div>;
+ if(kind==='app')return <div className="aw-service-visual hm-service-mark hm-service-app" aria-hidden="true">
+  <span className="hm-service-serial">02 / {es?'Sistemas a medida':'Custom systems'}</span>
+  <div className="hm-app-symbol"><span/><span/><span/><span/></div>
+  <span className="hm-service-bottom">{es?'Piezas que funcionan juntas':'Everything works together'}</span>
+ </div>;
+ return <div className="aw-service-visual hm-service-mark hm-service-automate" aria-hidden="true">
+  <span className="hm-service-serial">03 / {es?'Automatización':'Automation'}</span>
+  <div className="hm-automation-symbol"><span>{es?'Entrada':'Input'}</span><i/><span>{es?'Proceso':'Process'}</span><i/><span>{es?'Resultado':'Output'}</span></div>
+  <span className="hm-service-bottom">{es?'Un movimiento, menos trabajo':'Less work in every step'}</span>
+ </div>;
 }
 export function OrdersVisual({lang}:{lang:Language}){
  const t=labels[lang];return <div className="aw-orders-visual" aria-hidden="true"><div className="aw-orders-hud"><span>SF / OPERATIONS</span><span>{t.featured}</span></div><div className="aw-orders-screen"><div className="aw-orders-screen-top"><span className="aw-orders-logo">SF.</span><span>{t.featuredMenu}</span><StudioIcon name="menu"/></div><div className="aw-orders-screen-body"><div className="aw-orders-breadcrumb">WORKSPACE / 01</div><h4>{t.featuredTitle}</h4><p>{t.featuredSub}</p><div className="aw-orders-four">{t.featuredTiles.map((name,i)=><div key={name}><b>0{i+1}</b><StudioIcon name={(['web','app','data','reports'] as const)[i]}/><span>{name}</span></div>)}</div><div className="aw-orders-line"><span>{t.featuredFlow}</span><span>↗</span></div></div></div><div className="aw-orders-watermark">SF / 01</div></div>;
