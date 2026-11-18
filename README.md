@@ -34,3 +34,18 @@ El proyecto se publica desde la rama `main`, tras comprobar el resultado visual 
 ### Referencias de diseño
 
 Los principios se estudiaron en Hallmark, Jesper Landberg, Meer Mohsin, Gionatan Nese y portfolios abiertos de Next.js. No se copiaron sus piezas, capturas ni código protegido.
+
+
+## Secuencia visual 2026 (segunda etapa)
+
+La experiencia ahora tiene una secuencia de tres actos que **se transforma con el avance real del desplazamiento**, sin secuestrar la rueda ni obligar al visitante a interactuar:
+
+1. Una pieza metálica cambia de encuadre, escala y orientación.
+2. La pieza cede el protagonismo a una composición tipográfica tridimensional.
+3. Los elementos se reorganizan en una arquitectura visual original.
+
+También hay una marquesina editorial continua, reflejos lentos, una composición tipográfica óptica, una escultura orbital y una retícula material en movimiento. Ninguno es un juego, un panel falso o un producto de un cliente.
+
+La secuencia usa `IntersectionObserver`, eventos pasivos de desplazamiento y `requestAnimationFrame` limitado a los eventos. No se agregaron bibliotecas de animación ni se alteró el desplazamiento nativo. En ausencia de JavaScript o cuando el usuario prefiere menos movimiento, los tres capítulos aparecen como contenido estático y legible. La animación se detiene al salir de las secciones correspondientes según las capacidades del navegador.
+
+Archivos nuevos: `src/components/cinematic-sequence.tsx`, `src/app/cinematic-motion.css`. Pruebas: `tests/cinematic-motion.spec.ts`.

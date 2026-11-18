@@ -66,7 +66,7 @@ export function CinematicSequence({ lang }: { lang: Language }) {
         '--vx-film-sculpture-alpha': clamp(1-(p-.34)*2.15).toFixed(3),
         '--vx-film-traces-turn': (-14+p*72).toFixed(2)+'deg',
         '--vx-film-traces-scale': (1+p*.55).toFixed(3),
-        '--vx-film-typography-alpha': clamp((p-.25)*3.4).toFixed(3),
+        '--vx-film-typography-alpha': (clamp((p-.25)*3.4)*.48).toFixed(3),
         '--vx-film-typography-shift': (-6*p).toFixed(2)+'%',
         '--vx-film-typography-turn': (-14+p*25).toFixed(2)+'deg',
         '--vx-film-typography-scale': (.6+p*.9).toFixed(3),

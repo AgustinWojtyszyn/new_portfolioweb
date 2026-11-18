@@ -10,7 +10,7 @@ test('all essential text is accessible without JavaScript',async({browser})=>{
 test('reduced motion disables cinematic loops, content stays visible',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto('/es');
- const check=await page.locator('.vx-sculpture-front').evaluate(el=>getComputedStyle(el).animationName);
+ const check=await page.locator('.vx-hero .vx-sculpture-front').evaluate(el=>getComputedStyle(el).animationName);
  expect(check).toBe('none');
  await expect(page.locator('.vx-hero h1')).toBeVisible();
  await expect(page.locator('.vx-motion-chapter h2')).toBeVisible();

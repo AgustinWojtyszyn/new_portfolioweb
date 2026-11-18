@@ -7,7 +7,7 @@ test('cinematic portfolio speaks to visitors without games or private client wor
  await expect(page.locator('html')).toHaveAttribute('lang','es');
  await expect(page.locator('h1')).toContainText('Hagamos algo');
  await expect(page.locator('h1')).toContainText('olvide.');
- await expect(page.locator('.vx-sculpture svg')).toBeVisible();
+ await expect(page.locator('.vx-hero .vx-sculpture svg')).toBeVisible();
  await expect(page.locator('.vx-chapter--direction')).toBeVisible();
  await expect(page.locator('.vx-motion-chapter')).toBeVisible();
  await expect(page.locator('.vx-engineering-art')).toBeVisible();
