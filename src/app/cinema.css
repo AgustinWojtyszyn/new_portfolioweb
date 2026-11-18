@@ -214,3 +214,22 @@ body{background:var(--vx-bg);color:var(--vx-ink)}
  .vx-page *, .vx-page *::before,.vx-page *::after,.vx-header *,.vx-header *::before,.vx-header *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
  .vx-sculpture-back,.vx-sculpture-front,.vx-motionstudy-core{transform:none!important}
 }
+
+/* Final first-screen and conversion refinements after viewport review. */
+.vx-primary-link{background:var(--vx-surface);border-color:var(--vx-muted);font-size:15px;font-weight:790;min-width:258px;padding:17px 20px}
+.vx-primary-link:hover{background:var(--vx-plum);border-color:var(--vx-rust)}
+@media(max-width:639px){
+ .vx-hero{align-items:flex-start;padding-top:var(--vx-space-6)}
+ .vx-hero-content{padding-top:0}
+ .vx-hero-art{top:51%;left:29%}
+}
+@supports (animation-timeline: view()){
+ @media (prefers-reduced-motion:no-preference) and (min-width:640px){
+  .vx-chapter--direction{view-timeline:--vx-material block}
+  .vx-typeplate-foil{animation:vx-foil-pass linear both;animation-timeline:--vx-material;animation-range:entry 10% cover 75%}
+  @keyframes vx-foil-pass{
+   from{transform:translate3d(-3%,4%,0) rotate(-37deg)}
+   to{transform:translate3d(3%,-4%,0) rotate(-30deg)}
+  }
+ }
+}

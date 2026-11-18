@@ -4,7 +4,7 @@ test('all essential text is accessible without JavaScript',async({browser})=>{
  const page=await context.newPage();await page.goto('http://127.0.0.1:3100/es');
  await expect(page.locator('h1')).toContainText('Hagamos algo');
  await expect(page.locator('.vx-service')).toHaveCount(3);
- await expect(page.locator('.vx-contact a[href^="mailto:"]')).toBeVisible();
+ await expect(page.locator('.vx-contact a[href^="mailto:"]').first()).toBeVisible();
  await context.close();
 });
 test('reduced motion disables cinematic loops, content stays visible',async({page})=>{
