@@ -423,3 +423,39 @@ html,body{
   .aw-proof-mobile{transform:rotate(5deg)}
   .aw-site .aw-lab-stage:hover .aw-lab-browser{transform:none}
 }
+
+/* Final craft review: intentional motion, measured wordmark and quiet marquees. */
+.aw-site .aw-orbit-mark{
+  color:var(--aw-stage-deep);
+  font-family:var(--aw-serif);
+  font-size:clamp(98px,11vw,168px);
+  font-style:italic;
+  font-weight:400;
+  letter-spacing:-.15em;
+  line-height:1;
+  animation:none;
+  transform:rotate(-7deg);
+  transform-origin:center;
+}
+.aw-site .aw-ticker-inner{animation:none;transform:none}
+.aw-site .aw-proof-sheet,.aw-site .aw-proof-mobile{
+  animation:none;
+  will-change:auto;
+}
+.aw-site .aw-interlude-footer span,
+.aw-site .aw-process-signet span:last-child{
+  animation:none;
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .aw-site .aw-proof-sheet,.aw-site .aw-proof-mobile{transition:transform .5s var(--aw-easing)}
+  .aw-site .aw-hero-art--proof:hover .aw-proof-sheet{transform:rotate(-5deg) translate3d(0,-6px,0)}
+  .aw-site .aw-hero-art--proof:hover .aw-proof-mobile{transform:rotate(6deg) translate3d(0,4px,0)}
+}
+@media(max-width:700px){
+  .aw-site .aw-orbit-mark{font-size:clamp(73px,17vw,120px);line-height:1}
+  .aw-site .aw-philosophy-intro .aw-overline{margin-top:10px}
+  .aw-site .aw-proof-sheet{transform:rotate(-5deg)}
+  .aw-site .aw-proof-mobile{transform:rotate(5deg)}
+  .aw-site .aw-ticker-inner{gap:22px}
+  .aw-site .aw-ticker-inner>span{gap:24px}
+}
