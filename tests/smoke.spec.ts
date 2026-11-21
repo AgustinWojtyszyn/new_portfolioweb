@@ -7,7 +7,7 @@ test('portfolio states its web offer and avoids private client exposure',async({
   await expect(page.locator('html')).toHaveAttribute('lang','es');
   await expect(page.locator('h1')).toContainText('Páginas web');
   await expect(page.locator('h1')).toContainText('huella.');
-  await expect(page.locator('.aw-browser-front')).toBeVisible();
+  await expect(page.locator('.aw-proof-sheet')).toBeVisible();
   await expect(page.locator('.aw-philosophy')).toBeVisible();
   await expect(page.locator('.aw-showcase')).toBeVisible();
   await expect(page.locator('.aw-process')).toBeVisible();
