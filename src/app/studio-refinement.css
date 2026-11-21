@@ -1,0 +1,425 @@
+/* Hallmark-informed refinement — 2026-11-21.
+   Design decision: an actual responsive web-design proof instead of fake browser chrome.
+   Critique: previous header overflowed on narrow phones, the hero specimens were detached from the service,
+   and repeated UI badges overpowered the work. Keeps: routes, service links, bilingual copy, gallery controls.
+   Principle: one editorial material, intentional contrast, readable type, reduced motion and full viewport fit. */
+:root{
+  --aw-stage-white:#ebece2;
+  --aw-stage-mist:#bfd4bf;
+  --aw-stage-deep:#203b2a;
+  --aw-stage-soft:#72967a;
+  --aw-stage-black:#142119;
+  --aw-stage-leaf:#aac48c;
+  --aw-stage-cream:#f5f4e8;
+  --aw-stage-celadon:#c8d6b9;
+  --aw-stage-guide:rgba(232,239,221,.14);
+  --aw-stage-contrast:rgba(8,19,13,.25);
+  --aw-screen-shadow:0 30px 95px rgba(0,0,0,.34),0 2px 9px rgba(0,0,0,.12);
+  --aw-easing:cubic-bezier(.2,.78,.22,1);
+}
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:clip;
+}
+.aw-site{width:100%;max-width:100%;overflow-x:clip}
+.aw-header{width:100%;max-width:100%}
+.aw-header-inner{min-width:0}
+.aw-logo{min-width:0}
+.aw-header-right{flex-shrink:0}
+.aw-hero-copy,.aw-hero-grid>*{min-width:0}
+.aw-site h1,.aw-site h2,.aw-site h3{min-width:0;overflow-wrap:break-word}
+.aw-site .aw-section-lead,.aw-site .aw-showcase-head>p,.aw-site .aw-services-heading>p{max-width:62ch}
+.aw-site .aw-eyebrow{font-size:12px;letter-spacing:0;text-transform:none}
+.aw-site .aw-overline{letter-spacing:0;text-transform:none;font-size:13px}
+.aw-site .aw-section-header{letter-spacing:0;text-transform:none;font-size:12px}
+.aw-site .aw-service-category{letter-spacing:0;text-transform:none}
+.aw-site .aw-hero-micro{letter-spacing:0;text-transform:none}
+.aw-site .aw-hero h1{letter-spacing:-.07em;line-height:1.035;text-wrap:balance}
+.aw-site .aw-hero h1 em{letter-spacing:-.06em;line-height:1.03}
+.aw-site .aw-philosophy h2{letter-spacing:-.072em;text-wrap:balance}
+.aw-site .aw-philosophy h2 em{letter-spacing:-.06em}
+.aw-site .aw-services-heading h2{letter-spacing:-.07em}
+.aw-site .aw-interlude h2{letter-spacing:-.075em}
+.aw-site .aw-interlude h2 em{letter-spacing:-.05em}
+.aw-site .aw-showcase-head>p{font-size:16px;line-height:1.65}
+.aw-site .aw-service-desc{font-size:15px;line-height:1.75}
+.aw-site .aw-hero-description{max-width:50ch}
+.aw-site .aw-service-card{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.aw-site .aw-services-heading{grid-template-columns:minmax(0,1.15fr) minmax(0,.7fr)}
+.aw-site .aw-process-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.aw-site .aw-person-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+
+/* Hero stage: two editorial cuts of the same original digital design.
+   They have no OS controls, fake URLs, fake analytics or client branding. */
+.aw-site .aw-hero-art--proof{
+  position:relative;
+  isolation:isolate;
+  min-width:0;
+  width:100%;
+  height:clamp(540px,48vw,725px);
+  overflow:visible;
+  padding:0;
+}
+.aw-site .aw-hero-art--proof:before{
+  content:"";
+  position:absolute;
+  inset:-12% -4% -12% -4%;
+  z-index:-2;
+  background:radial-gradient(ellipse at 48% 49%,rgba(175,215,151,.13),transparent 62%);
+  filter:none;
+}
+.aw-art-grid{
+  position:absolute;
+  inset:-7% -9% -4%;
+  z-index:-1;
+  background-image:
+    linear-gradient(var(--aw-stage-guide) 1px,transparent 1px),
+    linear-gradient(90deg,var(--aw-stage-guide) 1px,transparent 1px);
+  background-size:64px 64px;
+  opacity:.28;
+  mask-image:radial-gradient(ellipse at 55% 55%,#000 10%,transparent 75%);
+}
+.aw-art-coordinate{
+  position:absolute;
+  color:var(--aw-stage-celadon);
+  font-family:var(--aw-sans);
+  font-size:11px;
+  line-height:1.4;
+  font-weight:750;
+  letter-spacing:0;
+}
+.aw-art-coordinate--top{top:1.5%;left:4%;opacity:.78}
+.aw-art-coordinate--bottom{left:3%;bottom:0;right:1%;display:flex;justify-content:space-between;gap:10px;opacity:.78}
+.aw-proof-sheet{
+  position:absolute;
+  z-index:2;
+  width:82%;
+  height:78%;
+  left:3%;
+  top:11%;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background:var(--aw-stage-white);
+  color:var(--aw-stage-black);
+  box-shadow:var(--aw-screen-shadow);
+  transform:rotate(-7deg);
+  animation:aw-proof-breathe 12s var(--aw-easing) infinite alternate;
+  will-change:transform;
+}
+.aw-proof-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex:none;height:11.5%;
+  min-height:36px;padding-inline:5.5%;
+  font-size:clamp(8px,.74vw,12px);
+  font-weight:720;line-height:1.2;
+}
+.aw-proof-toolbar>span:first-child{font-size:clamp(17px,2vw,29px);font-weight:950;letter-spacing:-.095em}
+.aw-proof-mark{color:#597a4b;font-size:.9em;letter-spacing:0}
+.aw-proof-image{
+  flex:1;min-height:0;
+  position:relative;isolation:isolate;
+  overflow:hidden;
+  background:linear-gradient(125deg,#739a78 0%,#b4cbb2 46%,#d2e0c7 100%);
+}
+.aw-proof-image:after{
+  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(45,73,49,.14),transparent 65%);
+}
+.aw-proof-orb{
+  position:absolute;z-index:-1;
+  top:-23%;right:-16%;
+  width:78%;aspect-ratio:1;
+  border-radius:50%;
+  transform:rotate(-20deg);
+  background:radial-gradient(circle at 26% 23%,#f8f6ca 2%,#c3d3af 16%,#58785a 34%,#23462f 51%,#8eac84 68%,#3f6450 79%,#182a20 94%);
+  box-shadow:inset 20px 10px 45px #f8f4c554,inset -35px -34px 48px #10261ca6,-20px 45px 65px #153c2b50;
+}
+.aw-proof-orb:before{
+  content:"";position:absolute;inset:21%;
+  border-radius:50%;
+  border:clamp(18px,4.4vw,62px) solid #233e30;
+  box-shadow:inset 13px 18px 21px #12231eb8,12px 13px 17px #e5f0d039;
+}
+.aw-proof-orb-core{
+  position:absolute;z-index:2;
+  inset:41%;display:block;border-radius:50%;
+  background:radial-gradient(circle at 38% 24%,#a8c69b,#21382b 70%);
+  box-shadow:0 8px 13px #0007;
+}
+.aw-proof-rules{
+  position:absolute;inset:6%;border:1px solid rgba(240,246,227,.35);pointer-events:none;
+}
+.aw-proof-rules:before,.aw-proof-rules:after{
+  content:"";position:absolute;inset:0;border:1px solid transparent;
+}
+.aw-proof-rules:before{
+  border-left-color:rgba(242,245,231,.29);
+  transform:translateX(9%);
+}
+.aw-proof-rules:after{
+  border-right-color:rgba(242,245,231,.29);
+  transform:translateX(-9%);
+}
+.aw-proof-overline{
+  position:absolute;top:11%;left:7%;z-index:2;
+  font-size:clamp(8px,.82vw,12px);font-weight:760;
+  color:#1e3b2a;
+}
+.aw-proof-image strong{
+  position:absolute;bottom:22%;left:7%;z-index:2;
+  font-family:var(--aw-sans);
+  font-size:clamp(39px,5.3vw,89px);
+  line-height:.98;letter-spacing:-.085em;
+  color:#112a1c;font-weight:900;text-wrap:balance;
+  text-shadow:0 1px 18px #d2e5c64a;
+}
+.aw-proof-link{
+  position:absolute;left:7%;bottom:8%;z-index:2;
+  font-size:clamp(9px,.86vw,13px);font-weight:750;
+  border-bottom:1px solid currentColor;
+  padding-bottom:7px;display:flex;align-items:center;gap:25px;
+}
+.aw-proof-link i{font-style:normal;font-size:17px;font-weight:400}
+.aw-proof-foot{
+  height:8%;min-height:30px;flex:none;display:flex;justify-content:space-between;align-items:center;
+  gap:10px;padding-inline:5.5%;
+  font-size:clamp(7px,.68vw,10px);font-weight:750;color:#425448;
+}
+.aw-proof-mobile{
+  position:absolute;z-index:4;
+  right:0;bottom:13%;
+  width:33%;height:61%;
+  max-width:260px;min-width:140px;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  border:5px solid #dce9da;
+  border-radius:2px;
+  background:var(--aw-stage-deep);
+  color:#eff5e8;
+  box-shadow:12px 28px 60px #07180fa8;
+  transform:rotate(8deg);
+  animation:aw-proof-phone 10s var(--aw-easing) infinite alternate;
+  will-change:transform;
+}
+.aw-proof-mobile-top{
+  height:11%;min-height:35px;display:flex;align-items:center;justify-content:space-between;padding-inline:12px;
+  font-weight:900;font-size:19px;letter-spacing:-.09em;
+}
+.aw-proof-mobile-top>span:first-child span{color:var(--aw-green)}
+.aw-proof-mobile-top>span:last-child{font-size:23px;font-weight:400}
+.aw-proof-mobile-visual{
+  position:relative;
+  height:41%;
+  background:radial-gradient(circle at 35% 22%,#d9e8b3,#7da487 43%,#345e44 80%);
+  overflow:hidden;flex:none;
+}
+.aw-proof-mobile-visual i:first-child{
+  display:block;
+  position:absolute;inset:-37% -21% -42% 24%;
+  border-radius:50%;border:clamp(17px,3vw,43px) solid #c5d6a4;
+  transform:rotate(-18deg);
+  background:#2f6544;box-shadow:inset 12px 16px 17px #183625a3,16px 20px 25px #224b3554;
+}
+.aw-proof-mobile-visual i:last-child{
+  display:block;position:absolute;width:25%;aspect-ratio:1;
+  left:53%;top:30%;border-radius:50%;background:#142d1e;
+  box-shadow:inset 3px 5px 6px #0007;
+}
+.aw-proof-mobile-copy{
+  display:flex;flex-direction:column;justify-content:center;gap:13px;
+  padding:11px 12px;min-height:0;flex:1;
+}
+.aw-proof-mobile-copy>span{font-size:clamp(8px,.7vw,11px);line-height:1.3;color:#cbdec6}
+.aw-proof-mobile-copy strong{font-weight:850;font-size:clamp(20px,2.25vw,38px);letter-spacing:-.07em;line-height:1.05}
+.aw-proof-mobile-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border-top:1px solid #69806b;font-size:9px}
+.aw-proof-mobile-foot span:last-child{font-size:17px}
+.aw-proof-signature{
+  position:absolute;z-index:5;right:1%;bottom:7%;
+  display:flex;align-items:center;justify-content:space-around;gap:6px;
+  width:96px;aspect-ratio:1;border-radius:50%;
+  padding:10px;transform:rotate(-12deg);
+  background:var(--aw-green);color:var(--aw-stage-black);
+  box-shadow:0 9px 25px #0007;
+}
+.aw-proof-signature span:first-child{font-size:49px;font-weight:1000;letter-spacing:-.17em}
+.aw-proof-signature span:last-child{font-size:32px}
+@keyframes aw-proof-breathe{
+  from{transform:rotate(-7deg) translate3d(0,0,0)}
+  to{transform:rotate(-5deg) translate3d(0,-11px,0)}
+}
+@keyframes aw-proof-phone{
+  from{transform:rotate(8deg) translate3d(0,0,0)}
+  to{transform:rotate(5deg) translate3d(0,8px,0)}
+}
+
+/* Live lab: genuine, full-bleed concept surfaces rather than fabricated browser UI. */
+.aw-site .aw-lab-browser{
+  border:0;
+  width:min(100%,1040px);
+  aspect-ratio:1.75;
+  min-height:340px;
+  overflow:hidden;
+  background:var(--aw-stage-cream);
+  box-shadow:var(--aw-screen-shadow);
+}
+.aw-site .aw-lab-browser-chrome{display:none}
+.aw-site .aw-concept{
+  height:100%;
+  min-height:340px;
+  animation:aw-concept-arrive .38s var(--aw-easing) both;
+}
+@keyframes aw-concept-arrive{
+  from{opacity:.75;transform:translate3d(0,8px,0) scale(.995)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+.aw-site .aw-concept-nav{height:68px}
+.aw-site .aw-concept-brand-main{height:calc(100% - 114px)}
+.aw-site .aw-shop-grid{height:calc(100% - 195px)}
+.aw-site .aw-lab-appearance button,.aw-site .aw-lab-tabs button{
+  border-radius:2px;
+  white-space:nowrap;
+}
+.aw-site .aw-lab-stage{isolation:isolate}
+.aw-site .aw-lab-caption>div p{font-size:13px}
+.aw-site .aw-showcase-head .aw-overline{margin-bottom:20px}
+.aw-site .aw-showcase-head>div h2{max-width:1050px}
+.aw-site .aw-service-card{border-radius:2px}
+.aw-site .aw-service-visual:after{inset:6.3%;opacity:.6}
+.aw-site .aw-service-card:hover .aw-service-link{color:#37603c}
+
+/* Intentional focus and tactility. */
+.aw-header a:focus-visible,.aw-header button:focus-visible{outline:3px solid var(--aw-green);outline-offset:3px}
+.aw-site a:focus-visible,.aw-site button:focus-visible{outline-offset:3px}
+.aw-site :is(a,button){touch-action:manipulation}
+.aw-site .aw-service-card a,.aw-site .aw-lab-tabs button,.aw-site .aw-lab-appearance button{min-height:44px}
+.aw-site .aw-showcase-head>div h2,.aw-site .aw-services-heading h2,.aw-site .aw-contact h2{text-wrap:balance}
+
+/* Tablet: always use compact nav when the complete header no longer fits. */
+@media(max-width:1000px){
+  .aw-header .aw-nav{display:none}
+  .aw-header .aw-menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+  .aw-header .aw-nav-cta{display:none}
+  .aw-header .aw-mobile-nav{display:flex;flex-direction:column}
+  .aw-header .aw-logo{white-space:nowrap}
+  .aw-header .aw-header-right{margin-left:auto;gap:13px}
+  .aw-site .aw-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+  .aw-site .aw-hero-art--proof{height:clamp(410px,50vw,590px)}
+  .aw-proof-sheet{width:86%;top:13%}
+  .aw-proof-mobile{right:-2%;min-width:100px}
+  .aw-proof-signature{width:80px}
+  .aw-proof-signature span:first-child{font-size:40px}
+  .aw-proof-signature span:last-child{font-size:25px}
+  .aw-site .aw-hero h1{font-size:clamp(52px,6.8vw,82px)}
+  .aw-site .aw-showcase h2{font-size:clamp(50px,6.5vw,85px)}
+}
+@media(max-width:700px){
+  .aw-header .aw-header-inner{width:calc(100% - 32px);max-width:none;gap:8px}
+  .aw-header .aw-logo{font-size:clamp(14px,4vw,18px);letter-spacing:-.08em;flex-shrink:1}
+  .aw-header .aw-logo span{font-size:.86em}
+  .aw-header .aw-header-right{gap:12px}
+  .aw-header .aw-languages{gap:9px}
+  .aw-header .aw-languages a{font-size:12px}
+  .aw-header .aw-nav-cta{display:none}
+  .aw-header .aw-menu-toggle{font-size:0;min-width:44px;width:44px;height:44px;padding:8px;gap:0}
+  .aw-header .aw-menu-toggle>span{font-size:24px;line-height:1}
+  .aw-header .aw-mobile-nav{top:70px;padding-inline:16px}
+  .aw-header .aw-mobile-nav a{min-height:49px}
+  .aw-site .aw-hero-grid{display:flex;flex-direction:column;gap:0;padding-block:43px 32px}
+  .aw-site .aw-hero-copy{width:100%}
+  .aw-site .aw-hero h1{font-size:clamp(43px,10vw,72px);line-height:1.04;letter-spacing:-.066em}
+  .aw-site .aw-hero h1 span,.aw-site .aw-hero h1 em{white-space:normal;overflow-wrap:break-word}
+  .aw-site .aw-hero h1 em{font-size:1.02em;line-height:1.06}
+  .aw-site .aw-hero-description{font-size:15px;line-height:1.6;max-width:48ch}
+  .aw-site .aw-hero-actions{gap:16px;margin-top:26px}
+  .aw-site .aw-button{min-height:52px;padding:14px 17px;gap:19px}
+  .aw-site .aw-hero-micro{margin-top:21px!important}
+  .aw-site .aw-hero-art--proof{
+    width:100%;min-width:0;
+    height:clamp(300px,88vw,490px);
+    margin-top:14px;
+    overflow:visible;
+  }
+  .aw-site .aw-hero-art--proof:before{inset:-7% -4%}
+  .aw-art-coordinate--top{font-size:9px;top:1.8%;left:2%}
+  .aw-art-coordinate--bottom{font-size:8px;bottom:0;left:0}
+  .aw-art-grid{inset:0}
+  .aw-proof-sheet{width:82%;height:77%;top:11%;left:3%;transform:rotate(-5deg)}
+  .aw-proof-toolbar{min-height:26px;height:10%;padding-inline:5%;font-size:8px}
+  .aw-proof-toolbar>span:first-child{font-size:20px}
+  .aw-proof-image strong{font-size:clamp(30px,7vw,56px);bottom:25%;left:7%;line-height:1.01}
+  .aw-proof-orb{width:87%;top:-26%;right:-24%}
+  .aw-proof-orb:before{border-width:clamp(18px,5vw,35px)}
+  .aw-proof-link{font-size:8px;bottom:9%;padding-bottom:4px;gap:10px}
+  .aw-proof-overline{font-size:8px}
+  .aw-proof-foot{min-height:24px}
+  .aw-proof-mobile{
+    right:0;bottom:15%;width:35%;height:58%;min-width:0;max-width:180px;
+    border-width:3px;transform:rotate(5deg)
+  }
+  .aw-proof-mobile-top{min-height:26px;padding-inline:8px;font-size:15px}
+  .aw-proof-mobile-top>span:last-child{font-size:17px}
+  .aw-proof-mobile-copy{padding:8px;gap:8px}
+  .aw-proof-mobile-copy>span{font-size:8px}
+  .aw-proof-mobile-copy strong{font-size:clamp(17px,4.3vw,30px)}
+  .aw-proof-mobile-foot{padding:6px 8px;font-size:7px}
+  .aw-proof-signature{width:58px;right:0;bottom:8%;padding:6px}
+  .aw-proof-signature span:first-child{font-size:31px}
+  .aw-proof-signature span:last-child{font-size:17px}
+  .aw-site .aw-hero-bottom{position:relative;padding-bottom:19px;font-size:9px;gap:14px}
+  .aw-site .aw-hero-bottom span:nth-child(2){max-width:160px}
+  .aw-site .aw-philosophy{padding-block:70px 80px}
+  .aw-site .aw-philosophy-intro{padding-block:42px 52px}
+  .aw-site .aw-philosophy h2{font-size:clamp(45px,10.6vw,75px);line-height:1.09}
+  .aw-site .aw-showcase{padding-block:74px 84px}
+  .aw-site .aw-showcase h2{font-size:clamp(43px,10vw,66px);line-height:1.06}
+  .aw-site .aw-services{padding-block:80px 95px}
+  .aw-site .aw-services-heading{display:block;padding-block:43px 45px}
+  .aw-site .aw-services-heading h2{font-size:clamp(46px,10vw,74px)}
+  .aw-site .aw-services-heading>p{margin-top:21px;font-size:15px}
+  .aw-site .aw-service-card{display:flex;flex-direction:column}
+  .aw-site .aw-service-visual{height:300px;min-height:280px}
+  .aw-site .aw-process-layout{display:block}
+  .aw-site .aw-person-grid{display:flex;flex-direction:column-reverse}
+  .aw-site .aw-lab-stage{min-height:0;padding:40px 14px}
+  .aw-site .aw-lab-browser{min-height:255px;aspect-ratio:1.38;transform:rotate(0)}
+  .aw-site .aw-lab-stage:hover .aw-lab-browser{transform:none}
+  .aw-site .aw-concept{min-height:255px}
+  .aw-site .aw-concept-nav{height:45px}
+  .aw-site .aw-concept-brand-main{height:calc(100% - 74px)}
+  .aw-site .aw-shop-grid{height:calc(100% - 130px)}
+  .aw-site .aw-lab-controls{flex-direction:column;align-items:stretch;gap:13px}
+  .aw-site .aw-lab-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .aw-site .aw-lab-tabs button{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 5px;min-width:0;font-size:12px}
+  .aw-site .aw-lab-tabs button span{font-size:9px;margin:0}
+  .aw-site .aw-lab-appearance{justify-content:flex-start}
+}
+@media(max-width:390px){
+  .aw-header .aw-logo{font-size:clamp(13px,4.2vw,16px)}
+  .aw-header .aw-header-right{gap:8px}
+  .aw-header .aw-languages{gap:7px}
+  .aw-header .aw-languages a{font-size:11px}
+  .aw-site .aw-hero h1{font-size:clamp(40px,11vw,47px)}
+  .aw-site .aw-hero-art--proof{height:clamp(277px,91vw,355px);margin-top:7px}
+  .aw-proof-image strong{font-size:clamp(27px,7vw,37px)}
+  .aw-proof-mobile-copy strong{font-size:clamp(15px,4.6vw,21px)}
+  .aw-proof-mobile-visual{height:38%}
+  .aw-proof-signature{width:50px}
+  .aw-proof-signature span:first-child{font-size:24px}
+  .aw-proof-signature span:last-child{font-size:14px}
+  .aw-site .aw-interlude h2{font-size:clamp(40px,12vw,50px);line-height:1.05}
+  .aw-site .aw-contact h2{font-size:clamp(51px,12vw,65px)}
+  .aw-site .aw-lab-stage{padding:30px 8px}
+  .aw-site .aw-lab-tabs button{font-size:11px}
+  .aw-site .aw-lab-tabs button span{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .aw-proof-sheet,.aw-proof-mobile,.aw-concept{
+    animation:none!important;
+    will-change:auto;
+  }
+  .aw-proof-sheet{transform:rotate(-5deg)}
+  .aw-proof-mobile{transform:rotate(5deg)}
+  .aw-site .aw-lab-stage:hover .aw-lab-browser{transform:none}
+}
