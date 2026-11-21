@@ -221,9 +221,9 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
     <section className="aw-philosophy aw-light" id="vision" aria-labelledby="aw-philosophy-title">
       <div className="aw-wrap">
-        <div className="aw-section-header"><span>{t.aboutIndex}</span><span>AW ® / WEB DEVELOPMENT</span></div>
+        <div className="aw-section-header"><span>{t.aboutIndex}</span><span>{lang === 'es' ? 'Estudio independiente' : 'Independent studio'}</span></div>
         <div className="aw-philosophy-intro">
-          <div><span className="aw-orbit-mark" aria-hidden="true">✳</span><p className="aw-overline">{t.aboutEyebrow}</p></div>
+          <div><span className="aw-orbit-mark" aria-hidden="true">AW.</span><p className="aw-overline">{t.aboutEyebrow}</p></div>
           <div><h2 id="aw-philosophy-title">{t.aboutTitleA} <em>{t.aboutTitleB}</em></h2><p className="aw-section-lead">{t.aboutCopy}</p></div>
         </div>
         <div className="aw-quality-grid">{t.quality.map(item => <article className="aw-quality" key={item.number}><span>{item.number} / 03</span><h3>{item.title}</h3><p>{item.text}</p><span className="aw-quality-symbol" aria-hidden="true">↗</span></article>)}</div>
@@ -232,7 +232,7 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
     <section className="aw-showcase aw-ink" id="work" aria-labelledby="aw-showcase-title">
       <div className="aw-wrap">
-        <div className="aw-section-header aw-section-header--dark"><span>{t.showIndex}</span><span>INTERACTIVE / STUDIO</span></div>
+        <div className="aw-section-header aw-section-header--dark"><span>{t.showIndex}</span><span>{lang === 'es' ? 'Tres conceptos de diseño' : 'Three design concepts'}</span></div>
         <div className="aw-showcase-head"><div><p className="aw-overline">{t.showEyebrow}</p><h2 id="aw-showcase-title">{t.showTitleA}<br/><em>{t.showTitleB}</em></h2></div><p>{t.showDescription}</p></div>
         <LiveShowcase lang={lang}/>
       </div>
@@ -240,7 +240,7 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
     <section className="aw-services aw-light" id="services" aria-labelledby="aw-services-title">
       <div className="aw-wrap">
-        <div className="aw-section-header"><span>{t.servicesIndex}</span><span>WHAT I DO / 03</span></div>
+        <div className="aw-section-header"><span>{t.servicesIndex}</span><span>{lang === 'es' ? 'Diseño y desarrollo' : 'Design and development'}</span></div>
         <div className="aw-services-heading"><h2 id="aw-services-title">{t.servicesTitle}</h2><p>{t.servicesDescription}</p></div>
         <div className="aw-services-list">{t.services.map(item=><article key={item.count} className="aw-service-card">
           <div className="aw-service-copy">
@@ -263,7 +263,7 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
     <section className="aw-process aw-ink" id="process" aria-labelledby="aw-process-title">
       <div className="aw-wrap">
-        <div className="aw-section-header aw-section-header--dark"><span>{t.processIndex}</span><span>FROM IDEA TO LIVE</span></div>
+        <div className="aw-section-header aw-section-header--dark"><span>{t.processIndex}</span><span>{lang === 'es' ? 'Un proceso claro' : 'A clear process'}</span></div>
         <div className="aw-process-layout"><div className="aw-process-title"><h2 id="aw-process-title">{t.processTitle}</h2><div className="aw-process-signet" aria-hidden="true"><span>AW</span><span>✳</span></div></div>
         <div className="aw-process-steps">{t.process.map(step=><div className="aw-process-step" key={step.n}><span>{step.n}</span><div><h3>{step.title}</h3><p>{step.text}</p></div><span aria-hidden="true">↗</span></div>)}</div></div>
       </div>
@@ -271,7 +271,7 @@ export function CinemaHome({ lang }: { lang: Language }) {
 
     <section className="aw-person aw-light" id="about" aria-labelledby="aw-person-title">
       <div className="aw-wrap">
-        <div className="aw-section-header"><span>{t.personIndex}</span><span>PERSONAL / INDEPENDENT</span></div>
+        <div className="aw-section-header"><span>{t.personIndex}</span><span>{lang === 'es' ? 'Trabajo personalizado' : 'Personalized work'}</span></div>
         <div className="aw-person-grid">
           <div className="aw-person-art" aria-hidden="true"><div className="aw-person-ring"/><span className="aw-person-monogram">AW<span>®</span></span><span className="aw-person-vertical">INDEPENDENT STUDIO — SAN JUAN</span><span className="aw-person-star">✳</span></div>
           <div className="aw-person-copy"><p className="aw-overline">{t.personAside}</p><h2 id="aw-person-title">{t.personHello}<br/><em>{t.personName}</em></h2><p>{t.personCopy}</p><a href={identity.github} target="_blank" rel="noopener noreferrer">{t.personLink}<Arrow diagonal/></a></div>
