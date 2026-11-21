@@ -1,7 +1,10 @@
-import type {Metadata} from 'next';
-import {siteUrl} from '@/lib/site';
+import type { Metadata } from 'next';
+import { siteUrl } from '@/lib/site';
 import './base.css';
-import './cinema.css';
-import './cinematic-motion.css';
-export const metadata:Metadata={metadataBase:new URL(siteUrl)};
-export default function RootLayout({children}:{children:React.ReactNode}){return children;}
+import './studio-showcase.css';
+
+export const metadata: Metadata = { metadataBase: new URL(siteUrl) };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return children;
+}
