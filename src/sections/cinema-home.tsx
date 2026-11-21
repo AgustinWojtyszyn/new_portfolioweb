@@ -12,8 +12,8 @@ const copy = {
     heroStart: 'Quiero mi página web',
     heroExplore: 'Explorar servicios',
     heroProof: 'Diseño con personalidad. Desarrollo que funciona.',
-    heroVisualLabel: 'Estudio visual · Conceptos de interfaz',
-    heroVisualNote: 'Demostración visual, no proyectos de clientes',
+    heroVisualLabel: 'Estudio de diseño web',
+    heroVisualNote: 'Diseños de demostración, no trabajos de clientes',
     topTag: 'Diseñadas para destacar',
     browserTag: 'Un sitio a tu medida',
     bandOne: 'DISEÑO WEB',
@@ -82,7 +82,7 @@ const copy = {
     heroStart: 'Let’s build my website',
     heroExplore: 'Explore services',
     heroProof: 'Distinctive design. Development that works.',
-    heroVisualLabel: 'Visual studio · Interface concepts',
+    heroVisualLabel: 'Web design studio',
     heroVisualNote: 'Visual demonstrations, not client projects',
     topTag: 'Designed to stand out',
     browserTag: 'A website that fits',
@@ -150,33 +150,29 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 }
 
 function HeroArtwork({ lang }: { lang: Language }) {
-  const t = copy[lang];
-  return <div className="aw-hero-art" role="img" aria-label={lang === 'es' ? 'Composición original de interfaces web de ejemplo superpuestas' : 'Original visual composition of overlapping website interface concepts'}>
-    <div className="aw-art-orbit aw-art-orbit-one" aria-hidden="true" />
-    <div className="aw-art-orbit aw-art-orbit-two" aria-hidden="true" />
-    <div className="aw-art-star" aria-hidden="true">✳</div>
-    <div className="aw-browser aw-browser-back" aria-hidden="true">
-      <div className="aw-browser-top"><span className="aw-dots"><i/><i/><i/></span><span>interface / 02</span><span>↗</span></div>
-      <div className="aw-mock-dashboard">
-        <div className="aw-dash-side"><b>O.</b><span/><span/><span/><span/></div>
-        <div className="aw-dash-panel">
-          <div className="aw-dash-small">/ WORKSPACE</div><div className="aw-dash-bars"><b/><b/><b/><b/><b/><b/><b/></div>
-          <div className="aw-dash-rows"><i/><i/><i/></div>
-        </div>
+  const es = lang === 'es';
+  return <div className="aw-hero-art aw-hero-art--proof" role="img" aria-label={es ? 'Estudio visual original: diseño de una página web editorial y su versión para celular' : 'Original visual study: an editorial website design and its mobile adaptation'}>
+    <div className="aw-art-coordinate aw-art-coordinate--top" aria-hidden="true">AW / {es ? 'Estudio digital' : 'Digital studio'}</div>
+    <div className="aw-art-grid" aria-hidden="true"/>
+    <div className="aw-proof-sheet" aria-hidden="true">
+      <div className="aw-proof-toolbar"><span>AW<span className="aw-proof-mark">✳</span></span><span>{es ? 'Diseño web a medida' : 'Custom web design'}</span><span>01 / 03</span></div>
+      <div className="aw-proof-image">
+        <div className="aw-proof-orb"><i className="aw-proof-orb-core"/></div>
+        <div className="aw-proof-rules"/>
+        <p className="aw-proof-overline">{es ? 'Una idea. Una identidad.' : 'One idea. One identity.'}</p>
+        <strong>{es ? <>Ideas que<br/>se sienten.</> : <>Ideas you<br/>can feel.</>}</strong>
+        <span className="aw-proof-link">{es ? 'Explorar el diseño' : 'Explore the design'} <i>↗</i></span>
       </div>
+      <div className="aw-proof-foot"><span>Digital craft / AW®</span><span>{es ? 'Concepto original' : 'Original concept'}</span></div>
     </div>
-    <div className="aw-browser aw-browser-front" aria-hidden="true">
-      <div className="aw-browser-top"><span className="aw-dots"><i/><i/><i/></span><span>creative / 01</span><span>↗</span></div>
-      <div className="aw-mock-editorial">
-        <div className="aw-mock-menu"><strong>muse.</strong><span>STUDIO / WORK / ABOUT&nbsp; ↗</span></div>
-        <div className="aw-mock-cover">
-          <div className="aw-mock-sculpture"><i/><i/><i/><i/></div>
-          <div className="aw-mock-copy"><small>NEW PERSPECTIVES / 2026</small><strong>Less ordinary.<br/><em>More you.</em></strong><span>DISCOVER THE COLLECTION ↗</span></div>
-        </div>
-      </div>
+    <div className="aw-proof-mobile" aria-hidden="true">
+      <div className="aw-proof-mobile-top"><span>aw<span>✳</span></span><span>≡</span></div>
+      <div className="aw-proof-mobile-visual"><i/><i/></div>
+      <div className="aw-proof-mobile-copy"><span>{es ? 'Cada pantalla importa.' : 'Every screen matters.'}</span><strong>{es ? <>Una web.<br/>Todas las<br/>pantallas.</> : <>One site.<br/>Every<br/>screen.</>}</strong></div>
+      <div className="aw-proof-mobile-foot"><span>Digital studio</span><span>↗</span></div>
     </div>
-    <div className="aw-art-sticker" aria-hidden="true"><span>DESIGN</span><strong>×</strong><span>CODE</span></div>
-    <div className="aw-art-meta" aria-hidden="true">{t.heroVisualLabel}<span>— 001 / AW</span></div>
+    <div className="aw-proof-signature" aria-hidden="true"><span>W</span><span>✳</span></div>
+    <p className="aw-art-coordinate aw-art-coordinate--bottom" aria-hidden="true">{es ? 'Diseño que se adapta' : 'Designed for every screen'} <span>001 — AW/26</span></p>
   </div>;
 }
 
