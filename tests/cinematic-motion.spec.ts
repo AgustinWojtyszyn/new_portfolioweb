@@ -7,7 +7,7 @@ test('Spanish and English clearly state web development in the first screen', as
     await expect(page.locator('h1')).toContainText(title);
     await expect(page.locator('.aw-hero-actions a').first()).toHaveAttribute('href', /mailto:/);
     await expect(page.locator('.aw-service-card')).toHaveCount(3);
-    await expect(page.locator('.aw-browser-front')).toBeVisible();
+    await expect(page.locator('.aw-proof-sheet')).toBeVisible();
   }
 });
 
@@ -46,7 +46,7 @@ test('reduced motion stays readable and avoids scroll hijacking', async ({page})
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/es');
   await expect(page.locator('.aw-hero h1')).toBeVisible();
-  for (const selector of ['.aw-browser-front','.aw-art-star','.aw-ticker-inner','.aw-process-signet span:last-child']) {
+  for (const selector of ['.aw-proof-sheet','.aw-proof-mobile','.aw-ticker-inner','.aw-process-signet span:last-child']) {
     const name = await page.locator(selector).evaluate(el => getComputedStyle(el).animationName);
     expect(name, selector).toBe('none');
   }
