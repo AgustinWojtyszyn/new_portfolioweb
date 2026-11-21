@@ -180,7 +180,7 @@ function HeroArtwork({ lang }: { lang: Language }) {
   </div>;
 }
 
-function ServiceVisual({ visual }: { visual: string }) {
+function ServiceVisual({ visual, lang }: { visual: string; lang: Language }) {
   return <div className={'aw-service-visual aw-service-visual--' + visual} aria-hidden="true">
     {visual === 'website' ? <div className="aw-mini-site">
       <div className="aw-mini-site-nav"><strong>atelier.</strong><span>THE STUDIO &nbsp; ↗</span></div>
@@ -188,7 +188,7 @@ function ServiceVisual({ visual }: { visual: string }) {
       <div className="aw-mini-site-caption">Built to be remembered. <span>→</span></div>
     </div> : visual === 'apps' ? <div className="aw-mini-app">
       <div className="aw-mini-app-side"><strong>●</strong><i/><i/><i/></div>
-      <div className="aw-mini-app-content"><small>WORKSPACE / OVERVIEW</small><h3>Todo en un lugar.</h3>
+      <div className="aw-mini-app-content"><small>WORKSPACE / OVERVIEW</small><h3>{lang === 'es' ? 'Todo en un lugar.' : 'Everything in one place.'}</h3>
       <div className="aw-mini-app-cols"><div><span/><span/><span/></div><div><i/><i/><i/><i/></div></div></div>
     </div> : <div className="aw-mini-flow"><div className="aw-flow-line"/><span className="aw-flow-node aw-flow-node-one">01 <b>INPUT</b></span><span className="aw-flow-node aw-flow-node-two">02 <b>PROCESS</b></span><span className="aw-flow-node aw-flow-node-three">03 <b>DONE ✓</b></span><div className="aw-flow-orb"/></div>}
   </div>;
@@ -252,7 +252,7 @@ export function CinemaHome({ lang }: { lang: Language }) {
             <p className="aw-service-category">{item.category}</p><h3>{item.title}</h3><p className="aw-service-desc">{item.description}</p>
             <Link className="aw-service-link" href={'/'+lang+'/servicios/'+item.slug}>{t.details}<Arrow diagonal/></Link>
           </div>
-          <ServiceVisual visual={item.visual}/>
+          <ServiceVisual visual={item.visual} lang={lang}/>
         </article>)}</div>
       </div>
     </section>
