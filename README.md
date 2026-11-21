@@ -1,51 +1,30 @@
-# Agustín Wojtyszyn — Experiencias digitales
+# Agustín Wojtyszyn — diseño y desarrollo web
 
-Portfolio bilingüe de diseño y desarrollo independiente, creado con Next.js 16 y React 19.
+Portfolio comercial bilingüe realizado con Next.js 16, React 19 y TypeScript.
 
-La página es una exhibición visual original: no hay minijuegos, configuradores, paneles falsos, capturas de clientes ni cifras inventadas. El visitante recorre una composición cinematográfica de tipografía, material cromado y movimiento sutil, con una invitación clara a contratar.
+## Rediseño integral — noviembre 2026
 
-## Arquitectura
+La portada comunica desde el primer momento que Agustín diseña y desarrolla páginas web, tiendas online y aplicaciones a medida. El nuevo sistema visual alterna tinta oscura, verde lima y papel cálido. La experiencia no depende de imágenes remotas, WebGL ni animaciones pesadas.
 
-- `src/sections/cinema-home.tsx` — portada comercial en español e inglés.
-- `src/components/cinema-art.tsx` — escultura SVG original y otras piezas visuales.
-- `src/app/cinema.css` — sistema visual y movimiento accesible, pensado primero para celulares.
-- `src/components/navigation.tsx` — marca tipográfica, navegación y selector de idioma.
-- `src/app/[lang]/servicios/[slug]/page.tsx` — páginas SEO de los servicios.
-- `src/app/[lang]/privacidad/page.tsx` — política de contacto y medición.
+- Portada comercial con ilustraciones originales de interfaces y botón directo para consultar.
+- Presentación del valor del diseño y del desarrollo personalizado.
+- Laboratorio interactivo de tres demostraciones (marca, tienda y sistema), cada una en versión clara y oscura.
+- Tres servicios con gráficos originales y enlaces a sus páginas explicativas.
+- Proceso de trabajo, presentación personal, contacto y navegación por secciones.
+- Navegación móvil y contenido en español e inglés.
+- Animaciones suaves con adaptación a preferencias de movimiento reducido.
 
-## Reglas de diseño
+Todas las vistas demostrativas están identificadas como ejemplos, no como proyectos de clientes. No se publican enlaces a aplicaciones empresariales privadas ni métricas inventadas.
 
-La experiencia debe poder observarse, no jugarse. No hay animaciones atadas al puntero, audio automático ni dependencias WebGL. Las piezas visuales son SVG/CSS y se desactivan con `prefers-reduced-motion`. El contenido esencial sigue siendo HTML normal, navegable sin JavaScript.
+## Archivos principales
 
-## Verificación
+- src/sections/cinema-home.tsx: nueva portada y secciones (nombre conservado por compatibilidad).
+- src/components/live-showcase.tsx: galería interactiva clara/oscura.
+- src/components/navigation.tsx: navegación para computadora y móvil.
+- src/app/studio-showcase.css: identidad visual y diseño adaptable.
+- src/app/[lang]/servicios/[slug]/page.tsx: páginas de servicios con contenido SEO.
+- tests/cinematic-motion.spec.ts: nuevas pruebas de la portada, la interacción y el móvil.
 
-```bash
-npm ci
-npm run lint
-npm run typecheck
-npm run build
-npm run test:e2e
-```
+## Verificaciones previas a publicar
 
-La automatización valida acceso móvil, adaptación de 320 a 1920 píxeles, idioma, enlaces, SEO, contraste de texto y funcionamiento con movimiento reducido.
-
-El proyecto se publica desde la rama `main`, tras comprobar el resultado visual en celular y escritorio.
-
-### Referencias de diseño
-
-Los principios se estudiaron en Hallmark, Jesper Landberg, Meer Mohsin, Gionatan Nese y portfolios abiertos de Next.js. No se copiaron sus piezas, capturas ni código protegido.
-
-
-## Secuencia visual 2026 (segunda etapa)
-
-La experiencia ahora tiene una secuencia de tres actos que **se transforma con el avance real del desplazamiento**, sin secuestrar la rueda ni obligar al visitante a interactuar:
-
-1. Una pieza metálica cambia de encuadre, escala y orientación.
-2. La pieza cede el protagonismo a una composición tipográfica tridimensional.
-3. Los elementos se reorganizan en una arquitectura visual original.
-
-También hay una marquesina editorial continua, reflejos lentos, una composición tipográfica óptica, una escultura orbital y una retícula material en movimiento. Ninguno es un juego, un panel falso o un producto de un cliente.
-
-La secuencia usa `IntersectionObserver`, eventos pasivos de desplazamiento y `requestAnimationFrame` limitado a los eventos. No se agregaron bibliotecas de animación ni se alteró el desplazamiento nativo. En ausencia de JavaScript o cuando el usuario prefiere menos movimiento, los tres capítulos aparecen como contenido estático y legible. La animación se detiene al salir de las secciones correspondientes según las capacidades del navegador.
-
-Archivos nuevos: `src/components/cinematic-sequence.tsx`, `src/app/cinematic-motion.css`. Pruebas: `tests/cinematic-motion.spec.ts`.
+Ejecutar en este orden: npm ci, npm run lint, npm run typecheck, npm run build y npm run test:e2e. Además, revisar el resultado visual, la navegación por teclado y el diseño a 320, 390, 768, 1440 y 1920 píxeles.
