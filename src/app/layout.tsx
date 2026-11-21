@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { siteUrl } from '@/lib/site';
 import './base.css';
 import './studio-showcase.css';
+import './studio-refinement.css';
 
 export const metadata: Metadata = { metadataBase: new URL(siteUrl) };
 
