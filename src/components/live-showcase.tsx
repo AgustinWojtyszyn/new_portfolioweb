@@ -28,8 +28,7 @@ const details = {
     previewSystemIntro: 'Todo lo que necesitás, en un solo lugar.',
     panelA: 'Pedidos', panelB: 'Productos', panelC: 'Equipo',
     brandButton: 'Descubrir', shopButton: 'Explorar objetos',
-    example: 'Ejemplo de interfaz',
-    browser: 'vista-demo.local'
+    example: 'Ejemplo de interfaz'
   },
   en: {
     select: 'Choose a concept',
@@ -51,8 +50,7 @@ const details = {
     previewSystemIntro: 'Everything you need, all in one place.',
     panelA: 'Orders', panelB: 'Products', panelC: 'Team',
     brandButton: 'Discover', shopButton: 'Explore objects',
-    example: 'Interface example',
-    browser: 'design-preview.local'
+    example: 'Interface example'
   }
 } as const;
 
@@ -83,7 +81,6 @@ export function LiveShowcase({ lang }: { lang: Language }) {
 
     <div className={'aw-lab-stage aw-lab-stage--' + concept + ' aw-lab-stage--' + appearance}>
       <div className="aw-lab-browser" role="img" aria-label={t.names[concept] + ': ' + t.subtitles[concept] + '. ' + t.label}>
-        <div className="aw-lab-browser-chrome"><span className="aw-lab-lights"><i/><i/><i/></span><span className="aw-lab-address"><span>⌁</span> {t.browser}</span><span className="aw-lab-expand">↗</span></div>
         {concept === 'brand' && <div className="aw-concept aw-concept-brand">
           <div className="aw-concept-nav"><strong>novo<span>®</span></strong><span>DESIGN / STUDIO / <b>CONTACT ↗</b></span></div>
           <div className="aw-concept-brand-main">
