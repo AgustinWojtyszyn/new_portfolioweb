@@ -1,49 +1,56 @@
 import { test, expect } from '@playwright/test';
 
-test('the three-act cinematic sequence transforms when the visitor scrolls', async ({page}) => {
-  await page.setViewportSize({width:390,height:844});
+test('Spanish and English clearly state web development in the first screen', async ({page}) => {
+  for (const [lang, title] of [['es', /Páginas web/], ['en', /Websites/]] as const) {
+    await page.goto('/' + lang);
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('h1')).toContainText(title);
+    await expect(page.locator('.aw-hero-actions a').first()).toHaveAttribute('href', /mailto:/);
+    await expect(page.locator('.aw-service-card')).toHaveCount(3);
+    await expect(page.locator('.aw-browser-front')).toBeVisible();
+  }
+});
+
+test('interactive visual lab switches concepts and appearance', async ({page}) => {
   await page.goto('/es');
-  const section=page.locator('.vx-film');
-  await expect(section).toHaveCount(1);
-  await expect(section.locator('.vx-film-act')).toHaveCount(3);
-  const y=await section.evaluate(el=>el.getBoundingClientRect().top+window.scrollY);
-  await page.evaluate(value=>window.scrollTo(0,value),y);
-  await expect(section).toHaveClass(/is-playing/);
-  const state1=await section.evaluate(el=>({
-    progress:parseFloat(el.style.getPropertyValue('--vx-fp')),
-    sculpture:getComputedStyle(el.querySelector('.vx-film-sculpture')!).transform,
-    sceneOne:getComputedStyle(el.querySelector('.vx-film-act--0')!).opacity
-  }));
-  await page.evaluate(value=>window.scrollTo(0,value+window.innerHeight*1.4),y);
-  await expect.poll(async()=>section.evaluate(el=>parseFloat(el.style.getPropertyValue('--vx-fp')))).toBeGreaterThan(.60);
-  const state2=await section.evaluate(el=>({
-    progress:parseFloat(el.style.getPropertyValue('--vx-fp')),
-    sculpture:getComputedStyle(el.querySelector('.vx-film-sculpture')!).transform,
-    sceneThree:getComputedStyle(el.querySelector('.vx-film-act--2')!).opacity
-  }));
-  expect(state1.progress).toBeLessThan(.1);
-  expect(state1.sceneOne).toBe('1');
-  expect(state2.progress).toBeGreaterThan(state1.progress+.5);
-  expect(state2.sculpture).not.toBe(state1.sculpture);
-  expect(Number(state2.sceneThree)).toBeGreaterThan(0);
+  const preview = page.locator('.aw-lab-stage');
+  await expect(preview).toHaveClass(/aw-lab-stage--brand/);
+  await page.getByRole('button', {name:/Tienda/}).click();
+  await expect(preview).toHaveClass(/aw-lab-stage--shop/);
+  await expect(page.locator('.aw-concept-shop')).toBeVisible();
+  await page.getByRole('button', {name:/Oscuro/}).click();
+  await expect(preview).toHaveClass(/aw-lab-stage--dark/);
+  await page.getByRole('button', {name:/Sistema/}).click();
+  await expect(page.locator('.aw-concept-system')).toBeVisible();
+  await expect(page.locator('.aw-lab-caption a')).toHaveAttribute('href', '/es/servicios/aplicaciones-a-medida');
+  await page.getByRole('button', {name:/Claro/}).click();
+  await expect(preview).toHaveClass(/aw-lab-stage--light/);
 });
 
-test('mobile hero, optical letter, orbit and modular sculpture have real motion',async({page})=>{
- await page.goto('/es');
- for(const selector of ['.vx-hero-art .vx-sculpture','.vx-typeplate-glyph--core','.vx-motionstudy-orb','.vx-build-architecture','.vx-kinetic-band-track']){
-  const name=await page.locator(selector).evaluate(el=>getComputedStyle(el).animationName);
-  expect(name,selector).not.toBe('none');
- }
- await expect(page.locator('.vx-page input,.vx-page canvas')).toHaveCount(0);
+test('mobile navigation works and layout avoids horizontal overflow', async ({page}) => {
+  for (const width of [320, 375, 390, 768]) {
+    await page.setViewportSize({width, height:844});
+    await page.goto('/es');
+    const dimensions = await page.evaluate(() => ({viewport:window.innerWidth,body:document.body.scrollWidth,root:document.documentElement.scrollWidth}));
+    expect(dimensions.body, 'body width at '+width).toBeLessThanOrEqual(dimensions.viewport + 1);
+    expect(dimensions.root, 'document width at '+width).toBeLessThanOrEqual(dimensions.viewport + 1);
+    await page.getByRole('button', {name:'Menú'}).click();
+    await expect(page.locator('.aw-mobile-nav')).toBeVisible();
+    await page.locator('.aw-mobile-nav a[href="/es#services"]').click();
+    await expect(page.locator('.aw-mobile-nav')).toHaveCount(0);
+    await expect(page).toHaveURL(/#services$/);
+  }
 });
 
-test('reduced-motion visitors get static, readable chapters without scroll hijacking',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'});
- await page.goto('/es');
- await expect(page.locator('.vx-film')).not.toHaveClass(/is-playing/);
- await expect(page.locator('.vx-film-act')).toHaveCount(3);
- await expect(page.locator('.vx-film-act h2')).toHaveCount(3);
- for(const selector of ['.vx-kinetic-band-track','.vx-motionstudy-orb','.vx-build-architecture','.vx-typeplate-glyph--core']){
-  expect(await page.locator(selector).evaluate(el=>getComputedStyle(el).animationName),selector).toBe('none');
- }
+test('reduced motion stays readable and avoids scroll hijacking', async ({page}) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/es');
+  await expect(page.locator('.aw-hero h1')).toBeVisible();
+  for (const selector of ['.aw-browser-front','.aw-art-star','.aw-ticker-inner','.aw-process-signet span:last-child']) {
+    const name = await page.locator(selector).evaluate(el => getComputedStyle(el).animationName);
+    expect(name, selector).toBe('none');
+  }
+  await expect(page.locator('canvas,video')).toHaveCount(0);
+  const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  expect(documentHeight).toBeGreaterThan(1500);
 });
