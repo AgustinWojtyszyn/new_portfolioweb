@@ -20,11 +20,11 @@ export default async function PrivacyPage({params}:Params){
  if(!isLanguage(lang))notFound();
  const es=lang==='es';
  const blocks=es?[
-  ['Contacto por correo','El formulario de consulta prepara un mensaje en tu aplicación de correo. La página no almacena ni envía los datos del formulario a una base de datos. El correo se envía únicamente si elegís enviarlo desde tu propia aplicación.'],
+  ['Contacto por correo','Los enlaces de contacto abren tu aplicación de correo y preparan un mensaje con un asunto sugerido. Esta página no recopila ni almacena el contenido de ese mensaje. El correo solo se envía cuando elegís enviarlo desde tu aplicación.'],
   ['Estadísticas opcionales','Si la medición está activada, Google Analytics 4 solo se carga cuando elegís «Aceptar medición». Puede utilizar cookies o identificadores para analizar visitas. Si elegís «No, gracias», no se carga el script de Analytics. Tu decisión se guarda en el almacenamiento local de este navegador.'],
   ['Cambiar la decisión','Podés borrar los datos del sitio desde la configuración de tu navegador. La próxima vez que visites la página, podrás elegir de nuevo.'],
  ]:[
-  ['Email contact','The inquiry form prepares a message in your email app. This website does not store or submit form data to a database. An email is sent only if you choose to send it from your own app.'],
+  ['Email contact','Contact links open your email application with a suggested subject. This website does not collect or store your message content. Your email is only sent if you choose to send it from your own app.'],
   ['Optional analytics','If analytics is configured, Google Analytics 4 loads only after you select “Accept analytics”. It may use cookies or identifiers to measure site visits. Selecting “No, thanks” does not load the Analytics script. Your choice is stored locally in this browser.'],
   ['Change your choice','You can clear site data in your browser settings. On your next visit, you will be able to choose again.']
  ];
