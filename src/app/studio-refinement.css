@@ -459,3 +459,33 @@ html,body{
   .aw-site .aw-ticker-inner{gap:22px}
   .aw-site .aw-ticker-inner>span{gap:24px}
 }
+
+/* Small purposeful interactions, inspired by open creative-portfolio patterns:
+   an unobtrusive page progress indicator and tactile service-preview motion.
+   Native scroll timelines avoid extra JS, observers or animation dependencies. */
+@keyframes aw-reading-progress{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+@supports(animation-timeline:scroll()){
+  @media(prefers-reduced-motion:no-preference){
+    .aw-header:after{
+      content:"";
+      position:absolute;
+      left:0;right:0;bottom:0;
+      height:2px;
+      transform:scaleX(0);
+      transform-origin:left center;
+      background:var(--aw-green);
+      pointer-events:none;
+      animation:aw-reading-progress linear both;
+      animation-timeline:scroll(root block);
+    }
+  }
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .aw-site .aw-service-visual .aw-mini-site,
+  .aw-site .aw-service-visual .aw-mini-app{transition:transform .55s var(--aw-easing)}
+  .aw-site .aw-service-card:hover .aw-mini-site{transform:rotate(-3deg) translate3d(0,-8px,0)}
+  .aw-site .aw-service-card:hover .aw-mini-app{transform:rotate(2deg) translate3d(0,-8px,0)}
+}
