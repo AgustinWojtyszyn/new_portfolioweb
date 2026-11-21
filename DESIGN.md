@@ -1,57 +1,52 @@
-# Visual system — AW / The unforgettable
+# AW — Sistema visual vigente (noviembre de 2026)
 
-A Hallmark v2.0–guided, fully bespoke personal portfolio for Agustín Wojtyszyn.
-The website itself is the demonstration. There are no client logos, screenshots, faux metrics, play tools, speculative results or test games in the public experience.
+## Objetivo
+El visitante debe comprender en la primera pantalla que Agustín Wojtyszyn diseña y desarrolla páginas web, tiendas digitales y aplicaciones a medida. La página demuestra el oficio, pero nunca oculta lo que se ofrece.
 
-## Art direction
-- Audience: prospective freelance web clients, agencies and founders.
-- Job: move visitors from a strong first impression to an email inquiry.
-- Visual language: near-black theatrical canvas, sculptural polished metal, restrained oxblood, off-white typography. Dark surfaces only.
-- Hero: cinematic title and original abstract chrome sculpture; text, purpose and CTA visible at desktop fold.
-- Choreography: very slow material drift, one structural scroll movement, hero entrance; no controls, no input-dependent experience, no autoplay audio.
-- Chapters: editorial statement / identity material plate / sculptural motion / engineering discipline / service rows / personal authored introduction / hiring finale.
-- Copy: bilingual and concrete. No fabricated data, client brands or unverified accolades.
-- Keep original links to bilingual service pages, privacy policy, actual GitHub/LinkedIn and mailto.
-- Fonts: self-hosted package Manrope Variable for text; Georgia as the statement face. Do not fetch remote font assets.
-- Accessibility: still readable without JavaScript; reduced-motion disables kinetic effects; visible focus; semantic headings.
-- Performance: no WebGL, canvas RAF, GSAP, Lenis, video downloads or inflated dependencies for a visual that can be accomplished with native CSS/SVG.
+## Dirección artística
+- Combinar superficies de tinta muy oscura con papel cálido y un acento verde lima. Es un estudio digital editorial, no un catálogo oscuro de esculturas abstractas.
+- La pieza emblemática es una composición original de una página web en escritorio y su adaptación móvil, sin barras de navegador ficticias, estadísticas o clientes inventados.
+- Tipografía Manrope Variable alojada con la aplicación y Georgia como contraste editorial, sin descargar tipografías de terceros en cada visita.
+- Reducir repetición de adornos, etiquetas en mayúsculas, estrellas y paneles simulados. Cada pantalla debe tener una composición útil.
+- Respetar la identidad del autor y la privacidad de aplicaciones empresariales. Los ejemplos ficticios son conceptos claramente identificados como demostraciones.
 
-## Sources examined
-Hallmark v2.0: https://github.com/Nutlope/hallmark
-Jesper Landberg (2026): https://jesperlandberg.com
-Gionatan Nese (2026): https://www.gionatannese.com
-Meer Mohsin (2026): https://meermohsin.me
-Aristide Benoist: https://aristidebenoist.com
-Open-source references: https://github.com/darkroomengineering/lenis and https://github.com/sanjjuo/2026-Portfolio
-We studied principles, not copied client assets, layouts or code.
+## Experiencia y navegación
+- Encabezado compacto en dispositivos móviles, contacto disponible en el menú y en el contenido.
+- Tres demostraciones seleccionables (marca, tienda y sistema), con controles accesibles de vista clara y oscura.
+- Navegación real a servicios, privacidad, GitHub, LinkedIn y correo. Conservar español e inglés.
+- Variaciones de escala, fondo y composición entre secciones. Mantener claridad comercial y pocas llamadas a la acción bien situadas.
 
-## Code
-- Main experience: src/sections/cinema-home.tsx
-- Original sculptural SVG and decorative motion: src/components/cinema-art.tsx
-- Main design tokens and mobile-first styles: src/app/cinema.css
-- Navigation and language switching: src/components/navigation.tsx
-- Historical case routes are unlinked and noindexed; they remain for content preservation, not promoted publicly.
+## Adaptación
+- Nada de desplazamiento horizontal. Usar overflow-x: clip en html y body, contenedores centrados y columnas minmax(0,1fr).
+- Comprobar 320, 360, 375, 390, 393, 412, 414, 430, 600, 700, 768, 1024, 1280, 1440 y 1920 píxeles.
+- En móvil ningún elemento del encabezado debe superponerse ni salirse, y el botón de consulta debe permanecer visible sin recorrer toda la página.
+- Interacciones táctiles de 44 px o más, foco visible, contenido accesible sin JavaScript y movimiento opcional bajo prefers-reduced-motion.
 
-## Checks
+## Rendimiento
+Sin WebGL obligatorio, vídeos decorativos, audio automático, desplazamiento interceptado ni dependencias de animación nuevas. Preferir CSS nativo, transiciones de transform/opacity y una galería de estado local en React.
+
+## Referencias estudiadas; sin copiar código ni identidad
+- Hallmark y tema Studio: https://github.com/Nutlope/hallmark
+- Impeccable: https://github.com/pbakaus/impeccable
+- Lume Studio Next: https://github.com/haramishra/lume-studio-next
+- Vercel Web Interface Guidelines: https://github.com/vercel-labs/web-interface-guidelines
+- Michael Kolesidis, portafolio creativo de código abierto (referencia de interacción, no assets): https://github.com/michaelkolesidis/michaelkolesidis.com
+
+## Archivos activos
+- src/sections/cinema-home.tsx — portada y secuencia comercial actual.
+- src/components/navigation.tsx — barra y menú móvil.
+- src/components/live-showcase.tsx — demostraciones interactivas.
+- src/app/studio-showcase.css — estructura visual.
+- src/app/studio-refinement.css — refinamientos visuales y adaptación de pantallas.
+- src/app/studio-detail.css — páginas de servicios y privacidad.
+- tests/mobile-visual-regression.spec.ts — protección contra cortes en celular.
+Los antiguos estilos y componentes de cine permanecen en el repositorio como historial, pero no se importan en la experiencia principal.
+
+## Barreras de calidad
+npm ci
 npm run lint
 npm run typecheck
 npm run build
 npm run test:e2e
-All must pass on the published main commit. Do not rely on test success as proof of visual taste: inspect mobile and desktop screenshots as well.
 
-## Scroll cinema implementation
-
-
-## Secuencia visual 2026 (segunda etapa)
-
-La experiencia ahora tiene una secuencia de tres actos que **se transforma con el avance real del desplazamiento**, sin secuestrar la rueda ni obligar al visitante a interactuar:
-
-1. Una pieza metálica cambia de encuadre, escala y orientación.
-2. La pieza cede el protagonismo a una composición tipográfica tridimensional.
-3. Los elementos se reorganizan en una arquitectura visual original.
-
-También hay una marquesina editorial continua, reflejos lentos, una composición tipográfica óptica, una escultura orbital y una retícula material en movimiento. Ninguno es un juego, un panel falso o un producto de un cliente.
-
-La secuencia usa `IntersectionObserver`, eventos pasivos de desplazamiento y `requestAnimationFrame` limitado a los eventos. No se agregaron bibliotecas de animación ni se alteró el desplazamiento nativo. En ausencia de JavaScript o cuando el usuario prefiere menos movimiento, los tres capítulos aparecen como contenido estático y legible. La animación se detiene al salir de las secciones correspondientes según las capacidades del navegador.
-
-Archivos nuevos: `src/components/cinematic-sequence.tsx`, `src/app/cinematic-motion.css`. Pruebas: `tests/cinematic-motion.spec.ts`.
+Estas pruebas se tienen que ejecutar, junto con capturas reales móviles y de escritorio. Un commit aceptado por GitHub no equivale a validación visual o funcional.
