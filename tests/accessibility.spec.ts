@@ -18,7 +18,7 @@ test('the web offer and the inquiry action fit the desktop fold',async({page})=>
   await page.goto('/es');
   const result = await page.evaluate(() => {
     const rect = (selector:string) => document.querySelector(selector)!.getBoundingClientRect();
-    return {title:rect('.aw-hero h1'),cta:rect('.aw-hero-actions .aw-button'),art:rect('.aw-browser-front')};
+    return {title:rect('.aw-hero h1'),cta:rect('.aw-hero-actions .aw-button'),art:rect('.aw-proof-sheet')};
   });
   expect(result.title.top).toBeGreaterThanOrEqual(0);
   expect(result.cta.bottom).toBeLessThanOrEqual(800);
