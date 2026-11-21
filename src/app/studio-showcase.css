@@ -2,7 +2,7 @@
    Accessible, lightweight CSS graphics; no WebGL, remote imagery or motion libraries. */
 :root{
   --aw-ink:#101311;--aw-void:#0b100e;--aw-green:#dfff75;--aw-paper:#f3f1e9;
-  --aw-paper-deep:#e8e6dc;--aw-black:#171b18;--aw-gray:#747a73;--aw-line:rgba(14,19,16,.2);
+  --aw-paper-deep:#e8e6dc;--aw-black:#171b18;--aw-gray:#5c675b;--aw-line:rgba(14,19,16,.2);
   --aw-line-dark:rgba(241,244,229,.2);--aw-sans:'Manrope Variable',Arial,sans-serif;--aw-serif:Georgia,'Times New Roman',serif;
   --aw-max:1460px;--aw-gutter:clamp(20px,4.6vw,86px);
 }
@@ -259,8 +259,8 @@ a:hover .aw-arrow{transform:translate(3px,-3px)}
 .aw-service-card:nth-child(2){background:#dfe5d8}
 .aw-service-card:nth-child(3){background:#ece4dc}
 .aw-service-copy{padding:37px clamp(27px,4.2vw,70px) 36px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
-.aw-service-topline{display:flex;justify-content:space-between;align-items:center;gap:15px;width:100%;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;color:#6b736b}
-.aw-service-category{font-size:12px;margin-top:auto!important;padding-top:45px;font-weight:800;color:#70756a}
+.aw-service-topline{display:flex;justify-content:space-between;align-items:center;gap:15px;width:100%;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;color:#505c50}
+.aw-service-category{font-size:12px;margin-top:auto!important;padding-top:45px;font-weight:800;color:#536052}
 .aw-service-card h3{margin-top:12px;font-size:clamp(38px,4vw,66px);letter-spacing:-.08em;max-width:580px}
 .aw-service-desc{max-width:440px;margin-top:16px!important;color:#535b54;line-height:1.65;font-size:14px}
 .aw-service-link{margin-top:37px;display:inline-flex;align-items:center;justify-content:space-between;gap:40px;font-weight:850;font-size:12px;border-bottom:1px solid #65715f;padding-bottom:10px;min-width:175px}
